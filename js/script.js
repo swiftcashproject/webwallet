@@ -258,6 +258,13 @@ function copyWholeBalance() {
 }
 
 jQuery(document).ready(function() {
+  // PWA Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js').catch(function(err) {
+      console.log(err);
+    });
+  }
+
   // Warning
   if (Cookies.get('warningPop') == null) {
     $('#modalWarning').modal('show');
