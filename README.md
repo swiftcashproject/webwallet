@@ -1,5 +1,3 @@
-![SwiftCash](images/logo.png?raw=true "SwiftCash")
-
 # SwiftCash - Web Wallet
 
 SWIFT's web wallet is an open-source wallet written in html, css and javascript. All signatures are handled on the client-side and private keys never leave the browser.
@@ -9,8 +7,8 @@ The wallet also enforces very strong passwords using a password strength meter t
 # Hosting
 This web wallet is hosted on github, and can be accessed via the following links:
 
-https://swiftcashproject.github.io/webwallet/
-https://wallet.swiftcash.cc/
+* https://swiftcashproject.github.io/webwallet/
+* https://wallet.swiftcash.cc/
 
 To avoid becoming a victim of phishing attacks, make sure you always double check the domain in your browser's address bar. You can also download the wallet and run it locally. But you're still going to need Internet in order to transact with the blockchain.
 
