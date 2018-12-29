@@ -1,0 +1,153 @@
+<html>
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="./js/jquery-1.11.1.min.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="./js/bootstrap.min.js"></script>
+    <link href="./css/styles.css" rel="stylesheet" id="styles-css">
+    <link rel="icon" type="image/png" href="./images/favicon.png">
+    <script type="text/javascript" src="./js/instascan.min.js"></script>
+    <script src="./js/swiftcash-1.2.2.js"></script>
+    <script src="./js/clipboard.min.js"></script>
+    <script src="./js/js.cookie.js"></script>
+    <script src="./js/script.js"></script>
+ </head>
+
+ <body>
+ <div class="container">
+  
+   <div class="row">
+    <div class="col-md-4"></div>
+    
+    <div class="col-md-4">
+      <section class="form">
+	<div id="pwd-container">
+        <form method="post" action="javascript:login();" role="login" style="padding-bottom: 2px;">
+          <a href="https://swiftcash.cc/wallets.html" target="_blank"><img src="./images/logo.png" class="img-responsive" alt="" /></a>
+
+            <div style="padding-bottom: 15px">
+              <input id="email" type="email" name="email" placeholder="Email" required class="form-control input-lg" value="" />
+		<div class="input-group">
+	          <input style="margin: 0px;" type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
+		  <span class="input-group-btn">
+    		    <button class="btn" style="margin: 0px;" type="button" onclick="javascript:openQrModal('password');"><i class="fa fa-qrcode" style="height: 29; width: 29; font-size: 33px;"></i></button>
+  		  </span>
+		</div>
+	      <div class="pwstrength_viewport_errors"></div>
+              <div class="pwstrength_viewport_progress"></div>
+              <button id="signin" type="submit" name="go" class="btn btn-lg btn-primary btn-block">Login</button>
+	      <button id="privlogintoggle" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"">Login With Your Private Key</button>
+            </div>
+
+	    <div id="loginprogress" style="display: none;">
+		<img src="./images/loading.gif" style="width: 100%; height: 25px; margin: 0px;" />
+	    </div>
+
+	</form>
+	</div>
+
+	<div id="addr-container" style="display: none;">
+        <form method="post" action="javascript:spendf();" role="spend" style="padding-bottom: 2px;">
+          <a href="https://swiftcash.cc" target="_blank"><img src="./images/logo.png" class="img-responsive" alt="" /></a>
+
+            <div class="row">
+	      <div class="alert alert-info fade in" style="margin-bottom: 0px; font-weight: bold; font-size: 12px;">
+                <a href="" target="_blank" id="addr-id">SWIFTADDRESS</a>
+	        <button id="addr-id-clipboard" type="button" class="btn btn-primary clipboard" data-clipboard-text="SWIFTADDRESS">
+			<i class="fa fa-copy"></i>
+		</button>
+                <div>
+		  <a href="" target="_blank" id="addr-balance" style="vertical-align: middle;">Balance: 0.00000000 SWIFT</a>
+                <button id="addr-balance-refresh" type="button" class="btn btn-primary refresh" onclick="javascript:loadAddress();">
+			<i class="fa fa-flash" style="width: 14px;"></i>
+		</button>
+		<button id="privatekey-copy" type="button" class="btn btn-primary privkey" data-placement="bottom" onclick="javascript:copyPrivateKey();">
+                        <i class="fa fa-key" style="width: 14px;"></i>
+                </button>
+		</div>
+	      </div>
+
+              <div id="addr-receive" style="padding-top: 10px;">
+                <img id="addr-qr" width="155" class="img-responsive" style="border: 1px solid black;" src="" alt="" />
+              </div>
+
+	      <div id="addr-spend" style="display: none; margin-bottom: 2px;">
+		  <div class="input-group">
+		    <input id="address" autocomplete="off" type="text" required name="address" placeholder="Address" class="form-control input-lg" value="" />
+		    <span class="input-group-btn">
+    		      <button class="btn" type="button" onclick="javascript:openQrModal('address');"><i class="fa fa-qrcode" style="height: 29; width: 29; font-size: 33px;"></i></button>
+  		    </span>
+		  </div>
+		  <div class="input-group">
+                    <input type="number" required autocomplete="off" class="form-control input-lg" min="0.001" step="0.00000001" name="amount" id="amount" placeholder="Amount" />
+                    <span class="input-group-btn">
+                      <button class="btn" type="button" onclick="javascript:copyWholeBalance();"><i class="fa fa-reorder" style="height: 29; width: 29; font-size: 33px;"></i></button>
+                    </span>
+                  </div>
+                  <button id="send" type="submit" name="send" class="btn btn-lg btn-primary btn-block">Send</button>
+	      </div>
+
+              <div class="row" id="spend-receive" style="margin-bottom: 13px">
+                 <div class="btn-group text-center" data-toggle="buttons" style="padding-top: 10px">
+                    <label class="btn btn-primary active center-block"><input value="R" onchange="rsvs(this);" type="radio">Receive</label>
+                    <label class="btn btn-primary center-block"><input value="S" onchange="rsvs(this);" type="radio">Spend</label>
+                 </div>
+              </div>
+
+              <div id="sendprogress" style="display: none;">
+                <img src="./images/loading.gif" style="width: 100%; height: 25px; margin-bottom: 0px;" />
+              </div>
+
+            </div>
+        </form>
+	</div>
+        <div class="form-links">| 
+          <a target="_blank" href="https://explorer.swiftcash.cc/">Explorer</a> | 
+          <a target="_blank" href="https://swiftcash.cc/assets/swiftcash-whitepaper.pdf">Whitepaper</a> | 
+          <a target="_blank" href="http://discord.swiftcash.cc/">Support</a> |
+          <a target="_blank" href="https://github.com/swiftcashproject/webwallet">Github</a> |
+        </div>
+      </section>  
+      </div>      
+      <div class="col-md-4"></div>
+
+  </div>
+ </div>
+
+ <!-- Warning Modal -->
+ <div class="modal fade" id="modalWarning" tabindex="-1" role="dialog" aria-labelledby="modalWarningLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalWarningLabel" style="font-weight: bold;">BE YOUR OWN BANK!</h5>
+      </div>
+      <div class="modal-body">
+	<p style="text-align: justify;">Make sure you save or remember the email and password that you choose to login for the first time. Entering the wrong email and password will not result in an error but will instead open the wrong address which will most likely be empty! If you forget or lose the email and password you choose to login for the first time, no one can help you to recover your account and your funds will be lost forever! BE YOUR OWN BANK!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"">Close</button>
+      </div>
+    </div>
+  </div>
+ </div>
+
+ <!-- Qr Scanner Modal -->
+ <div class="modal fade" id="modalQrCode" tabindex="-1" role="dialog" aria-labelledby="modalQrCodeLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalQrCodeLabel" style="font-weight: bold;">Scan Your QR Code</h5>
+      </div>
+      <div class="modal-body">
+        <video id="qrScannerPreview" style="width: 100%;"></video>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="javascript:closeQrModal();">Close</button>
+      </div>
+    </div>
+  </div>
+ </div>
+
+ </body>
+</html>
