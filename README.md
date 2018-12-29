@@ -13,7 +13,7 @@ This web wallet is hosted on github, and can be accessed via the following links
 To avoid becoming a victim of phishing attacks, make sure you always double check the domain in your browser's address bar. You can also download the wallet and run it locally. But you're still going to need Internet in order to transact with the blockchain.
 
 # License
-Copyright (C) 2018 SwiftCash Developers
+Copyright (C) 2018 SwiftCash Developers <br />
 This software is provided as is and with no gaurantee under the MIT license.
 
 # Support
