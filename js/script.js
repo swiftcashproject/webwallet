@@ -1,3 +1,49 @@
+window.Clipboard = (function(window, document, navigator) {
+    var textArea,
+        copy;
+
+    function isOS() {
+        return navigator.userAgent.match(/ipad|iphone/i);
+    }
+
+    function createTextArea(text) {
+        textArea = document.createElement('textArea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+    }
+
+    function selectText() {
+        var range,
+            selection;
+
+        if (isOS()) {
+            range = document.createRange();
+            range.selectNodeContents(textArea);
+            selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            textArea.setSelectionRange(0, 999999);
+        } else {
+            textArea.select();
+        }
+    }
+
+    function copyToClipboard() {
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+    }
+
+    copy = function(text) {
+        createTextArea(text);
+        selectText();
+        copyToClipboard();
+    };
+
+    return {
+        copy: copy
+    };
+})(window, document, navigator);
+
 var scanner;
 var qrIdToFill;
 function openQrModal(param) {
@@ -129,12 +175,7 @@ function copyPrivateKey() {
   var result = prompt("This operation will copy your private key to clipboard. Your private key is very important and anyone who has it will be able to spend from your account. You should never share your private key with anyone.\n\nType 'Yes' with capital 'Y' to continue:", "No");
   if(result == 'Yes') {
     try {
-      var dummy = document.createElement("input");
-      document.body.appendChild(dummy);
-      dummy.setAttribute('value', keyPair.toWIF());
-      dummy.select();
-      document.execCommand("copy");
-      document.body.removeChild(dummy);
+      Clipboard.copy(keyPair.toWIF());
       setTimeout(_setTooltip, 200, "Copied!", ".privkey");
       setTimeout(_hideTooltip, 200, ".privkey");
    } catch(e) {
