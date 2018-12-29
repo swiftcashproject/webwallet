@@ -260,7 +260,7 @@ function copyWholeBalance() {
 jQuery(document).ready(function() {
   // PWA Service Worker
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/js/service-worker.js').catch(function(err) {
+    navigator.serviceWorker.register('../service-worker.js').catch(function(err) {
       console.log(err);
     });
   }
