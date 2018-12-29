@@ -14,7 +14,7 @@ To avoid becoming a victim of phishing attacks, make sure you always double chec
 
 # License
 Copyright (C) 2018 SwiftCash Developers <br />
-This software is provided as is and with no gaurantee under the MIT license.
+This software is provided as is and with no guarantee under the MIT license.
 
 # Support
 For support, join http://discord.swiftcash.cc
