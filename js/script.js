@@ -12,9 +12,7 @@ function openQrModal(param) {
 
   Instascan.Camera.getCameras().then(function (cameras) {
     if (cameras.length > 1) {
-      if(cameras[0].name.toLowerCase().includes("back") || cameras[0].name.toLowerCase().includes("rear")) {
-	scanner.start(cameras[0]);
-      } else { scanner.start(cameras[1]); }
+      scanner.start(cameras[1]);
     } else if(cameras.length > 0) {
       scanner.start(cameras[0]);
     } else {
