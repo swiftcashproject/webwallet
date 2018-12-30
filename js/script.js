@@ -294,6 +294,10 @@ function SWIFT(a) {
   return Number(a.toFixed(8));
 }
 
+function accept() {
+  Cookies.set('termsAccepted', '1');
+}
+
 function copyWholeBalance() {
   if(balance - FEE > 0) {
      $('#amount').val(SWIFT(balance - FEE));
@@ -309,9 +313,8 @@ jQuery(document).ready(function() {
   }
 
   // Warning
-  if (Cookies.get('warningPop') == null) {
+  if (Cookies.get('termsAccepted') == null) {
     $('#modalWarning').modal('show');
-    Cookies.set('warningPop', '1');
   }
 
   // Private key login
