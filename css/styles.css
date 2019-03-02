@@ -80,7 +80,7 @@ form {
 	text-align: left;
 }
 
-.clipboard, .refresh, .privkey {
+.clipboard, .refresh, .privkey, .customfee {
 	padding: 2px;
 	margin: 0px;
 }

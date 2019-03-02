@@ -150,7 +150,6 @@ function switchCoin(whichCoin) {
 
 function switchCoinNow(whichCoin) {
   CURRENT_COIN = whichCoin;
-  $('#trx-fee').html('Transaction Fee: ' + PARAMS[CURRENT_COIN].txFee + ' ' + CURRENT_COIN);
 
   var cLogos = document.getElementsByClassName("currency-logo");
   for(i=0; i<cLogos.length; i++) {
@@ -293,10 +292,9 @@ function changeTheFee() {
   var result = prompt('Enter a custom fee:', txFee);
   if(Number(result) >= minFee && Number(result) <= maxFee) {
     PARAMS[CURRENT_COIN].txFee = Number(result);
-    $('#trx-fee').html('Transaction Fee: ' + PARAMS[CURRENT_COIN].txFee + ' ' + CURRENT_COIN);
   } else if(result != null) {
-      if(Number(result) < minFee) alert("Minimum transaction fee is " + minFee + "!");
-      else if(Number(result) > maxFee) alert("Maximum transaction fee is " + maxFee + "!");
+      if(Number(result) < minFee) alert("Minimum transaction fee allowed is " + minFee + " " + CURRENT_COIN + "!");
+      else if(Number(result) > maxFee) alert("Maximum transaction fee allowed is " + maxFee + " " + CURRENT_COIN + "!");
       else alert(result + " is not a valid fee!");
   }
 }
