@@ -5,7 +5,7 @@ To secure the account of users who login with an email and password rather than 
 The wallet also enforces very strong passwords using a password strength meter to further secure the accounts against brute-force attacks.
 
 # Hosting
-This web wallet is hosted on github, and can be accessed:
+This web wallet is hosted on github, and can be accessed via:
 
 * https://swiftcashproject.github.io/webwallet/
 * https://wallet.swiftcash.cc/
