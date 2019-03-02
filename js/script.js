@@ -293,8 +293,8 @@ function changeTheFee() {
   var result = prompt('Enter a custom fee:', txFee);
   if(Number(result) >= minFee && Number(result) <= maxFee) {
     PARAMS[CURRENT_COIN].txFee = Number(result);
-   $('#trx-fee').html('Transaction Fee: ' + PARAMS[CURRENT_COIN].txFee + ' ' + CURRENT_COIN);
-  } else {
+    $('#trx-fee').html('Transaction Fee: ' + PARAMS[CURRENT_COIN].txFee + ' ' + CURRENT_COIN);
+  } else if(result != null) {
       if(Number(result) < minFee) alert("Minimum transaction fee is " + minFee + "!");
       else if(Number(result) > maxFee) alert("Maximum transaction fee is " + maxFee + "!");
       else alert(result + " is not a valid fee!");
