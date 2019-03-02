@@ -1,3 +1,57 @@
+var CURRENT_COIN = 'SWIFT';
+var PARAMS = {
+	'SWIFT': {
+		coinjs: cc.swiftcash,
+		qrColor: '3875CE',
+		minFee: 0.002,
+		maxFee: 0.2,
+		txFee: 0.002,
+		explorer: 'https://explorer.swiftcash.cc/',
+		unspentApi: 'https://explorer.swiftcash.cc/api/unspent/',
+		sendApi: 'https://explorer.swiftcash.cc/api/pushtx/',
+		sendTxid1: 'txid',
+		unspentTxid: 'txid',
+		unspentOutput: 'output',
+		unspentValue: 'value'
+	},
+
+        'BTC': {
+                coinjs: cc.bitcoin,
+                qrColor: 'FC8F43',
+                minFee: 0.0001,
+                maxFee: 0.01,
+		txFee: 0.0001,
+                explorer: 'https://live.blockcypher.com/btc/',
+                unspentApi: 'https://chain.so/api/v2/get_tx_unspent/BTC/',
+		sendApi: 'https://chain.so/api/v2/send_tx/BTC/',
+		sendTxid1: 'data',
+                sendTxid2: 'txid',
+                unspentArray1: 'data',
+                unspentArray2: 'txs',
+                unspentTxid: 'txid',
+                unspentOutput: 'output_no',
+                unspentValue: 'value'
+        },
+
+	'LTC': {
+		coinjs: cc.litecoin,
+		qrColor: '5C5C5C',
+                minFee: 0.001,
+                maxFee: 0.1,
+		txFee: 0.001,
+                explorer: 'https://live.blockcypher.com/ltc/',
+                unspentApi: 'https://chain.so/api/v2/get_tx_unspent/LTC/',
+                sendApi: 'https://chain.so/api/v2/send_tx/LTC/',
+                sendTxid1: 'data',
+                sendTxid2: 'txid',
+		unspentArray1: 'data',
+		unspentArray2: 'txs',
+		unspentTxid: 'txid',
+		unspentOutput: 'output_no',
+		unspentValue: 'value'
+	}
+};
+
 window.Clipboard = (function(window, document, navigator) {
     var textArea,
         copy;
@@ -76,12 +130,42 @@ function closeQrModal() {
 }
 
 var passphrase="";
+var hashedPass="";
+var loginPrivkey="";
 var keyPair="";
 function hashit(hash, callback) {
   for(i=0; i<100*1440; i++) {
     hash = cc.swiftcash.crypto.keccak256(hash+passphrase);
     hash = hash.toString("hex");
-  } callback(hash);
+  }
+
+  hashedPass = hash;
+  callback(hash);
+}
+
+function switchCoin(whichCoin) {
+  CURRENT_COIN = whichCoin;
+  $('#trx-fee').html('Transaction Fee: ' + PARAMS[CURRENT_COIN].txFee + ' ' + CURRENT_COIN);
+
+  var cLogos = document.getElementsByClassName("currency-logo");
+  for(i=0; i<cLogos.length; i++) {
+     var title = cLogos[i].title;
+
+     if(title != whichCoin) {
+        cLogos[i].style.filter = "none";
+     } else {
+	cLogos[i].style.filter = "drop-shadow(1px 5px 8px #4b4b4c)";
+     }
+  }
+
+  if(whichCoin != loginPrivkey) {
+     var d = new cc.bigi.fromBuffer(hashedPass);
+     keyPair = new PARAMS[CURRENT_COIN].coinjs.ECPair(d);
+  } else {
+     keyPair = PARAMS[CURRENT_COIN].coinjs.ECPair.fromWIF(hashedPass);
+  }
+
+  loadAddress();
 }
 
 function login() {
@@ -89,12 +173,30 @@ function login() {
   if( $('ul.error-list').html() != "" || $('span.password-verdict').html() != "Very Strong" ) { alert("You need a stronger password!"); return; }
 
   // Login with private key
+  // TODO: Add the ability to login with BTC or LTC private keys
   if( $('#privlogintoggle').attr('aria-pressed') == "true" ) {
+    var privateKey = $('#password').val();
     try {
-      keyPair = cc.swiftcash.ECPair.fromWIF($('#password').val());
-    } catch(e) { alert("Invalid Private Key!"); return; }
+      // Try with swiftcash
+      keyPair = cc.swiftcash.ECPair.fromWIF(privateKey);
+      hashedPass = privateKey;
+      loginPrivkey = "SWIFT";
+      CURRENT_COIN = "SWIFT";
+    } catch(e) { try {
+      // Try with bitcoin
+      keyPair = cc.bitcoin.ECPair.fromWIF(privateKey);
+      hashedPass = privateKey;
+      loginPrivkey = "BTC";
+      CURRENT_COIN = "BTC";
+    } catch(e) { try {
+      // Try with litecoin
+      keyPair = cc.litecoin.ECPair.fromWIF(privateKey);
+      hashedPass = privateKey;
+      loginPrivkey = "LTC";
+      CURRENT_COIN = "LTC";
+    } catch(e) { alert("Invalid Private Key!"); return; } } }
 
-    loadAddress();
+    switchCoin(CURRENT_COIN);
     return;
   }
 
@@ -109,7 +211,7 @@ function login() {
   $("form[role='login']").click();
   setTimeout(hashit, 1000, hash.toString("hex"), function(hashed) {
     var d = new cc.bigi.fromBuffer(hashed);
-    keyPair = new cc.swiftcash.ECPair(d);
+    keyPair = new PARAMS[CURRENT_COIN].coinjs.ECPair(d);
     loadAddress();
   });
 }
@@ -119,18 +221,18 @@ function loadAddress() {
   $("#addr-balance").css("color", "gray");
   $("#pwd-container").hide();
   $("#addr-container").show();
-  $("#addr-qr").attr("src", "https://qr-generator.qrcode.studio/qr/custom?download=false&file=png&data=" + keyPair.getAddress() + "&size=400&config=%7B%22body%22%3A%22rounded-pointed%22%2C%22eye%22%3A%22frame6%22%2C%22eyeBall%22%3A%22ball6%22%2C%22erf1%22%3A%5B%22fv%22%5D%2C%22gradientColor1%22%3A%22%233875CE%22%2C%22gradientColor2%22%3A%22%233875CE%22%2C%22gradientType%22%3A%22radial%22%2C%22gradientOnEyes%22%3A%22true%22%2C%22logo%22%3A%22%22%7D");
+  $("#addr-qr").attr("src", "https://qr-generator.qrcode.studio/qr/custom?download=false&file=png&data=" + keyPair.getAddress() + "&size=400&config=%7B%22body%22%3A%22rounded-pointed%22%2C%22eye%22%3A%22frame6%22%2C%22eyeBall%22%3A%22ball6%22%2C%22erf1%22%3A%5B%22fv%22%5D%2C%22gradientColor1%22%3A%22%23" + PARAMS[CURRENT_COIN].qrColor + "%22%2C%22gradientColor2%22%3A%22%23" + PARAMS[CURRENT_COIN].qrColor + "%22%2C%22gradientType%22%3A%22radial%22%2C%22gradientOnEyes%22%3A%22true%22%2C%22logo%22%3A%22%22%7D");
   $("#addr-qr").attr("alt", keyPair.getAddress());
   $("#addr-id-clipboard").attr("data-clipboard-text", keyPair.getAddress());
-  $("#addr-id").attr("href", "https://explorer.swiftcash.cc/address/" + keyPair.getAddress());
-  $("#addr-balance").attr("href", "https://explorer.swiftcash.cc/address/" + keyPair.getAddress());
+  $("#addr-id").attr("href", PARAMS[CURRENT_COIN].explorer + "address/" + keyPair.getAddress());
+  $("#addr-balance").attr("href", PARAMS[CURRENT_COIN].explorer + "address/" + keyPair.getAddress());
   $("#addr-id").html(keyPair.getAddress());
   refresh();
 }
 
 function refresh() {
   $.ajax({
-    url: 'https://explorer.swiftcash.cc/api/unspent/' + keyPair.getAddress(),
+    url: PARAMS[CURRENT_COIN].unspentApi + keyPair.getAddress(),
     type: "GET",
     dataType: "json",
     data: {
@@ -151,12 +253,20 @@ var balance=0;
 var utxos=[];
 function loadAddressTxes(result) {
   var sum = 0;
-  utxos=result;
-  for(i in result) {
-    sum += result[i].value;
+  var F1 = PARAMS[CURRENT_COIN].unspentArray1;
+  var F2 = PARAMS[CURRENT_COIN].unspentArray2;
+
+  if(F1 && F2) {
+     utxos = result[F1][F2];
+  } else if(F1) {
+     utxos = result[F1];
+  } else { utxos=result; }
+
+  for(i in utxos) {
+    sum += Number(utxos[i].value);
   } balance = sum;
 
-  $('#addr-balance').html('Balance: ' + balance.toFixed(8) + ' SWIFT');
+  $('#addr-balance').html('Balance: ' + balance.toFixed(8) + ' ' + CURRENT_COIN);
 }
 
 function _setTooltip(message, classId) {
@@ -169,6 +279,19 @@ function _hideTooltip(classId) {
   setTimeout(function() {
     $(classId).attr('data-original-title', '').tooltip('hide');
   }, 1000);
+}
+
+function changeTheFee() {
+  var minFee = PARAMS[CURRENT_COIN].minFee;
+  var maxFee = PARAMS[CURRENT_COIN].maxFee
+  var txFee = PARAMS[CURRENT_COIN].txFee;
+  var result = prompt('Enter a custom fee:', txFee);
+  if(Number(result) >= minFee && Number(result) <= maxFee) {
+    PARAMS[CURRENT_COIN].txFee = Number(result);
+   $('#trx-fee').html('Transaction Fee: ' + PARAMS[CURRENT_COIN].txFee + ' ' + CURRENT_COIN);
+  } else {
+    alert("Transaction fee must be between " + minFee + " and " + maxFee + "!");
+  }
 }
 
 function copyPrivateKey() {
@@ -198,15 +321,15 @@ function rsvs(radio) {
   }
 }
 
-const FEE = 0.002;
 var tx;
 function spendf() {
   var amount = Number($("#amount").val());
+  const FEE = PARAMS[CURRENT_COIN].txFee;
   if(balance < FEE || SWIFT(amount+FEE) > balance) { alert("Insufficient funds! Minimum network fee is " + FEE + " SWIFT."); return; }
 
   // Validate the address
   try {
-    cc.swiftcash.address.toOutputScript($("#address").val());
+    PARAMS[CURRENT_COIN].coinjs.address.toOutputScript($("#address").val());
   } catch(e) { alert("Please enter a valid SwiftCash address!"); return; }
 
   // Disable the elements in the form
@@ -216,11 +339,11 @@ function spendf() {
   $('#sendprogress').show();
 
   // Create the transaction
-  tx = new cc.swiftcash.TransactionBuilder();
+  tx = new PARAMS[CURRENT_COIN].coinjs.TransactionBuilder();
 
   // Add all the available input(s)
   for(i in utxos) {
-     tx.addInput(utxos[i].txid, utxos[i].output);
+     tx.addInput(utxos[i].txid, utxos[i][PARAMS[CURRENT_COIN].unspentOutput]);
   }
 
   // Add the output
@@ -238,21 +361,30 @@ function spendf() {
   }
 
   $.ajax({
-    url: 'https://explorer.swiftcash.cc/api/pushx/' + tx.build().toHex(),
-    type: "GET",
+    url: PARAMS[CURRENT_COIN].sendApi,
+    type: "POST",
     dataType: "json",
-    data: {
-    },
+    data: "tx_hex=" + tx.build().toHex(),
     success: function (result) {
-	if(result.length == 64) {
+	var T1 = PARAMS[CURRENT_COIN].sendTxid1;
+	var T2 = PARAMS[CURRENT_COIN].sendTxid2;
+	var txid = '';
+
+	if(T1 && T2 && result && result[T1]) txid = result[T1][T2];
+	else if(T1 && result) txid = result[T1];
+
+	if(txid) {
 	   balance = change;
 	   $('#addr-balance').html("Balance: " + balance.toFixed(8) + " SWIFT");
 	   if(change > 0) {
-		utxos = [{"txid": result, "output": 1, value: change}];
+		utxos = [{"txid": txid, "output": 1, value: change}];
 	   } else { utxos = []; }
 
-	   window.open("https://explorer.swiftcash.cc/tx/" + result);
-	} else { alert("Broadcast failed! Please try again later."); console.log(result); }
+	   window.open(PARAMS[CURRENT_COIN].explorer + "tx/" + txid);
+	} else {
+	   console.log(result);
+	   alert("Broadcast may have failed?! Or not! Double check on the explorer and refresh your balance!");
+	}
 
 	$('#address').prop("disabled", false).val("");
 	$('#amount').prop("disabled", false).val("");
@@ -299,6 +431,7 @@ function accept() {
 }
 
 function copyWholeBalance() {
+  const FEE = PARAMS[CURRENT_COIN].txFee;
   if(balance - FEE > 0) {
      $('#amount').val(SWIFT(balance - FEE));
   }

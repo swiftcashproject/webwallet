@@ -18,7 +18,7 @@
     <link href="./css/styles.css" rel="stylesheet" id="styles-css">
     <link rel="icon" type="image/png" href="./images/favicon.png">
     <script type="text/javascript" src="./js/instascan.min.js"></script>
-    <script src="./js/swiftcash-1.2.2.js"></script>
+    <script src="./js/cc.js"></script>
     <script src="./js/clipboard.min.js"></script>
     <script src="./js/js.cookie.js"></script>
     <script src="./js/script.js"></script>
@@ -60,7 +60,11 @@
 
 	<div id="addr-container" style="display: none;">
         <form method="post" action="javascript:spendf();" role="spend" style="padding-bottom: 2px;">
-          <a href="https://swiftcash.cc" target="_blank"><img src="./images/logo.png" class="img-responsive" alt="" /></a>
+	<div class="row" style="display: flex; justify-content: center; align-items: center;">
+          <div title="SWIFT" class="col-md-3 currency-logo" style="filter: drop-shadow(1px 5px 8px #4b4b4c); padding: 2px; width: 52px;"><a href="javascript:switchCoin('SWIFT');"><img src="./images/swiftcash.png" class="img-responsive" alt="" /></a></div>
+	  <div title="BTC" class="col-md-3 currency-logo" style="padding: 2px; width: 52px;"><a href="javascript:switchCoin('BTC');"><img src="./images/bitcoin.png" class="img-responsive" alt="" /></a></div>
+	  <div title="LTC" class="col-md-3 currency-logo" style="padding: 2px; width: 52px;"><a href="javascript:switchCoin('LTC');"><img src="./images/litecoin.png" class="img-responsive" alt="" /></a></div>
+	</div>
 
             <div class="row">
 	      <div class="alert alert-info fade in" style="margin-bottom: 0px; padding-left: 5px; padding-right: 5px; font-weight: bold; font-size: 12px;">
@@ -76,6 +80,9 @@
 		<button id="privatekey-copy" type="button" class="btn btn-primary privkey" data-placement="bottom" onclick="javascript:copyPrivateKey();">
                         <i class="fa fa-key" style="width: 14px;"></i>
                 </button>
+		</div>
+		<div>
+                  <a href="javascript:changeTheFee();" id="trx-fee" style="vertical-align: middle;">Transaction Fee: 0.002 SWIFT</a>
 		</div>
 	      </div>
 

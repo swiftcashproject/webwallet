@@ -84,3 +84,8 @@ form {
 	padding: 2px;
 	margin: 0px;
 }
+
+.currency-logo:hover {
+	filter: drop-shadow(1px 5px 8px #4444dd) !important;
+}
+
