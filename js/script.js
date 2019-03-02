@@ -144,6 +144,11 @@ function hashit(hash, callback) {
 }
 
 function switchCoin(whichCoin) {
+  $("#addr-qr").attr("src", "./images/qrloader.gif");
+  setTimeout(switchCoinNow, 100, whichCoin);
+}
+
+function switchCoinNow(whichCoin) {
   CURRENT_COIN = whichCoin;
   $('#trx-fee').html('Transaction Fee: ' + PARAMS[CURRENT_COIN].txFee + ' ' + CURRENT_COIN);
 
@@ -290,7 +295,9 @@ function changeTheFee() {
     PARAMS[CURRENT_COIN].txFee = Number(result);
    $('#trx-fee').html('Transaction Fee: ' + PARAMS[CURRENT_COIN].txFee + ' ' + CURRENT_COIN);
   } else {
-    alert("Transaction fee must be between " + minFee + " and " + maxFee + "!");
+      if(Number(result) < minFee) alert("Minimum transaction fee is " + minFee + "!");
+      else if(Number(result) > maxFee) alert("Maximum transaction fee is " + maxFee + "!");
+      else alert(result + " is not a valid fee!");
   }
 }
 
