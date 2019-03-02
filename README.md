@@ -5,7 +5,7 @@ To secure the account of users who login with an email and password rather than 
 The wallet also enforces very strong passwords using a password strength meter to further secure the accounts against brute-force attacks.
 
 # Hosting
-This web wallet is hosted on github, and can be accessed via the following links:
+This web wallet is hosted on github, and can be accessed:
 
 * https://swiftcashproject.github.io/webwallet/
 * https://wallet.swiftcash.cc/
@@ -15,11 +15,14 @@ To avoid becoming a victim of phishing attacks, make sure you always double chec
 # BTC and LTC Support
 Bitcoin and Litecoin transactions are created and signed locally and then sent to their own networks using api(s) provided by https://chain.so/ - https://www.blockcypher.com is also used for following up on transaction details.
 
-# Logging in with your private key(s)
+# Login With Your Private Key(s)
 You can login with a SwiftCash, Bitcoin, or Litecoin private key. If you login with a SwiftCash private key, the wallet will generate a Btcoin and Litecoin address using your SwiftCash private key. If you login with a Bitcoin private key, the wallet will generate a SwiftCash and Litecoin address using your Bitcoin private key. And if you login with a Litecoin private key, the wallet will generate a SwiftCash and Bitcoin address using your Litecoin private key. It is however highly recommended to use email and password to login if you intend to stash all your cryptos in the same wallet and only use the private key login feature with your paper wallets.
 
 # Transaction Fees
 The wallet enforces a minimum of `0.002 SWIFT`, `0.0001 BTC`, and `0.001 LTC` transaction fees and allows users to increase this fee. To help avoid situations in which ridiculously high fees are paid by accident, the wallet enforces a maximum of `0.2 SWIFT`, `0.01 BTC`, and `0.1 LTC` transaction fees respectively.
+
+# Change Addresses
+N/A. Changes are sent back to the sender's address.
 
 # License
 Copyright (C) 2018-2019 SwiftCash Developers <br />
