@@ -116,7 +116,8 @@ function openQrModal(param) {
     } else if(cameras.length > 0) {
       scanner.start(cameras[0]);
     } else {
-      console.error('No cameras found.');
+      $('#modalQrCode').modal('toggle');
+      alert('No cameras found.');
     }
   }).catch(function (e) {
     console.error(e);
@@ -174,7 +175,7 @@ function switchCoinNow(whichCoin) {
 
 function login() {
   // Make sure the password is strong enough
-  if( $('ul.error-list').html() != "" || $('span.password-verdict').html() != "Very Strong" ) { alert("You need a stronger password!"); return; }
+  if( $('ul.error-list').html() != "" || $('span.password-verdict').html() != "Very Strong" ) { alert("You need a stronger password! Try choosing a longer password(at least 14 characters recommended), with both uppercase and lowercase characters as well as numbers and special characters."); return; }
 
   // Login with private key
   // TODO: Add the ability to login with BTC or LTC private keys
