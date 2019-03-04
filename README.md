@@ -28,5 +28,10 @@ N/A. Changes are sent back to the sender's address.
 Copyright (C) 2018-2019 SwiftCash Developers <br />
 This software is provided as is and with no guarantee under the MIT license.
 
+# Donation Addresses
+SWIFT: `SXucSXaV5HURNyJUWnPrVFHTdRzoU2u19F`
+BTC: `13atMuQvjApUEuV5voxRVFMV6HHA5FjMFT`
+LTC: `LMoqd7ikoq4XViBF6wwimGRFJVeSB6JmDh`
+
 # Support
 For support, join http://discord.swiftcash.cc
