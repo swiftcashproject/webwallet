@@ -159,7 +159,7 @@ function switchCoinNow(whichCoin) {
      if(title != whichCoin) {
         cLogos[i].style.filter = "none";
      } else {
-	cLogos[i].style.filter = "drop-shadow(1px 5px 8px #4b4b4c)";
+	cLogos[i].style.filter = "drop-shadow(1px 2px 4px #4b4b4c)";
      }
   }
 
