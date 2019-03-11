@@ -223,6 +223,7 @@ function login() {
 
 function loadAddress() {
   $("#addr-balance-refresh").prop("disabled", true);
+  $('#addr-balance').html('Balance: 0.00000000 ' + CURRENT_COIN);
   $("#addr-balance").css("color", "gray");
   $("#pwd-container").hide();
   $("#addr-container").show();
@@ -381,7 +382,7 @@ function spendf() {
 
 	if(txid) {
 	   balance = change;
-	   $('#addr-balance').html("Balance: " + balance.toFixed(8) + " SWIFT");
+	   $('#addr-balance').html("Balance: " + balance.toFixed(8) + " " + CURRENT_COIN);
 	   if(change > 0) {
 		utxos = [{"txid": txid, "output": 1, value: change}];
 	   } else { utxos = []; }
