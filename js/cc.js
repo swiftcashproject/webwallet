@@ -1,18 +1,16 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.cc = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 let swiftcash = require('swiftcashjs-lib');
 let bitcoin = require('bitcoinjs-lib');
-let litecoin = require('litecoinjs-lib');
 let bigi = require('bigi');
 
 module.exports = {
   swiftcash,
   bitcoin,
-  litecoin,
   bigi
 }
 
 
-},{"bigi":6,"bitcoinjs-lib":19,"litecoinjs-lib":74,"swiftcashjs-lib":125}],2:[function(require,module,exports){
+},{"bigi":6,"bitcoinjs-lib":19,"swiftcashjs-lib":88}],2:[function(require,module,exports){
 // base-x encoding
 // Forked from https://github.com/cryptocoinjs/bs58
 // Originally written by Mike Hearn for BitcoinJ
@@ -106,7 +104,7 @@ module.exports = function base (ALPHABET) {
   }
 }
 
-},{"safe-buffer":108}],3:[function(require,module,exports){
+},{"safe-buffer":71}],3:[function(require,module,exports){
 'use strict'
 let ALPHABET = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
 
@@ -1853,7 +1851,7 @@ BigInteger.prototype.toHex = function(size) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"./bigi":4,"assert":161,"buffer":167}],6:[function(require,module,exports){
+},{"./bigi":4,"assert":124,"buffer":130}],6:[function(require,module,exports){
 var BigInteger = require('./bigi')
 
 //addons
@@ -2101,7 +2099,7 @@ module.exports = {
   encode: encode
 }
 
-},{"safe-buffer":108}],9:[function(require,module,exports){
+},{"safe-buffer":71}],9:[function(require,module,exports){
 module.exports={
   "OP_FALSE": 0,
   "OP_0": 0,
@@ -2302,7 +2300,7 @@ module.exports = {
   toOutputScript: toOutputScript
 }
 
-},{"./networks":20,"./script":21,"./types":47,"bs58check":50,"safe-buffer":108,"typeforce":156}],12:[function(require,module,exports){
+},{"./networks":20,"./script":21,"./types":47,"bs58check":50,"safe-buffer":71,"typeforce":119}],12:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var bcrypto = require('./crypto')
 var fastMerkleRoot = require('merkle-lib/fastRoot')
@@ -2481,7 +2479,7 @@ Block.prototype.checkProofOfWork = function () {
 
 module.exports = Block
 
-},{"./crypto":14,"./transaction":45,"./types":47,"merkle-lib/fastRoot":104,"safe-buffer":108,"typeforce":156,"varuint-bitcoin":158}],13:[function(require,module,exports){
+},{"./crypto":14,"./transaction":45,"./types":47,"merkle-lib/fastRoot":67,"safe-buffer":71,"typeforce":119,"varuint-bitcoin":121}],13:[function(require,module,exports){
 var pushdata = require('pushdata-bitcoin')
 var varuint = require('varuint-bitcoin')
 
@@ -2539,7 +2537,7 @@ module.exports = {
   writeVarInt: writeVarInt
 }
 
-},{"pushdata-bitcoin":105,"varuint-bitcoin":158}],14:[function(require,module,exports){
+},{"pushdata-bitcoin":68,"varuint-bitcoin":121}],14:[function(require,module,exports){
 var createHash = require('create-hash')
 
 function ripemd160 (buffer) {
@@ -2733,7 +2731,7 @@ module.exports = {
   __curve: secp256k1
 }
 
-},{"./ecsignature":17,"./types":47,"bigi":6,"create-hmac":56,"ecurve":60,"safe-buffer":108,"typeforce":156}],16:[function(require,module,exports){
+},{"./ecsignature":17,"./types":47,"bigi":6,"create-hmac":56,"ecurve":60,"safe-buffer":71,"typeforce":119}],16:[function(require,module,exports){
 var baddress = require('./address')
 var bcrypto = require('./crypto')
 var ecdsa = require('./ecdsa')
@@ -2866,7 +2864,7 @@ ECPair.prototype.verify = function (hash, signature) {
 
 module.exports = ECPair
 
-},{"./address":11,"./crypto":14,"./ecdsa":15,"./networks":20,"./types":47,"bigi":6,"ecurve":60,"randombytes":106,"typeforce":156,"wif":160}],17:[function(require,module,exports){
+},{"./address":11,"./crypto":14,"./ecdsa":15,"./networks":20,"./types":47,"bigi":6,"ecurve":60,"randombytes":69,"typeforce":119,"wif":123}],17:[function(require,module,exports){
 (function (Buffer){
 var bip66 = require('bip66')
 var typeforce = require('typeforce')
@@ -2956,7 +2954,7 @@ ECSignature.prototype.toScriptSignature = function (hashType) {
 module.exports = ECSignature
 
 }).call(this,require("buffer").Buffer)
-},{"./types":47,"bigi":6,"bip66":8,"buffer":167,"typeforce":156}],18:[function(require,module,exports){
+},{"./types":47,"bigi":6,"bip66":8,"buffer":130,"typeforce":119}],18:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var base58check = require('bs58check')
 var bcrypto = require('./crypto')
@@ -3274,7 +3272,7 @@ HDNode.prototype.derivePath = function (path) {
 
 module.exports = HDNode
 
-},{"./crypto":14,"./ecpair":16,"./networks":20,"./types":47,"bigi":6,"bs58check":50,"create-hmac":56,"ecurve":60,"safe-buffer":108,"typeforce":156}],19:[function(require,module,exports){
+},{"./crypto":14,"./ecpair":16,"./networks":20,"./types":47,"bigi":6,"bs58check":50,"create-hmac":56,"ecurve":60,"safe-buffer":71,"typeforce":119}],19:[function(require,module,exports){
 module.exports = {
   Block: require('./block'),
   ECPair: require('./ecpair'),
@@ -3325,6 +3323,16 @@ module.exports = {
     pubKeyHash: 0x30,
     scriptHash: 0x32,
     wif: 0xb0
+  },
+  dogecoin: {
+    messagePrefix: '\x19Dogecoin Signed Message:\n',
+    bip32: {
+      public: 0x02facafd,
+      private: 0x02fac398
+    },
+    pubKeyHash: 0x1e,
+    scriptHash: 0x16,
+    wif: 0x9e
   }
 }
 
@@ -3539,7 +3547,7 @@ for (var key in templates) {
   module.exports[key] = templates[key]
 }
 
-},{"./script_number":22,"./templates":23,"./types":47,"bip66":8,"bitcoin-ops":9,"bitcoin-ops/map":10,"pushdata-bitcoin":105,"safe-buffer":108,"typeforce":156}],22:[function(require,module,exports){
+},{"./script_number":22,"./templates":23,"./types":47,"bip66":8,"bitcoin-ops":9,"bitcoin-ops/map":10,"pushdata-bitcoin":68,"safe-buffer":71,"typeforce":119}],22:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 
 function decode (buffer, maxLength, minimal) {
@@ -3609,7 +3617,7 @@ module.exports = {
   encode: encode
 }
 
-},{"safe-buffer":108}],23:[function(require,module,exports){
+},{"safe-buffer":71}],23:[function(require,module,exports){
 var decompile = require('../script').decompile
 var multisig = require('./multisig')
 var nullData = require('./nulldata')
@@ -3758,7 +3766,7 @@ module.exports = {
   encodeStack: encodeStack
 }
 
-},{"../../script":21,"bitcoin-ops":9,"safe-buffer":108,"typeforce":156}],26:[function(require,module,exports){
+},{"../../script":21,"bitcoin-ops":9,"safe-buffer":71,"typeforce":119}],26:[function(require,module,exports){
 // m [pubKeys ...] n OP_CHECKMULTISIG
 
 var bscript = require('../../script')
@@ -3824,7 +3832,7 @@ module.exports = {
   encode: encode
 }
 
-},{"../../script":21,"../../types":47,"bitcoin-ops":9,"typeforce":156}],27:[function(require,module,exports){
+},{"../../script":21,"../../types":47,"bitcoin-ops":9,"typeforce":119}],27:[function(require,module,exports){
 // OP_RETURN {data}
 
 var bscript = require('../script')
@@ -3860,7 +3868,7 @@ module.exports = {
   }
 }
 
-},{"../script":21,"../types":47,"bitcoin-ops":9,"typeforce":156}],28:[function(require,module,exports){
+},{"../script":21,"../types":47,"bitcoin-ops":9,"typeforce":119}],28:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
 },{"./input":29,"./output":30,"dup":24}],29:[function(require,module,exports){
 // {signature}
@@ -3904,7 +3912,7 @@ module.exports = {
   encodeStack: encodeStack
 }
 
-},{"../../script":21,"../../types":47,"typeforce":156}],30:[function(require,module,exports){
+},{"../../script":21,"../../types":47,"typeforce":119}],30:[function(require,module,exports){
 // {pubKey} OP_CHECKSIG
 
 var bscript = require('../../script')
@@ -3939,7 +3947,7 @@ module.exports = {
   encode: encode
 }
 
-},{"../../script":21,"bitcoin-ops":9,"typeforce":156}],31:[function(require,module,exports){
+},{"../../script":21,"bitcoin-ops":9,"typeforce":119}],31:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
 },{"./input":32,"./output":33,"dup":24}],32:[function(require,module,exports){
 // {signature} {pubKey}
@@ -3993,7 +4001,7 @@ module.exports = {
   encodeStack: encodeStack
 }
 
-},{"../../script":21,"../../types":47,"typeforce":156}],33:[function(require,module,exports){
+},{"../../script":21,"../../types":47,"typeforce":119}],33:[function(require,module,exports){
 // OP_DUP OP_HASH160 {pubKeyHash} OP_EQUALVERIFY OP_CHECKSIG
 
 var bscript = require('../../script')
@@ -4037,7 +4045,7 @@ module.exports = {
   encode: encode
 }
 
-},{"../../script":21,"../../types":47,"bitcoin-ops":9,"typeforce":156}],34:[function(require,module,exports){
+},{"../../script":21,"../../types":47,"bitcoin-ops":9,"typeforce":119}],34:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
 },{"./input":35,"./output":36,"dup":24}],35:[function(require,module,exports){
 // <scriptSig> {serialized scriptPubKey script}
@@ -4108,7 +4116,7 @@ module.exports = {
   encodeStack: encodeStack
 }
 
-},{"../../script":21,"safe-buffer":108,"typeforce":156}],36:[function(require,module,exports){
+},{"../../script":21,"safe-buffer":71,"typeforce":119}],36:[function(require,module,exports){
 // OP_HASH160 {scriptHash} OP_EQUAL
 
 var bscript = require('../../script')
@@ -4144,7 +4152,7 @@ module.exports = {
   encode: encode
 }
 
-},{"../../script":21,"../../types":47,"bitcoin-ops":9,"typeforce":156}],37:[function(require,module,exports){
+},{"../../script":21,"../../types":47,"bitcoin-ops":9,"typeforce":119}],37:[function(require,module,exports){
 module.exports = {
   output: require('./output')
 }
@@ -4193,7 +4201,7 @@ module.exports = {
   encode: encode
 }
 
-},{"../../script":21,"../../types":47,"bitcoin-ops":9,"safe-buffer":108,"typeforce":156}],39:[function(require,module,exports){
+},{"../../script":21,"../../types":47,"bitcoin-ops":9,"safe-buffer":71,"typeforce":119}],39:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
 },{"./input":40,"./output":41,"dup":24}],40:[function(require,module,exports){
 // {signature} {pubKey}
@@ -4241,7 +4249,7 @@ module.exports = {
   encode: encode
 }
 
-},{"../../script":21,"../../types":47,"bitcoin-ops":9,"typeforce":156}],42:[function(require,module,exports){
+},{"../../script":21,"../../types":47,"bitcoin-ops":9,"typeforce":119}],42:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
 },{"./input":43,"./output":44,"dup":24}],43:[function(require,module,exports){
 // {signature} {pubKey}
@@ -4289,7 +4297,7 @@ module.exports = {
   encode: encode
 }
 
-},{"../../script":21,"../../types":47,"bitcoin-ops":9,"typeforce":156}],45:[function(require,module,exports){
+},{"../../script":21,"../../types":47,"bitcoin-ops":9,"typeforce":119}],45:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var bcrypto = require('./crypto')
 var bscript = require('./script')
@@ -4783,7 +4791,7 @@ Transaction.prototype.setWitness = function (index, witness) {
 
 module.exports = Transaction
 
-},{"./bufferutils":13,"./crypto":14,"./script":21,"./types":47,"bitcoin-ops":9,"safe-buffer":108,"typeforce":156,"varuint-bitcoin":158}],46:[function(require,module,exports){
+},{"./bufferutils":13,"./crypto":14,"./script":21,"./types":47,"bitcoin-ops":9,"safe-buffer":71,"typeforce":119,"varuint-bitcoin":121}],46:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var baddress = require('./address')
 var bcrypto = require('./crypto')
@@ -5529,7 +5537,7 @@ TransactionBuilder.prototype.__overMaximumFees = function (bytes) {
 
 module.exports = TransactionBuilder
 
-},{"./address":11,"./crypto":14,"./ecpair":16,"./ecsignature":17,"./networks":20,"./script":21,"./transaction":45,"./types":47,"bitcoin-ops":9,"safe-buffer":108,"typeforce":156}],47:[function(require,module,exports){
+},{"./address":11,"./crypto":14,"./ecpair":16,"./ecsignature":17,"./networks":20,"./script":21,"./transaction":45,"./types":47,"bitcoin-ops":9,"safe-buffer":71,"typeforce":119}],47:[function(require,module,exports){
 var typeforce = require('typeforce')
 
 var UINT31_MAX = Math.pow(2, 31) - 1
@@ -5584,7 +5592,7 @@ for (var typeName in typeforce) {
 
 module.exports = types
 
-},{"typeforce":156}],48:[function(require,module,exports){
+},{"typeforce":119}],48:[function(require,module,exports){
 var basex = require('base-x')
 var ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
@@ -5642,7 +5650,7 @@ module.exports = function (checksumFn) {
   }
 }
 
-},{"bs58":48,"safe-buffer":108}],50:[function(require,module,exports){
+},{"bs58":48,"safe-buffer":71}],50:[function(require,module,exports){
 'use strict'
 
 var createHash = require('create-hash')
@@ -5713,7 +5721,7 @@ module.exports = {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"bs58":48,"buffer":167,"js-sha3":52}],52:[function(require,module,exports){
+},{"bs58":48,"buffer":130,"js-sha3":52}],52:[function(require,module,exports){
 (function (process,global){
 /**
  * [js-sha3]{@link https://github.com/emn178/js-sha3}
@@ -6339,7 +6347,7 @@ module.exports = {
 })();
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":175}],53:[function(require,module,exports){
+},{"_process":138}],53:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var Transform = require('stream').Transform
 var StringDecoder = require('string_decoder').StringDecoder
@@ -6440,7 +6448,7 @@ CipherBase.prototype._toString = function (value, enc, fin) {
 
 module.exports = CipherBase
 
-},{"inherits":64,"safe-buffer":108,"stream":190,"string_decoder":191}],54:[function(require,module,exports){
+},{"inherits":64,"safe-buffer":71,"stream":153,"string_decoder":154}],54:[function(require,module,exports){
 'use strict'
 var inherits = require('inherits')
 var MD5 = require('md5.js')
@@ -6472,14 +6480,14 @@ module.exports = function createHash (alg) {
   return new Hash(sha(alg))
 }
 
-},{"cipher-base":53,"inherits":64,"md5.js":103,"ripemd160":107,"sha.js":110}],55:[function(require,module,exports){
+},{"cipher-base":53,"inherits":64,"md5.js":66,"ripemd160":70,"sha.js":73}],55:[function(require,module,exports){
 var MD5 = require('md5.js')
 
 module.exports = function (buffer) {
   return new MD5().update(buffer).digest()
 }
 
-},{"md5.js":103}],56:[function(require,module,exports){
+},{"md5.js":66}],56:[function(require,module,exports){
 'use strict'
 var inherits = require('inherits')
 var Legacy = require('./legacy')
@@ -6543,7 +6551,7 @@ module.exports = function createHmac (alg, key) {
   return new Hmac(alg, key)
 }
 
-},{"./legacy":57,"cipher-base":53,"create-hash/md5":55,"inherits":64,"ripemd160":107,"safe-buffer":108,"sha.js":110}],57:[function(require,module,exports){
+},{"./legacy":57,"cipher-base":53,"create-hash/md5":55,"inherits":64,"ripemd160":70,"safe-buffer":71,"sha.js":73}],57:[function(require,module,exports){
 'use strict'
 var inherits = require('inherits')
 var Buffer = require('safe-buffer').Buffer
@@ -6591,7 +6599,7 @@ Hmac.prototype._final = function () {
 }
 module.exports = Hmac
 
-},{"cipher-base":53,"inherits":64,"safe-buffer":108}],58:[function(require,module,exports){
+},{"cipher-base":53,"inherits":64,"safe-buffer":71}],58:[function(require,module,exports){
 var assert = require('assert')
 var BigInteger = require('bigi')
 
@@ -6670,7 +6678,7 @@ Curve.prototype.validate = function (Q) {
 
 module.exports = Curve
 
-},{"./point":62,"assert":161,"bigi":6}],59:[function(require,module,exports){
+},{"./point":62,"assert":124,"bigi":6}],59:[function(require,module,exports){
 module.exports={
   "secp128r1": {
     "p": "fffffffdffffffffffffffffffffffff",
@@ -7018,7 +7026,7 @@ Point.prototype.toString = function () {
 
 module.exports = Point
 
-},{"assert":161,"bigi":6,"safe-buffer":108}],63:[function(require,module,exports){
+},{"assert":124,"bigi":6,"safe-buffer":71}],63:[function(require,module,exports){
 'use strict'
 var Buffer = require('safe-buffer').Buffer
 var Transform = require('stream').Transform
@@ -7115,7 +7123,7 @@ HashBase.prototype._digest = function () {
 
 module.exports = HashBase
 
-},{"inherits":64,"safe-buffer":108,"stream":190}],64:[function(require,module,exports){
+},{"inherits":64,"safe-buffer":71,"stream":153}],64:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -7800,1726 +7808,7 @@ if (typeof Object.create === 'function') {
 })();
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":175}],66:[function(require,module,exports){
-var Buffer = require('safe-buffer').Buffer
-var bech32 = require('bech32')
-var bs58check = require('bs58check')
-var bscript = require('./script')
-var btemplates = require('./templates')
-var networks = require('./networks')
-var typeforce = require('typeforce')
-var types = require('./types')
-
-function fromBase58Check (address) {
-  var payload = bs58check.decode(address)
-
-  // TODO: 4.0.0, move to "toOutputScript"
-  if (payload.length < 21) throw new TypeError(address + ' is too short')
-  if (payload.length > 21) throw new TypeError(address + ' is too long')
-
-  var version = payload.readUInt8(0)
-  var hash = payload.slice(1)
-
-  return { version: version, hash: hash }
-}
-
-function fromBech32 (address) {
-  var result = bech32.decode(address)
-  var data = bech32.fromWords(result.words.slice(1))
-
-  return {
-    version: result.words[0],
-    prefix: result.prefix,
-    data: Buffer.from(data)
-  }
-}
-
-function toBase58Check (hash, version) {
-  typeforce(types.tuple(types.Hash160bit, types.UInt8), arguments)
-
-  var payload = Buffer.allocUnsafe(21)
-  payload.writeUInt8(version, 0)
-  hash.copy(payload, 1)
-
-  return bs58check.encode(payload)
-}
-
-function toBech32 (data, version, prefix) {
-  var words = bech32.toWords(data)
-  words.unshift(version)
-
-  return bech32.encode(prefix, words)
-}
-
-function fromOutputScript (outputScript, network) {
-  network = network || networks.bitcoin
-
-  if (btemplates.pubKeyHash.output.check(outputScript)) return toBase58Check(bscript.compile(outputScript).slice(3, 23), network.pubKeyHash)
-  if (btemplates.scriptHash.output.check(outputScript)) return toBase58Check(bscript.compile(outputScript).slice(2, 22), network.scriptHash)
-  if (btemplates.witnessPubKeyHash.output.check(outputScript)) return toBech32(bscript.compile(outputScript).slice(2, 22), 0, network.bech32)
-  if (btemplates.witnessScriptHash.output.check(outputScript)) return toBech32(bscript.compile(outputScript).slice(2, 34), 0, network.bech32)
-
-  throw new Error(bscript.toASM(outputScript) + ' has no matching Address')
-}
-
-function toOutputScript (address, network) {
-  network = network || networks.bitcoin
-
-  var decode
-  try {
-    decode = fromBase58Check(address)
-  } catch (e) {}
-
-  if (decode) {
-    if (decode.version === network.pubKeyHash) return btemplates.pubKeyHash.output.encode(decode.hash)
-    if (decode.version === network.scriptHash) return btemplates.scriptHash.output.encode(decode.hash)
-  } else {
-    try {
-      decode = fromBech32(address)
-    } catch (e) {}
-
-    if (decode) {
-      if (decode.prefix !== network.bech32) throw new Error(address + ' has an invalid prefix')
-      if (decode.version === 0) {
-        if (decode.data.length === 20) return btemplates.witnessPubKeyHash.output.encode(decode.data)
-        if (decode.data.length === 32) return btemplates.witnessScriptHash.output.encode(decode.data)
-      }
-    }
-  }
-
-  throw new Error(address + ' has no matching Script')
-}
-
-module.exports = {
-  fromBase58Check: fromBase58Check,
-  fromBech32: fromBech32,
-  fromOutputScript: fromOutputScript,
-  toBase58Check: toBase58Check,
-  toBech32: toBech32,
-  toOutputScript: toOutputScript
-}
-
-},{"./networks":75,"./script":76,"./templates":78,"./types":102,"bech32":3,"bs58check":50,"safe-buffer":108,"typeforce":156}],67:[function(require,module,exports){
-arguments[4][12][0].apply(exports,arguments)
-},{"./crypto":69,"./transaction":100,"./types":102,"dup":12,"merkle-lib/fastRoot":104,"safe-buffer":108,"typeforce":156,"varuint-bitcoin":158}],68:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"dup":13,"pushdata-bitcoin":105,"varuint-bitcoin":158}],69:[function(require,module,exports){
-(function (Buffer){
-var createHash = require('create-hash')
-var sha3 = require('js-sha3').keccak256
-
-function ripemd160 (buffer) {
-  return createHash('rmd160').update(buffer).digest()
-}
-
-function sha1 (buffer) {
-  return createHash('sha1').update(buffer).digest()
-}
-
-function sha256 (buffer) {
-  return createHash('sha256').update(buffer).digest()
-}
-
-function hash160 (buffer) {
-  return ripemd160(sha256(buffer))
-}
-
-function hash256 (buffer) {
-  return sha256(sha256(buffer))
-}
-
-function keccak256 (buffer) {
-  let tmp = new sha3.update(buffer)
-  return new Buffer(tmp.digest('hex'), 'hex')
-}
-
-module.exports = {
-  hash160: hash160,
-  hash256: hash256,
-  ripemd160: ripemd160,
-  sha1: sha1,
-  sha256: sha256,
-  keccak256: keccak256
-}
-
-}).call(this,require("buffer").Buffer)
-},{"buffer":167,"create-hash":54,"js-sha3":65}],70:[function(require,module,exports){
-arguments[4][15][0].apply(exports,arguments)
-},{"./ecsignature":72,"./types":102,"bigi":6,"create-hmac":56,"dup":15,"ecurve":60,"safe-buffer":108,"typeforce":156}],71:[function(require,module,exports){
-arguments[4][16][0].apply(exports,arguments)
-},{"./address":66,"./crypto":69,"./ecdsa":70,"./networks":75,"./types":102,"bigi":6,"dup":16,"ecurve":60,"randombytes":106,"typeforce":156,"wif":160}],72:[function(require,module,exports){
-(function (Buffer){
-var bip66 = require('bip66')
-var typeforce = require('typeforce')
-var types = require('./types')
-
-var BigInteger = require('bigi')
-
-function ECSignature (r, s) {
-  typeforce(types.tuple(types.BigInt, types.BigInt), arguments)
-
-  this.r = r
-  this.s = s
-}
-
-ECSignature.parseCompact = function (buffer) {
-  typeforce(types.BufferN(65), buffer)
-
-  var flagByte = buffer.readUInt8(0) - 27
-  if (flagByte !== (flagByte & 7)) throw new Error('Invalid signature parameter')
-
-  var compressed = !!(flagByte & 4)
-  var recoveryParam = flagByte & 3
-  var signature = ECSignature.fromRSBuffer(buffer.slice(1))
-
-  return {
-    compressed: compressed,
-    i: recoveryParam,
-    signature: signature
-  }
-}
-
-ECSignature.fromRSBuffer = function (buffer) {
-  typeforce(types.BufferN(64), buffer)
-
-  var r = BigInteger.fromBuffer(buffer.slice(0, 32))
-  var s = BigInteger.fromBuffer(buffer.slice(32, 64))
-  return new ECSignature(r, s)
-}
-
-ECSignature.fromDER = function (buffer) {
-  var decode = bip66.decode(buffer)
-  var r = BigInteger.fromDERInteger(decode.r)
-  var s = BigInteger.fromDERInteger(decode.s)
-
-  return new ECSignature(r, s)
-}
-
-// BIP62: 1 byte hashType flag (only 0x01, 0x02, 0x03, 0x81, 0x82 and 0x83 are allowed)
-ECSignature.parseScriptSignature = function (buffer) {
-  var hashType = buffer.readUInt8(buffer.length - 1)
-  var hashTypeMod = hashType & ~0x80
-
-  if (hashTypeMod <= 0x00 || hashTypeMod >= 0x04) throw new Error('Invalid hashType ' + hashType)
-
-  return {
-    signature: ECSignature.fromDER(buffer.slice(0, -1)),
-    hashType: hashType
-  }
-}
-
-ECSignature.prototype.toCompact = function (i, compressed) {
-  if (compressed) {
-    i += 4
-  }
-
-  i += 27
-
-  var buffer = Buffer.alloc(65)
-  buffer.writeUInt8(i, 0)
-  this.toRSBuffer(buffer, 1)
-  return buffer
-}
-
-ECSignature.prototype.toDER = function () {
-  var r = Buffer.from(this.r.toDERInteger())
-  var s = Buffer.from(this.s.toDERInteger())
-
-  return bip66.encode(r, s)
-}
-
-ECSignature.prototype.toRSBuffer = function (buffer, offset) {
-  buffer = buffer || Buffer.alloc(64)
-  this.r.toBuffer(32).copy(buffer, offset)
-  this.s.toBuffer(32).copy(buffer, offset + 32)
-  return buffer
-}
-
-ECSignature.prototype.toScriptSignature = function (hashType) {
-  var hashTypeMod = hashType & ~0x80
-  if (hashTypeMod <= 0 || hashTypeMod >= 4) throw new Error('Invalid hashType ' + hashType)
-
-  var hashTypeBuffer = Buffer.alloc(1)
-  hashTypeBuffer.writeUInt8(hashType, 0)
-
-  return Buffer.concat([this.toDER(), hashTypeBuffer])
-}
-
-module.exports = ECSignature
-
-}).call(this,require("buffer").Buffer)
-},{"./types":102,"bigi":6,"bip66":8,"buffer":167,"typeforce":156}],73:[function(require,module,exports){
-arguments[4][18][0].apply(exports,arguments)
-},{"./crypto":69,"./ecpair":71,"./networks":75,"./types":102,"bigi":6,"bs58check":50,"create-hmac":56,"dup":18,"ecurve":60,"safe-buffer":108,"typeforce":156}],74:[function(require,module,exports){
-var script = require('./script')
-
-var templates = require('./templates')
-for (var key in templates) {
-  script[key] = templates[key]
-}
-
-module.exports = {
-  bufferutils: require('./bufferutils'), // TODO: remove in 4.0.0
-
-  Block: require('./block'),
-  ECPair: require('./ecpair'),
-  ECSignature: require('./ecsignature'),
-  HDNode: require('./hdnode'),
-  Transaction: require('./transaction'),
-  TransactionBuilder: require('./transaction_builder'),
-
-  address: require('./address'),
-  crypto: require('./crypto'),
-  networks: require('./networks'),
-  opcodes: require('bitcoin-ops'),
-  script: script
-}
-
-},{"./address":66,"./block":67,"./bufferutils":68,"./crypto":69,"./ecpair":71,"./ecsignature":72,"./hdnode":73,"./networks":75,"./script":76,"./templates":78,"./transaction":100,"./transaction_builder":101,"bitcoin-ops":9}],75:[function(require,module,exports){
-// https://en.bitcoin.it/wiki/List_of_address_prefixes
-// Dogecoin BIP32 is a proposed standard: https://bitcointalk.org/index.php?topic=409731
-
-module.exports = {
-  bitcoin: {
-    messagePrefix: '\x18Bitcoin Signed Message:\n',
-    bech32: 'bc',
-    bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4
-    },
-    pubKeyHash: 0x30,
-    scriptHash: 0x05,
-    wif: 0xB0
-  },
-  testnet: {
-    messagePrefix: '\x18Bitcoin Signed Message:\n',
-    bech32: 'tb',
-    bip32: {
-      public: 0x043587cf,
-      private: 0x04358394
-    },
-    pubKeyHash: 0x6f,
-    scriptHash: 0xc4,
-    wif: 0xef
-  },
-  litecoin: {
-    messagePrefix: '\x19Litecoin Signed Message:\n',
-    bip32: {
-      public: 0x019da462,
-      private: 0x019d9cfe
-    },
-    pubKeyHash: 0x30,
-    scriptHash: 0x32,
-    wif: 0xb0
-  }
-}
-
-},{}],76:[function(require,module,exports){
-var Buffer = require('safe-buffer').Buffer
-var bip66 = require('bip66')
-var pushdata = require('pushdata-bitcoin')
-var typeforce = require('typeforce')
-var types = require('./types')
-var scriptNumber = require('./script_number')
-
-var OPS = require('bitcoin-ops')
-var REVERSE_OPS = require('bitcoin-ops/map')
-var OP_INT_BASE = OPS.OP_RESERVED // OP_1 - 1
-
-function isOPInt (value) {
-  return types.Number(value) &&
-    ((value === OPS.OP_0) ||
-    (value >= OPS.OP_1 && value <= OPS.OP_16) ||
-    (value === OPS.OP_1NEGATE))
-}
-
-function isPushOnlyChunk (value) {
-  return types.Buffer(value) || isOPInt(value)
-}
-
-function isPushOnly (value) {
-  return types.Array(value) && value.every(isPushOnlyChunk)
-}
-
-function asMinimalOP (buffer) {
-  if (buffer.length === 0) return OPS.OP_0
-  if (buffer.length !== 1) return
-  if (buffer[0] >= 1 && buffer[0] <= 16) return OP_INT_BASE + buffer[0]
-  if (buffer[0] === 0x81) return OPS.OP_1NEGATE
-}
-
-function compile (chunks) {
-  // TODO: remove me
-  if (Buffer.isBuffer(chunks)) return chunks
-
-  typeforce(types.Array, chunks)
-
-  var bufferSize = chunks.reduce(function (accum, chunk) {
-    // data chunk
-    if (Buffer.isBuffer(chunk)) {
-      // adhere to BIP62.3, minimal push policy
-      if (chunk.length === 1 && asMinimalOP(chunk) !== undefined) {
-        return accum + 1
-      }
-
-      return accum + pushdata.encodingLength(chunk.length) + chunk.length
-    }
-
-    // opcode
-    return accum + 1
-  }, 0.0)
-
-  var buffer = Buffer.allocUnsafe(bufferSize)
-  var offset = 0
-
-  chunks.forEach(function (chunk) {
-    // data chunk
-    if (Buffer.isBuffer(chunk)) {
-      // adhere to BIP62.3, minimal push policy
-      var opcode = asMinimalOP(chunk)
-      if (opcode !== undefined) {
-        buffer.writeUInt8(opcode, offset)
-        offset += 1
-        return
-      }
-
-      offset += pushdata.encode(buffer, chunk.length, offset)
-      chunk.copy(buffer, offset)
-      offset += chunk.length
-
-    // opcode
-    } else {
-      buffer.writeUInt8(chunk, offset)
-      offset += 1
-    }
-  })
-
-  if (offset !== buffer.length) throw new Error('Could not decode chunks')
-  return buffer
-}
-
-function decompile (buffer) {
-  // TODO: remove me
-  if (types.Array(buffer)) return buffer
-
-  typeforce(types.Buffer, buffer)
-
-  var chunks = []
-  var i = 0
-
-  while (i < buffer.length) {
-    var opcode = buffer[i]
-
-    // data chunk
-    if ((opcode > OPS.OP_0) && (opcode <= OPS.OP_PUSHDATA4)) {
-      var d = pushdata.decode(buffer, i)
-
-      // did reading a pushDataInt fail? empty script
-      if (d === null) return []
-      i += d.size
-
-      // attempt to read too much data? empty script
-      if (i + d.number > buffer.length) return []
-
-      var data = buffer.slice(i, i + d.number)
-      i += d.number
-
-      // decompile minimally
-      var op = asMinimalOP(data)
-      if (op !== undefined) {
-        chunks.push(op)
-      } else {
-        chunks.push(data)
-      }
-
-    // opcode
-    } else {
-      chunks.push(opcode)
-
-      i += 1
-    }
-  }
-
-  return chunks
-}
-
-function toASM (chunks) {
-  if (Buffer.isBuffer(chunks)) {
-    chunks = decompile(chunks)
-  }
-
-  return chunks.map(function (chunk) {
-    // data?
-    if (Buffer.isBuffer(chunk)) {
-      var op = asMinimalOP(chunk)
-      if (op === undefined) return chunk.toString('hex')
-      chunk = op
-    }
-
-    // opcode!
-    return REVERSE_OPS[chunk]
-  }).join(' ')
-}
-
-function fromASM (asm) {
-  typeforce(types.String, asm)
-
-  return compile(asm.split(' ').map(function (chunkStr) {
-    // opcode?
-    if (OPS[chunkStr] !== undefined) return OPS[chunkStr]
-    typeforce(types.Hex, chunkStr)
-
-    // data!
-    return Buffer.from(chunkStr, 'hex')
-  }))
-}
-
-function toStack (chunks) {
-  chunks = decompile(chunks)
-  typeforce(isPushOnly, chunks)
-
-  return chunks.map(function (op) {
-    if (Buffer.isBuffer(op)) return op
-    if (op === OPS.OP_0) return Buffer.allocUnsafe(0)
-
-    return scriptNumber.encode(op - OP_INT_BASE)
-  })
-}
-
-function isCanonicalPubKey (buffer) {
-  if (!Buffer.isBuffer(buffer)) return false
-  if (buffer.length < 33) return false
-
-  switch (buffer[0]) {
-    case 0x02:
-    case 0x03:
-      return buffer.length === 33
-    case 0x04:
-      return buffer.length === 65
-  }
-
-  return false
-}
-
-function isDefinedHashType (hashType) {
-  var hashTypeMod = hashType & ~0x80
-
-// return hashTypeMod > SIGHASH_ALL && hashTypeMod < SIGHASH_SINGLE
-  return hashTypeMod > 0x00 && hashTypeMod < 0x04
-}
-
-function isCanonicalSignature (buffer) {
-  if (!Buffer.isBuffer(buffer)) return false
-  if (!isDefinedHashType(buffer[buffer.length - 1])) return false
-
-  return bip66.check(buffer.slice(0, -1))
-}
-
-module.exports = {
-  compile: compile,
-  decompile: decompile,
-  fromASM: fromASM,
-  toASM: toASM,
-  toStack: toStack,
-
-  number: require('./script_number'),
-
-  isCanonicalPubKey: isCanonicalPubKey,
-  isCanonicalSignature: isCanonicalSignature,
-  isPushOnly: isPushOnly,
-  isDefinedHashType: isDefinedHashType
-}
-
-},{"./script_number":77,"./types":102,"bip66":8,"bitcoin-ops":9,"bitcoin-ops/map":10,"pushdata-bitcoin":105,"safe-buffer":108,"typeforce":156}],77:[function(require,module,exports){
-arguments[4][22][0].apply(exports,arguments)
-},{"dup":22,"safe-buffer":108}],78:[function(require,module,exports){
-arguments[4][23][0].apply(exports,arguments)
-},{"../script":76,"./multisig":79,"./nulldata":82,"./pubkey":83,"./pubkeyhash":86,"./scripthash":89,"./witnesscommitment":92,"./witnesspubkeyhash":94,"./witnessscripthash":97,"dup":23}],79:[function(require,module,exports){
-arguments[4][24][0].apply(exports,arguments)
-},{"./input":80,"./output":81,"dup":24}],80:[function(require,module,exports){
-// OP_0 [signatures ...]
-
-var Buffer = require('safe-buffer').Buffer
-var bscript = require('../../script')
-var p2mso = require('./output')
-var typeforce = require('typeforce')
-var OPS = require('bitcoin-ops')
-
-function partialSignature (value) {
-  return value === OPS.OP_0 || bscript.isCanonicalSignature(value)
-}
-
-function check (script, allowIncomplete) {
-  var chunks = bscript.decompile(script)
-  if (chunks.length < 2) return false
-  if (chunks[0] !== OPS.OP_0) return false
-
-  if (allowIncomplete) {
-    return chunks.slice(1).every(partialSignature)
-  }
-
-  return chunks.slice(1).every(bscript.isCanonicalSignature)
-}
-check.toJSON = function () { return 'multisig input' }
-
-var EMPTY_BUFFER = Buffer.allocUnsafe(0)
-
-function encodeStack (signatures, scriptPubKey) {
-  typeforce([partialSignature], signatures)
-
-  if (scriptPubKey) {
-    var scriptData = p2mso.decode(scriptPubKey)
-
-    if (signatures.length < scriptData.m) {
-      throw new TypeError('Not enough signatures provided')
-    }
-
-    if (signatures.length > scriptData.pubKeys.length) {
-      throw new TypeError('Too many signatures provided')
-    }
-  }
-
-  return [].concat(EMPTY_BUFFER, signatures.map(function (sig) {
-    if (sig === OPS.OP_0) {
-      return EMPTY_BUFFER
-    }
-    return sig
-  }))
-}
-
-function encode (signatures, scriptPubKey) {
-  return bscript.compile(encodeStack(signatures, scriptPubKey))
-}
-
-function decodeStack (stack, allowIncomplete) {
-  typeforce(typeforce.Array, stack)
-  typeforce(check, stack, allowIncomplete)
-  return stack.slice(1)
-}
-
-function decode (buffer, allowIncomplete) {
-  var stack = bscript.decompile(buffer)
-  return decodeStack(stack, allowIncomplete)
-}
-
-module.exports = {
-  check: check,
-  decode: decode,
-  decodeStack: decodeStack,
-  encode: encode,
-  encodeStack: encodeStack
-}
-
-},{"../../script":76,"./output":81,"bitcoin-ops":9,"safe-buffer":108,"typeforce":156}],81:[function(require,module,exports){
-arguments[4][26][0].apply(exports,arguments)
-},{"../../script":76,"../../types":102,"bitcoin-ops":9,"dup":26,"typeforce":156}],82:[function(require,module,exports){
-arguments[4][27][0].apply(exports,arguments)
-},{"../script":76,"../types":102,"bitcoin-ops":9,"dup":27,"typeforce":156}],83:[function(require,module,exports){
-arguments[4][24][0].apply(exports,arguments)
-},{"./input":84,"./output":85,"dup":24}],84:[function(require,module,exports){
-// {signature}
-
-var bscript = require('../../script')
-var typeforce = require('typeforce')
-
-function check (script) {
-  var chunks = bscript.decompile(script)
-
-  return chunks.length === 1 &&
-    bscript.isCanonicalSignature(chunks[0])
-}
-check.toJSON = function () { return 'pubKey input' }
-
-function encodeStack (signature) {
-  typeforce(bscript.isCanonicalSignature, signature)
-  return [signature]
-}
-
-function encode (signature) {
-  return bscript.compile(encodeStack(signature))
-}
-
-function decodeStack (stack) {
-  typeforce(typeforce.Array, stack)
-  typeforce(check, stack)
-  return stack[0]
-}
-
-function decode (buffer) {
-  var stack = bscript.decompile(buffer)
-  return decodeStack(stack)
-}
-
-module.exports = {
-  check: check,
-  decode: decode,
-  decodeStack: decodeStack,
-  encode: encode,
-  encodeStack: encodeStack
-}
-
-},{"../../script":76,"typeforce":156}],85:[function(require,module,exports){
-arguments[4][30][0].apply(exports,arguments)
-},{"../../script":76,"bitcoin-ops":9,"dup":30,"typeforce":156}],86:[function(require,module,exports){
-arguments[4][24][0].apply(exports,arguments)
-},{"./input":87,"./output":88,"dup":24}],87:[function(require,module,exports){
-// {signature} {pubKey}
-
-var bscript = require('../../script')
-var typeforce = require('typeforce')
-
-function check (script) {
-  var chunks = bscript.decompile(script)
-
-  return chunks.length === 2 &&
-    bscript.isCanonicalSignature(chunks[0]) &&
-    bscript.isCanonicalPubKey(chunks[1])
-}
-check.toJSON = function () { return 'pubKeyHash input' }
-
-function encodeStack (signature, pubKey) {
-  typeforce({
-    signature: bscript.isCanonicalSignature,
-    pubKey: bscript.isCanonicalPubKey
-  }, {
-    signature: signature,
-    pubKey: pubKey
-  })
-
-  return [signature, pubKey]
-}
-
-function encode (signature, pubKey) {
-  return bscript.compile(encodeStack(signature, pubKey))
-}
-
-function decodeStack (stack) {
-  typeforce(typeforce.Array, stack)
-  typeforce(check, stack)
-
-  return {
-    signature: stack[0],
-    pubKey: stack[1]
-  }
-}
-
-function decode (buffer) {
-  var stack = bscript.decompile(buffer)
-  return decodeStack(stack)
-}
-
-module.exports = {
-  check: check,
-  decode: decode,
-  decodeStack: decodeStack,
-  encode: encode,
-  encodeStack: encodeStack
-}
-
-},{"../../script":76,"typeforce":156}],88:[function(require,module,exports){
-arguments[4][33][0].apply(exports,arguments)
-},{"../../script":76,"../../types":102,"bitcoin-ops":9,"dup":33,"typeforce":156}],89:[function(require,module,exports){
-arguments[4][24][0].apply(exports,arguments)
-},{"./input":90,"./output":91,"dup":24}],90:[function(require,module,exports){
-// <scriptSig> {serialized scriptPubKey script}
-
-var Buffer = require('safe-buffer').Buffer
-var bscript = require('../../script')
-var typeforce = require('typeforce')
-
-var p2ms = require('../multisig/')
-var p2pk = require('../pubkey/')
-var p2pkh = require('../pubkeyhash/')
-var p2wpkho = require('../witnesspubkeyhash/output')
-var p2wsho = require('../witnessscripthash/output')
-
-function check (script, allowIncomplete) {
-  var chunks = bscript.decompile(script)
-  if (chunks.length < 1) return false
-
-  var lastChunk = chunks[chunks.length - 1]
-  if (!Buffer.isBuffer(lastChunk)) return false
-
-  var scriptSigChunks = bscript.decompile(bscript.compile(chunks.slice(0, -1)))
-  var redeemScriptChunks = bscript.decompile(lastChunk)
-
-  // is redeemScript a valid script?
-  if (redeemScriptChunks.length === 0) return false
-
-  // is redeemScriptSig push only?
-  if (!bscript.isPushOnly(scriptSigChunks)) return false
-
-  // is witness?
-  if (chunks.length === 1) {
-    return p2wsho.check(redeemScriptChunks) ||
-      p2wpkho.check(redeemScriptChunks)
-  }
-
-  // match types
-  if (p2pkh.input.check(scriptSigChunks) &&
-    p2pkh.output.check(redeemScriptChunks)) return true
-
-  if (p2ms.input.check(scriptSigChunks, allowIncomplete) &&
-    p2ms.output.check(redeemScriptChunks)) return true
-
-  if (p2pk.input.check(scriptSigChunks) &&
-    p2pk.output.check(redeemScriptChunks)) return true
-
-  return false
-}
-check.toJSON = function () { return 'scriptHash input' }
-
-function encodeStack (redeemScriptStack, redeemScript) {
-  var serializedScriptPubKey = bscript.compile(redeemScript)
-
-  return [].concat(redeemScriptStack, serializedScriptPubKey)
-}
-
-function encode (redeemScriptSig, redeemScript) {
-  var redeemScriptStack = bscript.decompile(redeemScriptSig)
-
-  return bscript.compile(encodeStack(redeemScriptStack, redeemScript))
-}
-
-function decodeStack (stack) {
-  typeforce(typeforce.Array, stack)
-  typeforce(check, stack)
-
-  return {
-    redeemScriptStack: stack.slice(0, -1),
-    redeemScript: stack[stack.length - 1]
-  }
-}
-
-function decode (buffer) {
-  var stack = bscript.decompile(buffer)
-  var result = decodeStack(stack)
-  result.redeemScriptSig = bscript.compile(result.redeemScriptStack)
-  delete result.redeemScriptStack
-  return result
-}
-
-module.exports = {
-  check: check,
-  decode: decode,
-  decodeStack: decodeStack,
-  encode: encode,
-  encodeStack: encodeStack
-}
-
-},{"../../script":76,"../multisig/":79,"../pubkey/":83,"../pubkeyhash/":86,"../witnesspubkeyhash/output":96,"../witnessscripthash/output":99,"safe-buffer":108,"typeforce":156}],91:[function(require,module,exports){
-arguments[4][36][0].apply(exports,arguments)
-},{"../../script":76,"../../types":102,"bitcoin-ops":9,"dup":36,"typeforce":156}],92:[function(require,module,exports){
-arguments[4][37][0].apply(exports,arguments)
-},{"./output":93,"dup":37}],93:[function(require,module,exports){
-arguments[4][38][0].apply(exports,arguments)
-},{"../../script":76,"../../types":102,"bitcoin-ops":9,"dup":38,"safe-buffer":108,"typeforce":156}],94:[function(require,module,exports){
-arguments[4][24][0].apply(exports,arguments)
-},{"./input":95,"./output":96,"dup":24}],95:[function(require,module,exports){
-// {signature} {pubKey}
-
-var bscript = require('../../script')
-var typeforce = require('typeforce')
-
-function isCompressedCanonicalPubKey (pubKey) {
-  return bscript.isCanonicalPubKey(pubKey) && pubKey.length === 33
-}
-
-function check (script) {
-  var chunks = bscript.decompile(script)
-
-  return chunks.length === 2 &&
-    bscript.isCanonicalSignature(chunks[0]) &&
-    isCompressedCanonicalPubKey(chunks[1])
-}
-check.toJSON = function () { return 'witnessPubKeyHash input' }
-
-function encodeStack (signature, pubKey) {
-  typeforce({
-    signature: bscript.isCanonicalSignature,
-    pubKey: isCompressedCanonicalPubKey
-  }, {
-    signature: signature,
-    pubKey: pubKey
-  })
-
-  return [signature, pubKey]
-}
-
-function decodeStack (stack) {
-  typeforce(typeforce.Array, stack)
-  typeforce(check, stack)
-
-  return {
-    signature: stack[0],
-    pubKey: stack[1]
-  }
-}
-
-module.exports = {
-  check: check,
-  decodeStack: decodeStack,
-  encodeStack: encodeStack
-}
-
-},{"../../script":76,"typeforce":156}],96:[function(require,module,exports){
-arguments[4][41][0].apply(exports,arguments)
-},{"../../script":76,"../../types":102,"bitcoin-ops":9,"dup":41,"typeforce":156}],97:[function(require,module,exports){
-arguments[4][24][0].apply(exports,arguments)
-},{"./input":98,"./output":99,"dup":24}],98:[function(require,module,exports){
-(function (Buffer){
-// <scriptSig> {serialized scriptPubKey script}
-
-var bscript = require('../../script')
-var types = require('../../types')
-var typeforce = require('typeforce')
-
-var p2ms = require('../multisig/')
-var p2pk = require('../pubkey/')
-var p2pkh = require('../pubkeyhash/')
-
-function check (chunks, allowIncomplete) {
-  typeforce(types.Array, chunks)
-  if (chunks.length < 1) return false
-
-  var witnessScript = chunks[chunks.length - 1]
-  if (!Buffer.isBuffer(witnessScript)) return false
-
-  var witnessScriptChunks = bscript.decompile(witnessScript)
-
-  // is witnessScript a valid script?
-  if (witnessScriptChunks.length === 0) return false
-
-  var witnessRawScriptSig = bscript.compile(chunks.slice(0, -1))
-
-  // match types
-  if (p2pkh.input.check(witnessRawScriptSig) &&
-    p2pkh.output.check(witnessScriptChunks)) return true
-
-  if (p2ms.input.check(witnessRawScriptSig, allowIncomplete) &&
-    p2ms.output.check(witnessScriptChunks)) return true
-
-  if (p2pk.input.check(witnessRawScriptSig) &&
-    p2pk.output.check(witnessScriptChunks)) return true
-
-  return false
-}
-check.toJSON = function () { return 'witnessScriptHash input' }
-
-function encodeStack (witnessData, witnessScript) {
-  typeforce({
-    witnessData: [types.Buffer],
-    witnessScript: types.Buffer
-  }, {
-    witnessData: witnessData,
-    witnessScript: witnessScript
-  })
-
-  return [].concat(witnessData, witnessScript)
-}
-
-function decodeStack (stack) {
-  typeforce(typeforce.Array, stack)
-  typeforce(check, stack)
-  return {
-    witnessData: stack.slice(0, -1),
-    witnessScript: stack[stack.length - 1]
-  }
-}
-
-module.exports = {
-  check: check,
-  decodeStack: decodeStack,
-  encodeStack: encodeStack
-}
-
-}).call(this,{"isBuffer":require("../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":172,"../../script":76,"../../types":102,"../multisig/":79,"../pubkey/":83,"../pubkeyhash/":86,"typeforce":156}],99:[function(require,module,exports){
-arguments[4][44][0].apply(exports,arguments)
-},{"../../script":76,"../../types":102,"bitcoin-ops":9,"dup":44,"typeforce":156}],100:[function(require,module,exports){
-arguments[4][45][0].apply(exports,arguments)
-},{"./bufferutils":68,"./crypto":69,"./script":76,"./types":102,"bitcoin-ops":9,"dup":45,"safe-buffer":108,"typeforce":156,"varuint-bitcoin":158}],101:[function(require,module,exports){
-var Buffer = require('safe-buffer').Buffer
-var baddress = require('./address')
-var bcrypto = require('./crypto')
-var bscript = require('./script')
-var btemplates = require('./templates')
-var networks = require('./networks')
-var ops = require('bitcoin-ops')
-var typeforce = require('typeforce')
-var types = require('./types')
-var scriptTypes = btemplates.types
-var SIGNABLE = [btemplates.types.P2PKH, btemplates.types.P2PK, btemplates.types.MULTISIG]
-var P2SH = SIGNABLE.concat([btemplates.types.P2WPKH, btemplates.types.P2WSH])
-
-var ECPair = require('./ecpair')
-var ECSignature = require('./ecsignature')
-var Transaction = require('./transaction')
-
-function supportedType (type) {
-  return SIGNABLE.indexOf(type) !== -1
-}
-
-function supportedP2SHType (type) {
-  return P2SH.indexOf(type) !== -1
-}
-
-function extractChunks (type, chunks, script) {
-  var pubKeys = []
-  var signatures = []
-  switch (type) {
-    case scriptTypes.P2PKH:
-      // if (redeemScript) throw new Error('Nonstandard... P2SH(P2PKH)')
-      pubKeys = chunks.slice(1)
-      signatures = chunks.slice(0, 1)
-      break
-
-    case scriptTypes.P2PK:
-      pubKeys[0] = script ? btemplates.pubKey.output.decode(script) : undefined
-      signatures = chunks.slice(0, 1)
-      break
-
-    case scriptTypes.MULTISIG:
-      if (script) {
-        var multisig = btemplates.multisig.output.decode(script)
-        pubKeys = multisig.pubKeys
-      }
-
-      signatures = chunks.slice(1).map(function (chunk) {
-        return chunk.length === 0 ? undefined : chunk
-      })
-      break
-  }
-
-  return {
-    pubKeys: pubKeys,
-    signatures: signatures
-  }
-}
-function expandInput (scriptSig, witnessStack) {
-  if (scriptSig.length === 0 && witnessStack.length === 0) return {}
-
-  var prevOutScript
-  var prevOutType
-  var scriptType
-  var script
-  var redeemScript
-  var witnessScript
-  var witnessScriptType
-  var redeemScriptType
-  var witness = false
-  var p2wsh = false
-  var p2sh = false
-  var witnessProgram
-  var chunks
-
-  var scriptSigChunks = bscript.decompile(scriptSig)
-  var sigType = btemplates.classifyInput(scriptSigChunks, true)
-  if (sigType === scriptTypes.P2SH) {
-    p2sh = true
-    redeemScript = scriptSigChunks[scriptSigChunks.length - 1]
-    redeemScriptType = btemplates.classifyOutput(redeemScript)
-    prevOutScript = btemplates.scriptHash.output.encode(bcrypto.hash160(redeemScript))
-    prevOutType = scriptTypes.P2SH
-    script = redeemScript
-  }
-
-  var classifyWitness = btemplates.classifyWitness(witnessStack, true)
-  if (classifyWitness === scriptTypes.P2WSH) {
-    witnessScript = witnessStack[witnessStack.length - 1]
-    witnessScriptType = btemplates.classifyOutput(witnessScript)
-    p2wsh = true
-    witness = true
-    if (scriptSig.length === 0) {
-      prevOutScript = btemplates.witnessScriptHash.output.encode(bcrypto.sha256(witnessScript))
-      prevOutType = scriptTypes.P2WSH
-      if (redeemScript !== undefined) {
-        throw new Error('Redeem script given when unnecessary')
-      }
-      // bare witness
-    } else {
-      if (!redeemScript) {
-        throw new Error('No redeemScript provided for P2WSH, but scriptSig non-empty')
-      }
-      witnessProgram = btemplates.witnessScriptHash.output.encode(bcrypto.sha256(witnessScript))
-      if (!redeemScript.equals(witnessProgram)) {
-        throw new Error('Redeem script didn\'t match witnessScript')
-      }
-    }
-
-    if (!supportedType(btemplates.classifyOutput(witnessScript))) {
-      throw new Error('unsupported witness script')
-    }
-
-    script = witnessScript
-    scriptType = witnessScriptType
-    chunks = witnessStack.slice(0, -1)
-  } else if (classifyWitness === scriptTypes.P2WPKH) {
-    witness = true
-    var key = witnessStack[witnessStack.length - 1]
-    var keyHash = bcrypto.hash160(key)
-    if (scriptSig.length === 0) {
-      prevOutScript = btemplates.witnessPubKeyHash.output.encode(keyHash)
-      prevOutType = scriptTypes.P2WPKH
-      if (typeof redeemScript !== 'undefined') {
-        throw new Error('Redeem script given when unnecessary')
-      }
-    } else {
-      if (!redeemScript) {
-        throw new Error('No redeemScript provided for P2WPKH, but scriptSig wasn\'t empty')
-      }
-      witnessProgram = btemplates.witnessPubKeyHash.output.encode(keyHash)
-      if (!redeemScript.equals(witnessProgram)) {
-        throw new Error('Redeem script did not have the right witness program')
-      }
-    }
-
-    scriptType = scriptTypes.P2PKH
-    chunks = witnessStack
-  } else if (redeemScript) {
-    if (!supportedP2SHType(redeemScriptType)) {
-      throw new Error('Bad redeemscript!')
-    }
-
-    script = redeemScript
-    scriptType = redeemScriptType
-    chunks = scriptSigChunks.slice(0, -1)
-  } else {
-    prevOutType = scriptType = btemplates.classifyInput(scriptSig)
-    chunks = scriptSigChunks
-  }
-
-  var expanded = extractChunks(scriptType, chunks, script)
-
-  var result = {
-    pubKeys: expanded.pubKeys,
-    signatures: expanded.signatures,
-    prevOutScript: prevOutScript,
-    prevOutType: prevOutType,
-    signType: scriptType,
-    signScript: script,
-    witness: Boolean(witness)
-  }
-
-  if (p2sh) {
-    result.redeemScript = redeemScript
-    result.redeemScriptType = redeemScriptType
-  }
-
-  if (p2wsh) {
-    result.witnessScript = witnessScript
-    result.witnessScriptType = witnessScriptType
-  }
-
-  return result
-}
-
-// could be done in expandInput, but requires the original Transaction for hashForSignature
-function fixMultisigOrder (input, transaction, vin) {
-  if (input.redeemScriptType !== scriptTypes.MULTISIG || !input.redeemScript) return
-  if (input.pubKeys.length === input.signatures.length) return
-
-  var unmatched = input.signatures.concat()
-
-  input.signatures = input.pubKeys.map(function (pubKey) {
-    var keyPair = ECPair.fromPublicKeyBuffer(pubKey)
-    var match
-
-    // check for a signature
-    unmatched.some(function (signature, i) {
-      // skip if undefined || OP_0
-      if (!signature) return false
-
-      // TODO: avoid O(n) hashForSignature
-      var parsed = ECSignature.parseScriptSignature(signature)
-      var hash = transaction.hashForSignature(vin, input.redeemScript, parsed.hashType)
-
-      // skip if signature does not match pubKey
-      if (!keyPair.verify(hash, parsed.signature)) return false
-
-      // remove matched signature from unmatched
-      unmatched[i] = undefined
-      match = signature
-
-      return true
-    })
-
-    return match
-  })
-}
-
-function expandOutput (script, scriptType, ourPubKey) {
-  typeforce(types.Buffer, script)
-
-  var scriptChunks = bscript.decompile(script)
-  if (!scriptType) {
-    scriptType = btemplates.classifyOutput(script)
-  }
-
-  var pubKeys = []
-
-  switch (scriptType) {
-    // does our hash160(pubKey) match the output scripts?
-    case scriptTypes.P2PKH:
-      if (!ourPubKey) break
-
-      var pkh1 = scriptChunks[2]
-      var pkh2 = bcrypto.hash160(ourPubKey)
-      if (pkh1.equals(pkh2)) pubKeys = [ourPubKey]
-      break
-
-    // does our hash160(pubKey) match the output scripts?
-    case scriptTypes.P2WPKH:
-      if (!ourPubKey) break
-
-      var wpkh1 = scriptChunks[1]
-      var wpkh2 = bcrypto.hash160(ourPubKey)
-      if (wpkh1.equals(wpkh2)) pubKeys = [ourPubKey]
-      break
-
-    case scriptTypes.P2PK:
-      pubKeys = scriptChunks.slice(0, 1)
-      break
-
-    case scriptTypes.MULTISIG:
-      pubKeys = scriptChunks.slice(1, -2)
-      break
-
-    default: return { scriptType: scriptType }
-  }
-
-  return {
-    pubKeys: pubKeys,
-    scriptType: scriptType,
-    signatures: pubKeys.map(function () { return undefined })
-  }
-}
-
-function checkP2SHInput (input, redeemScriptHash) {
-  if (input.prevOutType) {
-    if (input.prevOutType !== scriptTypes.P2SH) throw new Error('PrevOutScript must be P2SH')
-
-    var prevOutScriptScriptHash = bscript.decompile(input.prevOutScript)[1]
-    if (!prevOutScriptScriptHash.equals(redeemScriptHash)) throw new Error('Inconsistent hash160(RedeemScript)')
-  }
-}
-
-function checkP2WSHInput (input, witnessScriptHash) {
-  if (input.prevOutType) {
-    if (input.prevOutType !== scriptTypes.P2WSH) throw new Error('PrevOutScript must be P2WSH')
-
-    var scriptHash = bscript.decompile(input.prevOutScript)[1]
-    if (!scriptHash.equals(witnessScriptHash)) throw new Error('Inconsistent sha25(WitnessScript)')
-  }
-}
-
-function prepareInput (input, kpPubKey, redeemScript, witnessValue, witnessScript) {
-  var expanded
-  var prevOutType
-  var prevOutScript
-
-  var p2sh = false
-  var p2shType
-  var redeemScriptHash
-
-  var witness = false
-  var p2wsh = false
-  var witnessType
-  var witnessScriptHash
-
-  var signType
-  var signScript
-
-  if (redeemScript && witnessScript) {
-    redeemScriptHash = bcrypto.hash160(redeemScript)
-    witnessScriptHash = bcrypto.sha256(witnessScript)
-    checkP2SHInput(input, redeemScriptHash)
-
-    if (!redeemScript.equals(btemplates.witnessScriptHash.output.encode(witnessScriptHash))) throw new Error('Witness script inconsistent with redeem script')
-
-    expanded = expandOutput(witnessScript, undefined, kpPubKey)
-    if (!expanded.pubKeys) throw new Error('WitnessScript not supported "' + bscript.toASM(redeemScript) + '"')
-
-    prevOutType = btemplates.types.P2SH
-    prevOutScript = btemplates.scriptHash.output.encode(redeemScriptHash)
-    p2sh = witness = p2wsh = true
-    p2shType = btemplates.types.P2WSH
-    signType = witnessType = expanded.scriptType
-    signScript = witnessScript
-  } else if (redeemScript) {
-    redeemScriptHash = bcrypto.hash160(redeemScript)
-    checkP2SHInput(input, redeemScriptHash)
-
-    expanded = expandOutput(redeemScript, undefined, kpPubKey)
-    if (!expanded.pubKeys) throw new Error('RedeemScript not supported "' + bscript.toASM(redeemScript) + '"')
-
-    prevOutType = btemplates.types.P2SH
-    prevOutScript = btemplates.scriptHash.output.encode(redeemScriptHash)
-    p2sh = true
-    signType = p2shType = expanded.scriptType
-    signScript = redeemScript
-    witness = signType === btemplates.types.P2WPKH
-  } else if (witnessScript) {
-    witnessScriptHash = bcrypto.sha256(witnessScript)
-    checkP2WSHInput(input, witnessScriptHash)
-
-    expanded = expandOutput(witnessScript, undefined, kpPubKey)
-    if (!expanded.pubKeys) throw new Error('WitnessScript not supported "' + bscript.toASM(redeemScript) + '"')
-
-    prevOutType = btemplates.types.P2WSH
-    prevOutScript = btemplates.witnessScriptHash.output.encode(witnessScriptHash)
-    witness = p2wsh = true
-    signType = witnessType = expanded.scriptType
-    signScript = witnessScript
-  } else if (input.prevOutType) {
-    // embedded scripts are not possible without a redeemScript
-    if (input.prevOutType === scriptTypes.P2SH ||
-      input.prevOutType === scriptTypes.P2WSH) {
-      throw new Error('PrevOutScript is ' + input.prevOutType + ', requires redeemScript')
-    }
-
-    prevOutType = input.prevOutType
-    prevOutScript = input.prevOutScript
-    expanded = expandOutput(input.prevOutScript, input.prevOutType, kpPubKey)
-    if (!expanded.pubKeys) return
-
-    witness = (input.prevOutType === scriptTypes.P2WPKH)
-    signType = prevOutType
-    signScript = prevOutScript
-  } else {
-    prevOutScript = btemplates.pubKeyHash.output.encode(bcrypto.hash160(kpPubKey))
-    expanded = expandOutput(prevOutScript, scriptTypes.P2PKH, kpPubKey)
-
-    prevOutType = scriptTypes.P2PKH
-    witness = false
-    signType = prevOutType
-    signScript = prevOutScript
-  }
-
-  if (signType === scriptTypes.P2WPKH) {
-    signScript = btemplates.pubKeyHash.output.encode(btemplates.witnessPubKeyHash.output.decode(signScript))
-  }
-
-  if (p2sh) {
-    input.redeemScript = redeemScript
-    input.redeemScriptType = p2shType
-  }
-
-  if (p2wsh) {
-    input.witnessScript = witnessScript
-    input.witnessScriptType = witnessType
-  }
-
-  input.pubKeys = expanded.pubKeys
-  input.signatures = expanded.signatures
-  input.signScript = signScript
-  input.signType = signType
-  input.prevOutScript = prevOutScript
-  input.prevOutType = prevOutType
-  input.witness = witness
-}
-
-function buildStack (type, signatures, pubKeys, allowIncomplete) {
-  if (type === scriptTypes.P2PKH) {
-    if (signatures.length === 1 && Buffer.isBuffer(signatures[0]) && pubKeys.length === 1) return btemplates.pubKeyHash.input.encodeStack(signatures[0], pubKeys[0])
-  } else if (type === scriptTypes.P2PK) {
-    if (signatures.length === 1 && Buffer.isBuffer(signatures[0])) return btemplates.pubKey.input.encodeStack(signatures[0])
-  } else if (type === scriptTypes.MULTISIG) {
-    if (signatures.length > 0) {
-      signatures = signatures.map(function (signature) {
-        return signature || ops.OP_0
-      })
-      if (!allowIncomplete) {
-        // remove blank signatures
-        signatures = signatures.filter(function (x) { return x !== ops.OP_0 })
-      }
-
-      return btemplates.multisig.input.encodeStack(signatures)
-    }
-  } else {
-    throw new Error('Not yet supported')
-  }
-
-  if (!allowIncomplete) throw new Error('Not enough signatures provided')
-  return []
-}
-
-function buildInput (input, allowIncomplete) {
-  var scriptType = input.prevOutType
-  var sig = []
-  var witness = []
-
-  if (supportedType(scriptType)) {
-    sig = buildStack(scriptType, input.signatures, input.pubKeys, allowIncomplete)
-  }
-
-  var p2sh = false
-  if (scriptType === btemplates.types.P2SH) {
-    // We can remove this error later when we have a guarantee prepareInput
-    // rejects unsignable scripts - it MUST be signable at this point.
-    if (!allowIncomplete && !supportedP2SHType(input.redeemScriptType)) {
-      throw new Error('Impossible to sign this type')
-    }
-
-    if (supportedType(input.redeemScriptType)) {
-      sig = buildStack(input.redeemScriptType, input.signatures, input.pubKeys, allowIncomplete)
-    }
-
-    // If it wasn't SIGNABLE, it's witness, defer to that
-    if (input.redeemScriptType) {
-      p2sh = true
-      scriptType = input.redeemScriptType
-    }
-  }
-
-  switch (scriptType) {
-    // P2WPKH is a special case of P2PKH
-    case btemplates.types.P2WPKH:
-      witness = buildStack(btemplates.types.P2PKH, input.signatures, input.pubKeys, allowIncomplete)
-      break
-
-    case btemplates.types.P2WSH:
-      // We can remove this check later
-      if (!allowIncomplete && !supportedType(input.witnessScriptType)) {
-        throw new Error('Impossible to sign this type')
-      }
-
-      if (supportedType(input.witnessScriptType)) {
-        witness = buildStack(input.witnessScriptType, input.signatures, input.pubKeys, allowIncomplete)
-        witness.push(input.witnessScript)
-        scriptType = input.witnessScriptType
-      }
-
-      break
-  }
-
-  // append redeemScript if necessary
-  if (p2sh) {
-    sig.push(input.redeemScript)
-  }
-
-  return {
-    type: scriptType,
-    script: bscript.compile(sig),
-    witness: witness
-  }
-}
-
-function TransactionBuilder (network, maximumFeeRate) {
-  this.prevTxMap = {}
-  this.network = network || networks.bitcoin
-
-  // WARNING: This is __NOT__ to be relied on, its just another potential safety mechanism (safety in-depth)
-  this.maximumFeeRate = maximumFeeRate || 2500
-
-  this.inputs = []
-  this.tx = new Transaction()
-}
-
-TransactionBuilder.prototype.setLockTime = function (locktime) {
-  typeforce(types.UInt32, locktime)
-
-  // if any signatures exist, throw
-  if (this.inputs.some(function (input) {
-    if (!input.signatures) return false
-
-    return input.signatures.some(function (s) { return s })
-  })) {
-    throw new Error('No, this would invalidate signatures')
-  }
-
-  this.tx.locktime = locktime
-}
-
-TransactionBuilder.prototype.setVersion = function (version) {
-  typeforce(types.UInt32, version)
-
-  // XXX: this might eventually become more complex depending on what the versions represent
-  this.tx.version = version
-}
-
-TransactionBuilder.fromTransaction = function (transaction, network) {
-  var txb = new TransactionBuilder(network)
-
-  // Copy transaction fields
-  txb.setVersion(transaction.version)
-  txb.setLockTime(transaction.locktime)
-
-  // Copy outputs (done first to avoid signature invalidation)
-  transaction.outs.forEach(function (txOut) {
-    txb.addOutput(txOut.script, txOut.value)
-  })
-
-  // Copy inputs
-  transaction.ins.forEach(function (txIn) {
-    txb.__addInputUnsafe(txIn.hash, txIn.index, {
-      sequence: txIn.sequence,
-      script: txIn.script,
-      witness: txIn.witness
-    })
-  })
-
-  // fix some things not possible through the public API
-  txb.inputs.forEach(function (input, i) {
-    fixMultisigOrder(input, transaction, i)
-  })
-
-  return txb
-}
-
-TransactionBuilder.prototype.addInput = function (txHash, vout, sequence, prevOutScript) {
-  if (!this.__canModifyInputs()) {
-    throw new Error('No, this would invalidate signatures')
-  }
-
-  var value
-
-  // is it a hex string?
-  if (typeof txHash === 'string') {
-    // transaction hashs's are displayed in reverse order, un-reverse it
-    txHash = Buffer.from(txHash, 'hex').reverse()
-
-  // is it a Transaction object?
-  } else if (txHash instanceof Transaction) {
-    var txOut = txHash.outs[vout]
-    prevOutScript = txOut.script
-    value = txOut.value
-
-    txHash = txHash.getHash()
-  }
-
-  return this.__addInputUnsafe(txHash, vout, {
-    sequence: sequence,
-    prevOutScript: prevOutScript,
-    value: value
-  })
-}
-
-TransactionBuilder.prototype.__addInputUnsafe = function (txHash, vout, options) {
-  if (Transaction.isCoinbaseHash(txHash)) {
-    throw new Error('coinbase inputs not supported')
-  }
-
-  var prevTxOut = txHash.toString('hex') + ':' + vout
-  if (this.prevTxMap[prevTxOut] !== undefined) throw new Error('Duplicate TxOut: ' + prevTxOut)
-
-  var input = {}
-
-  // derive what we can from the scriptSig
-  if (options.script !== undefined) {
-    input = expandInput(options.script, options.witness || [])
-  }
-
-  // if an input value was given, retain it
-  if (options.value !== undefined) {
-    input.value = options.value
-  }
-
-  // derive what we can from the previous transactions output script
-  if (!input.prevOutScript && options.prevOutScript) {
-    var prevOutType
-
-    if (!input.pubKeys && !input.signatures) {
-      var expanded = expandOutput(options.prevOutScript)
-
-      if (expanded.pubKeys) {
-        input.pubKeys = expanded.pubKeys
-        input.signatures = expanded.signatures
-      }
-
-      prevOutType = expanded.scriptType
-    }
-
-    input.prevOutScript = options.prevOutScript
-    input.prevOutType = prevOutType || btemplates.classifyOutput(options.prevOutScript)
-  }
-
-  var vin = this.tx.addInput(txHash, vout, options.sequence, options.scriptSig)
-  this.inputs[vin] = input
-  this.prevTxMap[prevTxOut] = vin
-  return vin
-}
-
-TransactionBuilder.prototype.addOutput = function (scriptPubKey, value) {
-  if (!this.__canModifyOutputs()) {
-    throw new Error('No, this would invalidate signatures')
-  }
-
-  // Attempt to get a script if it's a base58 address string
-  if (typeof scriptPubKey === 'string') {
-    scriptPubKey = baddress.toOutputScript(scriptPubKey, this.network)
-  }
-
-  return this.tx.addOutput(scriptPubKey, value)
-}
-
-TransactionBuilder.prototype.build = function () {
-  return this.__build(false)
-}
-TransactionBuilder.prototype.buildIncomplete = function () {
-  return this.__build(true)
-}
-
-TransactionBuilder.prototype.__build = function (allowIncomplete) {
-  if (!allowIncomplete) {
-    if (!this.tx.ins.length) throw new Error('Transaction has no inputs')
-    if (!this.tx.outs.length) throw new Error('Transaction has no outputs')
-  }
-
-  var tx = this.tx.clone()
-  // Create script signatures from inputs
-  this.inputs.forEach(function (input, i) {
-    var scriptType = input.witnessScriptType || input.redeemScriptType || input.prevOutType
-    if (!scriptType && !allowIncomplete) throw new Error('Transaction is not complete')
-    var result = buildInput(input, allowIncomplete)
-
-    // skip if no result
-    if (!allowIncomplete) {
-      if (!supportedType(result.type) && result.type !== btemplates.types.P2WPKH) {
-        throw new Error(result.type + ' not supported')
-      }
-    }
-
-    tx.setInputScript(i, result.script)
-    tx.setWitness(i, result.witness)
-  })
-
-  if (!allowIncomplete) {
-    // do not rely on this, its merely a last resort
-    if (this.__overMaximumFees(tx.virtualSize())) {
-      throw new Error('Transaction has absurd fees')
-    }
-  }
-
-  return tx
-}
-
-function canSign (input) {
-  return input.prevOutScript !== undefined &&
-    input.signScript !== undefined &&
-    input.pubKeys !== undefined &&
-    input.signatures !== undefined &&
-    input.signatures.length === input.pubKeys.length &&
-    input.pubKeys.length > 0 &&
-    (
-      input.witness === false ||
-      (input.witness === true && input.value !== undefined)
-    )
-}
-
-TransactionBuilder.prototype.sign = function (vin, keyPair, redeemScript, hashType, witnessValue, witnessScript) {
-  // TODO: remove keyPair.network matching in 4.0.0
-  if (keyPair.network && keyPair.network !== this.network) throw new TypeError('Inconsistent network')
-  if (!this.inputs[vin]) throw new Error('No input at index: ' + vin)
-  hashType = hashType || Transaction.SIGHASH_ALL
-
-  var input = this.inputs[vin]
-
-  // if redeemScript was previously provided, enforce consistency
-  if (input.redeemScript !== undefined &&
-      redeemScript &&
-      !input.redeemScript.equals(redeemScript)) {
-    throw new Error('Inconsistent redeemScript')
-  }
-
-  var kpPubKey = keyPair.publicKey || keyPair.getPublicKeyBuffer()
-  if (!canSign(input)) {
-    if (witnessValue !== undefined) {
-      if (input.value !== undefined && input.value !== witnessValue) throw new Error('Input didn\'t match witnessValue')
-      typeforce(types.Satoshi, witnessValue)
-      input.value = witnessValue
-    }
-
-    if (!canSign(input)) prepareInput(input, kpPubKey, redeemScript, witnessValue, witnessScript)
-    if (!canSign(input)) throw Error(input.prevOutType + ' not supported')
-  }
-
-  // ready to sign
-  var signatureHash
-  if (input.witness) {
-    signatureHash = this.tx.hashForWitnessV0(vin, input.signScript, input.value, hashType)
-  } else {
-    signatureHash = this.tx.hashForSignature(vin, input.signScript, hashType)
-  }
-
-  // enforce in order signing of public keys
-  var signed = input.pubKeys.some(function (pubKey, i) {
-    if (!kpPubKey.equals(pubKey)) return false
-    if (input.signatures[i]) throw new Error('Signature already exists')
-    if (kpPubKey.length !== 33 &&
-      input.signType === scriptTypes.P2WPKH) throw new Error('BIP143 rejects uncompressed public keys in P2WPKH or P2WSH')
-
-    var signature = keyPair.sign(signatureHash)
-    if (Buffer.isBuffer(signature)) signature = ECSignature.fromRSBuffer(signature)
-
-    input.signatures[i] = signature.toScriptSignature(hashType)
-    return true
-  })
-
-  if (!signed) throw new Error('Key pair cannot sign for this input')
-}
-
-function signatureHashType (buffer) {
-  return buffer.readUInt8(buffer.length - 1)
-}
-
-TransactionBuilder.prototype.__canModifyInputs = function () {
-  return this.inputs.every(function (input) {
-    // any signatures?
-    if (input.signatures === undefined) return true
-
-    return input.signatures.every(function (signature) {
-      if (!signature) return true
-      var hashType = signatureHashType(signature)
-
-      // if SIGHASH_ANYONECANPAY is set, signatures would not
-      // be invalidated by more inputs
-      return hashType & Transaction.SIGHASH_ANYONECANPAY
-    })
-  })
-}
-
-TransactionBuilder.prototype.__canModifyOutputs = function () {
-  var nInputs = this.tx.ins.length
-  var nOutputs = this.tx.outs.length
-
-  return this.inputs.every(function (input) {
-    if (input.signatures === undefined) return true
-
-    return input.signatures.every(function (signature) {
-      if (!signature) return true
-      var hashType = signatureHashType(signature)
-
-      var hashTypeMod = hashType & 0x1f
-      if (hashTypeMod === Transaction.SIGHASH_NONE) return true
-      if (hashTypeMod === Transaction.SIGHASH_SINGLE) {
-        // if SIGHASH_SINGLE is set, and nInputs > nOutputs
-        // some signatures would be invalidated by the addition
-        // of more outputs
-        return nInputs <= nOutputs
-      }
-    })
-  })
-}
-
-TransactionBuilder.prototype.__overMaximumFees = function (bytes) {
-  // not all inputs will have .value defined
-  var incoming = this.inputs.reduce(function (a, x) { return a + (x.value >>> 0) }, 0)
-
-  // but all outputs do, and if we have any input value
-  // we can immediately determine if the outputs are too small
-  var outgoing = this.tx.outs.reduce(function (a, x) { return a + x.value }, 0)
-  var fee = incoming - outgoing
-  var feeRate = fee / bytes
-
-  return feeRate > this.maximumFeeRate
-}
-
-module.exports = TransactionBuilder
-
-},{"./address":66,"./crypto":69,"./ecpair":71,"./ecsignature":72,"./networks":75,"./script":76,"./templates":78,"./transaction":100,"./types":102,"bitcoin-ops":9,"safe-buffer":108,"typeforce":156}],102:[function(require,module,exports){
-arguments[4][47][0].apply(exports,arguments)
-},{"dup":47,"typeforce":156}],103:[function(require,module,exports){
+},{"_process":138}],66:[function(require,module,exports){
 (function (Buffer){
 'use strict'
 var inherits = require('inherits')
@@ -9668,7 +7957,7 @@ function fnI (a, b, c, d, m, k, s) {
 module.exports = MD5
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":167,"hash-base":63,"inherits":64}],104:[function(require,module,exports){
+},{"buffer":130,"hash-base":63,"inherits":64}],67:[function(require,module,exports){
 (function (Buffer){
 // constant-space merkle root calculation algorithm
 module.exports = function fastRoot (values, digestFn) {
@@ -9696,7 +7985,7 @@ module.exports = function fastRoot (values, digestFn) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":167}],105:[function(require,module,exports){
+},{"buffer":130}],68:[function(require,module,exports){
 var OPS = require('bitcoin-ops')
 
 function encodingLength (i) {
@@ -9775,7 +8064,7 @@ module.exports = {
   decode: decode
 }
 
-},{"bitcoin-ops":9}],106:[function(require,module,exports){
+},{"bitcoin-ops":9}],69:[function(require,module,exports){
 (function (process,global){
 'use strict'
 
@@ -9817,7 +8106,7 @@ function randomBytes (size, cb) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":175,"safe-buffer":108}],107:[function(require,module,exports){
+},{"_process":138,"safe-buffer":71}],70:[function(require,module,exports){
 'use strict'
 var Buffer = require('buffer').Buffer
 var inherits = require('inherits')
@@ -9982,7 +8271,7 @@ function fn5 (a, b, c, d, e, m, k, s) {
 
 module.exports = RIPEMD160
 
-},{"buffer":167,"hash-base":63,"inherits":64}],108:[function(require,module,exports){
+},{"buffer":130,"hash-base":63,"inherits":64}],71:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -10046,7 +8335,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":167}],109:[function(require,module,exports){
+},{"buffer":130}],72:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 
 // prototype class for hash functions
@@ -10129,7 +8418,7 @@ Hash.prototype._update = function () {
 
 module.exports = Hash
 
-},{"safe-buffer":108}],110:[function(require,module,exports){
+},{"safe-buffer":71}],73:[function(require,module,exports){
 var exports = module.exports = function SHA (algorithm) {
   algorithm = algorithm.toLowerCase()
 
@@ -10146,7 +8435,7 @@ exports.sha256 = require('./sha256')
 exports.sha384 = require('./sha384')
 exports.sha512 = require('./sha512')
 
-},{"./sha":111,"./sha1":112,"./sha224":113,"./sha256":114,"./sha384":115,"./sha512":116}],111:[function(require,module,exports){
+},{"./sha":74,"./sha1":75,"./sha224":76,"./sha256":77,"./sha384":78,"./sha512":79}],74:[function(require,module,exports){
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-0, as defined
  * in FIPS PUB 180-1
@@ -10242,7 +8531,7 @@ Sha.prototype._hash = function () {
 
 module.exports = Sha
 
-},{"./hash":109,"inherits":64,"safe-buffer":108}],112:[function(require,module,exports){
+},{"./hash":72,"inherits":64,"safe-buffer":71}],75:[function(require,module,exports){
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
  * in FIPS PUB 180-1
@@ -10343,7 +8632,7 @@ Sha1.prototype._hash = function () {
 
 module.exports = Sha1
 
-},{"./hash":109,"inherits":64,"safe-buffer":108}],113:[function(require,module,exports){
+},{"./hash":72,"inherits":64,"safe-buffer":71}],76:[function(require,module,exports){
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
  * in FIPS 180-2
@@ -10398,7 +8687,7 @@ Sha224.prototype._hash = function () {
 
 module.exports = Sha224
 
-},{"./hash":109,"./sha256":114,"inherits":64,"safe-buffer":108}],114:[function(require,module,exports){
+},{"./hash":72,"./sha256":77,"inherits":64,"safe-buffer":71}],77:[function(require,module,exports){
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
  * in FIPS 180-2
@@ -10535,7 +8824,7 @@ Sha256.prototype._hash = function () {
 
 module.exports = Sha256
 
-},{"./hash":109,"inherits":64,"safe-buffer":108}],115:[function(require,module,exports){
+},{"./hash":72,"inherits":64,"safe-buffer":71}],78:[function(require,module,exports){
 var inherits = require('inherits')
 var SHA512 = require('./sha512')
 var Hash = require('./hash')
@@ -10594,7 +8883,7 @@ Sha384.prototype._hash = function () {
 
 module.exports = Sha384
 
-},{"./hash":109,"./sha512":116,"inherits":64,"safe-buffer":108}],116:[function(require,module,exports){
+},{"./hash":72,"./sha512":79,"inherits":64,"safe-buffer":71}],79:[function(require,module,exports){
 var inherits = require('inherits')
 var Hash = require('./hash')
 var Buffer = require('safe-buffer').Buffer
@@ -10856,7 +9145,7 @@ Sha512.prototype._hash = function () {
 
 module.exports = Sha512
 
-},{"./hash":109,"inherits":64,"safe-buffer":108}],117:[function(require,module,exports){
+},{"./hash":72,"inherits":64,"safe-buffer":71}],80:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var bech32 = require('bech32')
 var bs58check = require('bs58swiftcheck')
@@ -10955,15 +9244,53 @@ module.exports = {
   toOutputScript: toOutputScript
 }
 
-},{"./networks":126,"./script":127,"./templates":129,"./types":153,"bech32":3,"bs58swiftcheck":51,"safe-buffer":108,"typeforce":156}],118:[function(require,module,exports){
+},{"./networks":89,"./script":90,"./templates":92,"./types":116,"bech32":3,"bs58swiftcheck":51,"safe-buffer":71,"typeforce":119}],81:[function(require,module,exports){
 arguments[4][12][0].apply(exports,arguments)
-},{"./crypto":120,"./transaction":151,"./types":153,"dup":12,"merkle-lib/fastRoot":104,"safe-buffer":108,"typeforce":156,"varuint-bitcoin":158}],119:[function(require,module,exports){
+},{"./crypto":83,"./transaction":114,"./types":116,"dup":12,"merkle-lib/fastRoot":67,"safe-buffer":71,"typeforce":119,"varuint-bitcoin":121}],82:[function(require,module,exports){
 arguments[4][13][0].apply(exports,arguments)
-},{"dup":13,"pushdata-bitcoin":105,"varuint-bitcoin":158}],120:[function(require,module,exports){
-arguments[4][69][0].apply(exports,arguments)
-},{"buffer":167,"create-hash":54,"dup":69,"js-sha3":65}],121:[function(require,module,exports){
+},{"dup":13,"pushdata-bitcoin":68,"varuint-bitcoin":121}],83:[function(require,module,exports){
+(function (Buffer){
+var createHash = require('create-hash')
+var sha3 = require('js-sha3').keccak256
+
+function ripemd160 (buffer) {
+  return createHash('rmd160').update(buffer).digest()
+}
+
+function sha1 (buffer) {
+  return createHash('sha1').update(buffer).digest()
+}
+
+function sha256 (buffer) {
+  return createHash('sha256').update(buffer).digest()
+}
+
+function hash160 (buffer) {
+  return ripemd160(sha256(buffer))
+}
+
+function hash256 (buffer) {
+  return sha256(sha256(buffer))
+}
+
+function keccak256 (buffer) {
+  let tmp = new sha3.update(buffer)
+  return new Buffer(tmp.digest('hex'), 'hex')
+}
+
+module.exports = {
+  hash160: hash160,
+  hash256: hash256,
+  ripemd160: ripemd160,
+  sha1: sha1,
+  sha256: sha256,
+  keccak256: keccak256
+}
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":130,"create-hash":54,"js-sha3":65}],84:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./ecsignature":123,"./types":153,"bigi":6,"create-hmac":56,"dup":15,"ecurve":60,"safe-buffer":108,"typeforce":156}],122:[function(require,module,exports){
+},{"./ecsignature":86,"./types":116,"bigi":6,"create-hmac":56,"dup":15,"ecurve":60,"safe-buffer":71,"typeforce":119}],85:[function(require,module,exports){
 var baddress = require('./address')
 var bcrypto = require('./crypto')
 var ecdsa = require('./ecdsa')
@@ -11096,9 +9423,108 @@ ECPair.prototype.verify = function (hash, signature) {
 
 module.exports = ECPair
 
-},{"./address":117,"./crypto":120,"./ecdsa":121,"./networks":126,"./types":153,"bigi":6,"ecurve":60,"randombytes":106,"typeforce":156,"wif-swift":159}],123:[function(require,module,exports){
-arguments[4][72][0].apply(exports,arguments)
-},{"./types":153,"bigi":6,"bip66":8,"buffer":167,"dup":72,"typeforce":156}],124:[function(require,module,exports){
+},{"./address":80,"./crypto":83,"./ecdsa":84,"./networks":89,"./types":116,"bigi":6,"ecurve":60,"randombytes":69,"typeforce":119,"wif-swift":122}],86:[function(require,module,exports){
+(function (Buffer){
+var bip66 = require('bip66')
+var typeforce = require('typeforce')
+var types = require('./types')
+
+var BigInteger = require('bigi')
+
+function ECSignature (r, s) {
+  typeforce(types.tuple(types.BigInt, types.BigInt), arguments)
+
+  this.r = r
+  this.s = s
+}
+
+ECSignature.parseCompact = function (buffer) {
+  typeforce(types.BufferN(65), buffer)
+
+  var flagByte = buffer.readUInt8(0) - 27
+  if (flagByte !== (flagByte & 7)) throw new Error('Invalid signature parameter')
+
+  var compressed = !!(flagByte & 4)
+  var recoveryParam = flagByte & 3
+  var signature = ECSignature.fromRSBuffer(buffer.slice(1))
+
+  return {
+    compressed: compressed,
+    i: recoveryParam,
+    signature: signature
+  }
+}
+
+ECSignature.fromRSBuffer = function (buffer) {
+  typeforce(types.BufferN(64), buffer)
+
+  var r = BigInteger.fromBuffer(buffer.slice(0, 32))
+  var s = BigInteger.fromBuffer(buffer.slice(32, 64))
+  return new ECSignature(r, s)
+}
+
+ECSignature.fromDER = function (buffer) {
+  var decode = bip66.decode(buffer)
+  var r = BigInteger.fromDERInteger(decode.r)
+  var s = BigInteger.fromDERInteger(decode.s)
+
+  return new ECSignature(r, s)
+}
+
+// BIP62: 1 byte hashType flag (only 0x01, 0x02, 0x03, 0x81, 0x82 and 0x83 are allowed)
+ECSignature.parseScriptSignature = function (buffer) {
+  var hashType = buffer.readUInt8(buffer.length - 1)
+  var hashTypeMod = hashType & ~0x80
+
+  if (hashTypeMod <= 0x00 || hashTypeMod >= 0x04) throw new Error('Invalid hashType ' + hashType)
+
+  return {
+    signature: ECSignature.fromDER(buffer.slice(0, -1)),
+    hashType: hashType
+  }
+}
+
+ECSignature.prototype.toCompact = function (i, compressed) {
+  if (compressed) {
+    i += 4
+  }
+
+  i += 27
+
+  var buffer = Buffer.alloc(65)
+  buffer.writeUInt8(i, 0)
+  this.toRSBuffer(buffer, 1)
+  return buffer
+}
+
+ECSignature.prototype.toDER = function () {
+  var r = Buffer.from(this.r.toDERInteger())
+  var s = Buffer.from(this.s.toDERInteger())
+
+  return bip66.encode(r, s)
+}
+
+ECSignature.prototype.toRSBuffer = function (buffer, offset) {
+  buffer = buffer || Buffer.alloc(64)
+  this.r.toBuffer(32).copy(buffer, offset)
+  this.s.toBuffer(32).copy(buffer, offset + 32)
+  return buffer
+}
+
+ECSignature.prototype.toScriptSignature = function (hashType) {
+  var hashTypeMod = hashType & ~0x80
+  if (hashTypeMod <= 0 || hashTypeMod >= 4) throw new Error('Invalid hashType ' + hashType)
+
+  var hashTypeBuffer = Buffer.alloc(1)
+  hashTypeBuffer.writeUInt8(hashType, 0)
+
+  return Buffer.concat([this.toDER(), hashTypeBuffer])
+}
+
+module.exports = ECSignature
+
+}).call(this,require("buffer").Buffer)
+},{"./types":116,"bigi":6,"bip66":8,"buffer":130,"typeforce":119}],87:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var base58check = require('bs58swiftcheck')
 var bcrypto = require('./crypto')
@@ -11420,7 +9846,7 @@ HDNode.prototype.derivePath = function (path) {
 
 module.exports = HDNode
 
-},{"./crypto":120,"./ecpair":122,"./networks":126,"./types":153,"bigi":6,"bs58swiftcheck":51,"create-hmac":56,"ecurve":60,"safe-buffer":108,"typeforce":156}],125:[function(require,module,exports){
+},{"./crypto":83,"./ecpair":85,"./networks":89,"./types":116,"bigi":6,"bs58swiftcheck":51,"create-hmac":56,"ecurve":60,"safe-buffer":71,"typeforce":119}],88:[function(require,module,exports){
 var script = require('./script')
 
 var templates = require('./templates')
@@ -11452,7 +9878,7 @@ module.exports = {
   amount: amount
 }
 
-},{"./address":117,"./block":118,"./bufferutils":119,"./crypto":120,"./ecpair":122,"./ecsignature":123,"./hdnode":124,"./networks":126,"./script":127,"./templates":129,"./transaction":151,"./transaction_builder":152,"bitcoin-ops":9}],126:[function(require,module,exports){
+},{"./address":80,"./block":81,"./bufferutils":82,"./crypto":83,"./ecpair":85,"./ecsignature":86,"./hdnode":87,"./networks":89,"./script":90,"./templates":92,"./transaction":114,"./transaction_builder":115,"bitcoin-ops":9}],89:[function(require,module,exports){
 module.exports = {
   swiftcash: {
     messagePrefix: 'DarkNet Signed Message:\n',
@@ -11478,15 +9904,229 @@ module.exports = {
   },
 }
 
-},{}],127:[function(require,module,exports){
-arguments[4][76][0].apply(exports,arguments)
-},{"./script_number":128,"./types":153,"bip66":8,"bitcoin-ops":9,"bitcoin-ops/map":10,"dup":76,"pushdata-bitcoin":105,"safe-buffer":108,"typeforce":156}],128:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
+var Buffer = require('safe-buffer').Buffer
+var bip66 = require('bip66')
+var pushdata = require('pushdata-bitcoin')
+var typeforce = require('typeforce')
+var types = require('./types')
+var scriptNumber = require('./script_number')
+
+var OPS = require('bitcoin-ops')
+var REVERSE_OPS = require('bitcoin-ops/map')
+var OP_INT_BASE = OPS.OP_RESERVED // OP_1 - 1
+
+function isOPInt (value) {
+  return types.Number(value) &&
+    ((value === OPS.OP_0) ||
+    (value >= OPS.OP_1 && value <= OPS.OP_16) ||
+    (value === OPS.OP_1NEGATE))
+}
+
+function isPushOnlyChunk (value) {
+  return types.Buffer(value) || isOPInt(value)
+}
+
+function isPushOnly (value) {
+  return types.Array(value) && value.every(isPushOnlyChunk)
+}
+
+function asMinimalOP (buffer) {
+  if (buffer.length === 0) return OPS.OP_0
+  if (buffer.length !== 1) return
+  if (buffer[0] >= 1 && buffer[0] <= 16) return OP_INT_BASE + buffer[0]
+  if (buffer[0] === 0x81) return OPS.OP_1NEGATE
+}
+
+function compile (chunks) {
+  // TODO: remove me
+  if (Buffer.isBuffer(chunks)) return chunks
+
+  typeforce(types.Array, chunks)
+
+  var bufferSize = chunks.reduce(function (accum, chunk) {
+    // data chunk
+    if (Buffer.isBuffer(chunk)) {
+      // adhere to BIP62.3, minimal push policy
+      if (chunk.length === 1 && asMinimalOP(chunk) !== undefined) {
+        return accum + 1
+      }
+
+      return accum + pushdata.encodingLength(chunk.length) + chunk.length
+    }
+
+    // opcode
+    return accum + 1
+  }, 0.0)
+
+  var buffer = Buffer.allocUnsafe(bufferSize)
+  var offset = 0
+
+  chunks.forEach(function (chunk) {
+    // data chunk
+    if (Buffer.isBuffer(chunk)) {
+      // adhere to BIP62.3, minimal push policy
+      var opcode = asMinimalOP(chunk)
+      if (opcode !== undefined) {
+        buffer.writeUInt8(opcode, offset)
+        offset += 1
+        return
+      }
+
+      offset += pushdata.encode(buffer, chunk.length, offset)
+      chunk.copy(buffer, offset)
+      offset += chunk.length
+
+    // opcode
+    } else {
+      buffer.writeUInt8(chunk, offset)
+      offset += 1
+    }
+  })
+
+  if (offset !== buffer.length) throw new Error('Could not decode chunks')
+  return buffer
+}
+
+function decompile (buffer) {
+  // TODO: remove me
+  if (types.Array(buffer)) return buffer
+
+  typeforce(types.Buffer, buffer)
+
+  var chunks = []
+  var i = 0
+
+  while (i < buffer.length) {
+    var opcode = buffer[i]
+
+    // data chunk
+    if ((opcode > OPS.OP_0) && (opcode <= OPS.OP_PUSHDATA4)) {
+      var d = pushdata.decode(buffer, i)
+
+      // did reading a pushDataInt fail? empty script
+      if (d === null) return []
+      i += d.size
+
+      // attempt to read too much data? empty script
+      if (i + d.number > buffer.length) return []
+
+      var data = buffer.slice(i, i + d.number)
+      i += d.number
+
+      // decompile minimally
+      var op = asMinimalOP(data)
+      if (op !== undefined) {
+        chunks.push(op)
+      } else {
+        chunks.push(data)
+      }
+
+    // opcode
+    } else {
+      chunks.push(opcode)
+
+      i += 1
+    }
+  }
+
+  return chunks
+}
+
+function toASM (chunks) {
+  if (Buffer.isBuffer(chunks)) {
+    chunks = decompile(chunks)
+  }
+
+  return chunks.map(function (chunk) {
+    // data?
+    if (Buffer.isBuffer(chunk)) {
+      var op = asMinimalOP(chunk)
+      if (op === undefined) return chunk.toString('hex')
+      chunk = op
+    }
+
+    // opcode!
+    return REVERSE_OPS[chunk]
+  }).join(' ')
+}
+
+function fromASM (asm) {
+  typeforce(types.String, asm)
+
+  return compile(asm.split(' ').map(function (chunkStr) {
+    // opcode?
+    if (OPS[chunkStr] !== undefined) return OPS[chunkStr]
+    typeforce(types.Hex, chunkStr)
+
+    // data!
+    return Buffer.from(chunkStr, 'hex')
+  }))
+}
+
+function toStack (chunks) {
+  chunks = decompile(chunks)
+  typeforce(isPushOnly, chunks)
+
+  return chunks.map(function (op) {
+    if (Buffer.isBuffer(op)) return op
+    if (op === OPS.OP_0) return Buffer.allocUnsafe(0)
+
+    return scriptNumber.encode(op - OP_INT_BASE)
+  })
+}
+
+function isCanonicalPubKey (buffer) {
+  if (!Buffer.isBuffer(buffer)) return false
+  if (buffer.length < 33) return false
+
+  switch (buffer[0]) {
+    case 0x02:
+    case 0x03:
+      return buffer.length === 33
+    case 0x04:
+      return buffer.length === 65
+  }
+
+  return false
+}
+
+function isDefinedHashType (hashType) {
+  var hashTypeMod = hashType & ~0x80
+
+// return hashTypeMod > SIGHASH_ALL && hashTypeMod < SIGHASH_SINGLE
+  return hashTypeMod > 0x00 && hashTypeMod < 0x04
+}
+
+function isCanonicalSignature (buffer) {
+  if (!Buffer.isBuffer(buffer)) return false
+  if (!isDefinedHashType(buffer[buffer.length - 1])) return false
+
+  return bip66.check(buffer.slice(0, -1))
+}
+
+module.exports = {
+  compile: compile,
+  decompile: decompile,
+  fromASM: fromASM,
+  toASM: toASM,
+  toStack: toStack,
+
+  number: require('./script_number'),
+
+  isCanonicalPubKey: isCanonicalPubKey,
+  isCanonicalSignature: isCanonicalSignature,
+  isPushOnly: isPushOnly,
+  isDefinedHashType: isDefinedHashType
+}
+
+},{"./script_number":91,"./types":116,"bip66":8,"bitcoin-ops":9,"bitcoin-ops/map":10,"pushdata-bitcoin":68,"safe-buffer":71,"typeforce":119}],91:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22,"safe-buffer":108}],129:[function(require,module,exports){
+},{"dup":22,"safe-buffer":71}],92:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"../script":127,"./multisig":130,"./nulldata":133,"./pubkey":134,"./pubkeyhash":137,"./scripthash":140,"./witnesscommitment":143,"./witnesspubkeyhash":145,"./witnessscripthash":148,"dup":23}],130:[function(require,module,exports){
+},{"../script":90,"./multisig":93,"./nulldata":96,"./pubkey":97,"./pubkeyhash":100,"./scripthash":103,"./witnesscommitment":106,"./witnesspubkeyhash":108,"./witnessscripthash":111,"dup":23}],93:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"./input":131,"./output":132,"dup":24}],131:[function(require,module,exports){
+},{"./input":94,"./output":95,"dup":24}],94:[function(require,module,exports){
 // OP_0 [signatures ...]
 
 var Buffer = require('safe-buffer').Buffer
@@ -11559,45 +10199,333 @@ module.exports = {
   encode: encode,
   encodeStack: encodeStack
 }
-},{"../../script":127,"./output":132,"bitcoin-ops":9,"safe-buffer":108,"typeforce":156}],132:[function(require,module,exports){
+},{"../../script":90,"./output":95,"bitcoin-ops":9,"safe-buffer":71,"typeforce":119}],95:[function(require,module,exports){
 arguments[4][26][0].apply(exports,arguments)
-},{"../../script":127,"../../types":153,"bitcoin-ops":9,"dup":26,"typeforce":156}],133:[function(require,module,exports){
+},{"../../script":90,"../../types":116,"bitcoin-ops":9,"dup":26,"typeforce":119}],96:[function(require,module,exports){
 arguments[4][27][0].apply(exports,arguments)
-},{"../script":127,"../types":153,"bitcoin-ops":9,"dup":27,"typeforce":156}],134:[function(require,module,exports){
+},{"../script":90,"../types":116,"bitcoin-ops":9,"dup":27,"typeforce":119}],97:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"./input":135,"./output":136,"dup":24}],135:[function(require,module,exports){
-arguments[4][84][0].apply(exports,arguments)
-},{"../../script":127,"dup":84,"typeforce":156}],136:[function(require,module,exports){
+},{"./input":98,"./output":99,"dup":24}],98:[function(require,module,exports){
+// {signature}
+
+var bscript = require('../../script')
+var typeforce = require('typeforce')
+
+function check (script) {
+  var chunks = bscript.decompile(script)
+
+  return chunks.length === 1 &&
+    bscript.isCanonicalSignature(chunks[0])
+}
+check.toJSON = function () { return 'pubKey input' }
+
+function encodeStack (signature) {
+  typeforce(bscript.isCanonicalSignature, signature)
+  return [signature]
+}
+
+function encode (signature) {
+  return bscript.compile(encodeStack(signature))
+}
+
+function decodeStack (stack) {
+  typeforce(typeforce.Array, stack)
+  typeforce(check, stack)
+  return stack[0]
+}
+
+function decode (buffer) {
+  var stack = bscript.decompile(buffer)
+  return decodeStack(stack)
+}
+
+module.exports = {
+  check: check,
+  decode: decode,
+  decodeStack: decodeStack,
+  encode: encode,
+  encodeStack: encodeStack
+}
+
+},{"../../script":90,"typeforce":119}],99:[function(require,module,exports){
 arguments[4][30][0].apply(exports,arguments)
-},{"../../script":127,"bitcoin-ops":9,"dup":30,"typeforce":156}],137:[function(require,module,exports){
+},{"../../script":90,"bitcoin-ops":9,"dup":30,"typeforce":119}],100:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"./input":138,"./output":139,"dup":24}],138:[function(require,module,exports){
-arguments[4][87][0].apply(exports,arguments)
-},{"../../script":127,"dup":87,"typeforce":156}],139:[function(require,module,exports){
+},{"./input":101,"./output":102,"dup":24}],101:[function(require,module,exports){
+// {signature} {pubKey}
+
+var bscript = require('../../script')
+var typeforce = require('typeforce')
+
+function check (script) {
+  var chunks = bscript.decompile(script)
+
+  return chunks.length === 2 &&
+    bscript.isCanonicalSignature(chunks[0]) &&
+    bscript.isCanonicalPubKey(chunks[1])
+}
+check.toJSON = function () { return 'pubKeyHash input' }
+
+function encodeStack (signature, pubKey) {
+  typeforce({
+    signature: bscript.isCanonicalSignature,
+    pubKey: bscript.isCanonicalPubKey
+  }, {
+    signature: signature,
+    pubKey: pubKey
+  })
+
+  return [signature, pubKey]
+}
+
+function encode (signature, pubKey) {
+  return bscript.compile(encodeStack(signature, pubKey))
+}
+
+function decodeStack (stack) {
+  typeforce(typeforce.Array, stack)
+  typeforce(check, stack)
+
+  return {
+    signature: stack[0],
+    pubKey: stack[1]
+  }
+}
+
+function decode (buffer) {
+  var stack = bscript.decompile(buffer)
+  return decodeStack(stack)
+}
+
+module.exports = {
+  check: check,
+  decode: decode,
+  decodeStack: decodeStack,
+  encode: encode,
+  encodeStack: encodeStack
+}
+
+},{"../../script":90,"typeforce":119}],102:[function(require,module,exports){
 arguments[4][33][0].apply(exports,arguments)
-},{"../../script":127,"../../types":153,"bitcoin-ops":9,"dup":33,"typeforce":156}],140:[function(require,module,exports){
+},{"../../script":90,"../../types":116,"bitcoin-ops":9,"dup":33,"typeforce":119}],103:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"./input":141,"./output":142,"dup":24}],141:[function(require,module,exports){
-arguments[4][90][0].apply(exports,arguments)
-},{"../../script":127,"../multisig/":130,"../pubkey/":134,"../pubkeyhash/":137,"../witnesspubkeyhash/output":147,"../witnessscripthash/output":150,"dup":90,"safe-buffer":108,"typeforce":156}],142:[function(require,module,exports){
+},{"./input":104,"./output":105,"dup":24}],104:[function(require,module,exports){
+// <scriptSig> {serialized scriptPubKey script}
+
+var Buffer = require('safe-buffer').Buffer
+var bscript = require('../../script')
+var typeforce = require('typeforce')
+
+var p2ms = require('../multisig/')
+var p2pk = require('../pubkey/')
+var p2pkh = require('../pubkeyhash/')
+var p2wpkho = require('../witnesspubkeyhash/output')
+var p2wsho = require('../witnessscripthash/output')
+
+function check (script, allowIncomplete) {
+  var chunks = bscript.decompile(script)
+  if (chunks.length < 1) return false
+
+  var lastChunk = chunks[chunks.length - 1]
+  if (!Buffer.isBuffer(lastChunk)) return false
+
+  var scriptSigChunks = bscript.decompile(bscript.compile(chunks.slice(0, -1)))
+  var redeemScriptChunks = bscript.decompile(lastChunk)
+
+  // is redeemScript a valid script?
+  if (redeemScriptChunks.length === 0) return false
+
+  // is redeemScriptSig push only?
+  if (!bscript.isPushOnly(scriptSigChunks)) return false
+
+  // is witness?
+  if (chunks.length === 1) {
+    return p2wsho.check(redeemScriptChunks) ||
+      p2wpkho.check(redeemScriptChunks)
+  }
+
+  // match types
+  if (p2pkh.input.check(scriptSigChunks) &&
+    p2pkh.output.check(redeemScriptChunks)) return true
+
+  if (p2ms.input.check(scriptSigChunks, allowIncomplete) &&
+    p2ms.output.check(redeemScriptChunks)) return true
+
+  if (p2pk.input.check(scriptSigChunks) &&
+    p2pk.output.check(redeemScriptChunks)) return true
+
+  return false
+}
+check.toJSON = function () { return 'scriptHash input' }
+
+function encodeStack (redeemScriptStack, redeemScript) {
+  var serializedScriptPubKey = bscript.compile(redeemScript)
+
+  return [].concat(redeemScriptStack, serializedScriptPubKey)
+}
+
+function encode (redeemScriptSig, redeemScript) {
+  var redeemScriptStack = bscript.decompile(redeemScriptSig)
+
+  return bscript.compile(encodeStack(redeemScriptStack, redeemScript))
+}
+
+function decodeStack (stack) {
+  typeforce(typeforce.Array, stack)
+  typeforce(check, stack)
+
+  return {
+    redeemScriptStack: stack.slice(0, -1),
+    redeemScript: stack[stack.length - 1]
+  }
+}
+
+function decode (buffer) {
+  var stack = bscript.decompile(buffer)
+  var result = decodeStack(stack)
+  result.redeemScriptSig = bscript.compile(result.redeemScriptStack)
+  delete result.redeemScriptStack
+  return result
+}
+
+module.exports = {
+  check: check,
+  decode: decode,
+  decodeStack: decodeStack,
+  encode: encode,
+  encodeStack: encodeStack
+}
+
+},{"../../script":90,"../multisig/":93,"../pubkey/":97,"../pubkeyhash/":100,"../witnesspubkeyhash/output":110,"../witnessscripthash/output":113,"safe-buffer":71,"typeforce":119}],105:[function(require,module,exports){
 arguments[4][36][0].apply(exports,arguments)
-},{"../../script":127,"../../types":153,"bitcoin-ops":9,"dup":36,"typeforce":156}],143:[function(require,module,exports){
+},{"../../script":90,"../../types":116,"bitcoin-ops":9,"dup":36,"typeforce":119}],106:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./output":144,"dup":37}],144:[function(require,module,exports){
+},{"./output":107,"dup":37}],107:[function(require,module,exports){
 arguments[4][38][0].apply(exports,arguments)
-},{"../../script":127,"../../types":153,"bitcoin-ops":9,"dup":38,"safe-buffer":108,"typeforce":156}],145:[function(require,module,exports){
+},{"../../script":90,"../../types":116,"bitcoin-ops":9,"dup":38,"safe-buffer":71,"typeforce":119}],108:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"./input":146,"./output":147,"dup":24}],146:[function(require,module,exports){
-arguments[4][95][0].apply(exports,arguments)
-},{"../../script":127,"dup":95,"typeforce":156}],147:[function(require,module,exports){
+},{"./input":109,"./output":110,"dup":24}],109:[function(require,module,exports){
+// {signature} {pubKey}
+
+var bscript = require('../../script')
+var typeforce = require('typeforce')
+
+function isCompressedCanonicalPubKey (pubKey) {
+  return bscript.isCanonicalPubKey(pubKey) && pubKey.length === 33
+}
+
+function check (script) {
+  var chunks = bscript.decompile(script)
+
+  return chunks.length === 2 &&
+    bscript.isCanonicalSignature(chunks[0]) &&
+    isCompressedCanonicalPubKey(chunks[1])
+}
+check.toJSON = function () { return 'witnessPubKeyHash input' }
+
+function encodeStack (signature, pubKey) {
+  typeforce({
+    signature: bscript.isCanonicalSignature,
+    pubKey: isCompressedCanonicalPubKey
+  }, {
+    signature: signature,
+    pubKey: pubKey
+  })
+
+  return [signature, pubKey]
+}
+
+function decodeStack (stack) {
+  typeforce(typeforce.Array, stack)
+  typeforce(check, stack)
+
+  return {
+    signature: stack[0],
+    pubKey: stack[1]
+  }
+}
+
+module.exports = {
+  check: check,
+  decodeStack: decodeStack,
+  encodeStack: encodeStack
+}
+
+},{"../../script":90,"typeforce":119}],110:[function(require,module,exports){
 arguments[4][41][0].apply(exports,arguments)
-},{"../../script":127,"../../types":153,"bitcoin-ops":9,"dup":41,"typeforce":156}],148:[function(require,module,exports){
+},{"../../script":90,"../../types":116,"bitcoin-ops":9,"dup":41,"typeforce":119}],111:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"./input":149,"./output":150,"dup":24}],149:[function(require,module,exports){
-arguments[4][98][0].apply(exports,arguments)
-},{"../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":172,"../../script":127,"../../types":153,"../multisig/":130,"../pubkey/":134,"../pubkeyhash/":137,"dup":98,"typeforce":156}],150:[function(require,module,exports){
+},{"./input":112,"./output":113,"dup":24}],112:[function(require,module,exports){
+(function (Buffer){
+// <scriptSig> {serialized scriptPubKey script}
+
+var bscript = require('../../script')
+var types = require('../../types')
+var typeforce = require('typeforce')
+
+var p2ms = require('../multisig/')
+var p2pk = require('../pubkey/')
+var p2pkh = require('../pubkeyhash/')
+
+function check (chunks, allowIncomplete) {
+  typeforce(types.Array, chunks)
+  if (chunks.length < 1) return false
+
+  var witnessScript = chunks[chunks.length - 1]
+  if (!Buffer.isBuffer(witnessScript)) return false
+
+  var witnessScriptChunks = bscript.decompile(witnessScript)
+
+  // is witnessScript a valid script?
+  if (witnessScriptChunks.length === 0) return false
+
+  var witnessRawScriptSig = bscript.compile(chunks.slice(0, -1))
+
+  // match types
+  if (p2pkh.input.check(witnessRawScriptSig) &&
+    p2pkh.output.check(witnessScriptChunks)) return true
+
+  if (p2ms.input.check(witnessRawScriptSig, allowIncomplete) &&
+    p2ms.output.check(witnessScriptChunks)) return true
+
+  if (p2pk.input.check(witnessRawScriptSig) &&
+    p2pk.output.check(witnessScriptChunks)) return true
+
+  return false
+}
+check.toJSON = function () { return 'witnessScriptHash input' }
+
+function encodeStack (witnessData, witnessScript) {
+  typeforce({
+    witnessData: [types.Buffer],
+    witnessScript: types.Buffer
+  }, {
+    witnessData: witnessData,
+    witnessScript: witnessScript
+  })
+
+  return [].concat(witnessData, witnessScript)
+}
+
+function decodeStack (stack) {
+  typeforce(typeforce.Array, stack)
+  typeforce(check, stack)
+  return {
+    witnessData: stack.slice(0, -1),
+    witnessScript: stack[stack.length - 1]
+  }
+}
+
+module.exports = {
+  check: check,
+  decodeStack: decodeStack,
+  encodeStack: encodeStack
+}
+
+}).call(this,{"isBuffer":require("../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":135,"../../script":90,"../../types":116,"../multisig/":93,"../pubkey/":97,"../pubkeyhash/":100,"typeforce":119}],113:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"../../script":127,"../../types":153,"bitcoin-ops":9,"dup":44,"typeforce":156}],151:[function(require,module,exports){
+},{"../../script":90,"../../types":116,"bitcoin-ops":9,"dup":44,"typeforce":119}],114:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var bcrypto = require('./crypto')
 var bscript = require('./script')
@@ -12091,7 +11019,7 @@ Transaction.prototype.setWitness = function (index, witness) {
 
 module.exports = Transaction
 
-},{"./bufferutils":119,"./crypto":120,"./script":127,"./types":153,"bitcoin-ops":9,"safe-buffer":108,"typeforce":156,"varuint-bitcoin":158}],152:[function(require,module,exports){
+},{"./bufferutils":82,"./crypto":83,"./script":90,"./types":116,"bitcoin-ops":9,"safe-buffer":71,"typeforce":119,"varuint-bitcoin":121}],115:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var baddress = require('./address')
 var bcrypto = require('./crypto')
@@ -12876,7 +11804,7 @@ TransactionBuilder.prototype.__overMaximumFees = function (bytes) {
 
 module.exports = TransactionBuilder
 
-},{"./address":117,"./crypto":120,"./ecpair":122,"./ecsignature":123,"./networks":126,"./script":127,"./templates":129,"./transaction":151,"./types":153,"bitcoin-ops":9,"safe-buffer":108,"typeforce":156}],153:[function(require,module,exports){
+},{"./address":80,"./crypto":83,"./ecpair":85,"./ecsignature":86,"./networks":89,"./script":90,"./templates":92,"./transaction":114,"./types":116,"bitcoin-ops":9,"safe-buffer":71,"typeforce":119}],116:[function(require,module,exports){
 var typeforce = require('typeforce')
 
 var UINT31_MAX = Math.pow(2, 31) - 1
@@ -12931,7 +11859,7 @@ for (var typeName in typeforce) {
 
 module.exports = types
 
-},{"typeforce":156}],154:[function(require,module,exports){
+},{"typeforce":119}],117:[function(require,module,exports){
 var native = require('./native')
 
 function getTypeName (fn) {
@@ -13037,7 +11965,7 @@ module.exports = {
   getValueTypeName: getValueTypeName
 }
 
-},{"./native":157}],155:[function(require,module,exports){
+},{"./native":120}],118:[function(require,module,exports){
 (function (Buffer){
 var NATIVE = require('./native')
 var ERRORS = require('./errors')
@@ -13113,7 +12041,7 @@ for (var typeName in types) {
 module.exports = types
 
 }).call(this,{"isBuffer":require("../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":172,"./errors":154,"./native":157}],156:[function(require,module,exports){
+},{"../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":135,"./errors":117,"./native":120}],119:[function(require,module,exports){
 var ERRORS = require('./errors')
 var NATIVE = require('./native')
 
@@ -13353,7 +12281,7 @@ typeforce.TfPropertyTypeError = TfPropertyTypeError
 
 module.exports = typeforce
 
-},{"./errors":154,"./extra":155,"./native":157}],157:[function(require,module,exports){
+},{"./errors":117,"./extra":118,"./native":120}],120:[function(require,module,exports){
 var types = {
   Array: function (value) { return value !== null && value !== undefined && value.constructor === Array },
   Boolean: function (value) { return typeof value === 'boolean' },
@@ -13376,7 +12304,7 @@ for (var typeName in types) {
 
 module.exports = types
 
-},{}],158:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 'use strict'
 var Buffer = require('safe-buffer').Buffer
 
@@ -13468,7 +12396,7 @@ function encodingLength (number) {
 
 module.exports = { encode: encode, decode: decode, encodingLength: encodingLength }
 
-},{"safe-buffer":108}],159:[function(require,module,exports){
+},{"safe-buffer":71}],122:[function(require,module,exports){
 (function (Buffer){
 var bs58swiftcheck = require('bs58swiftcheck')
 
@@ -13535,7 +12463,7 @@ module.exports = {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"bs58swiftcheck":51,"buffer":167}],160:[function(require,module,exports){
+},{"bs58swiftcheck":51,"buffer":130}],123:[function(require,module,exports){
 (function (Buffer){
 var bs58check = require('bs58check')
 
@@ -13602,7 +12530,7 @@ module.exports = {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"bs58check":50,"buffer":167}],161:[function(require,module,exports){
+},{"bs58check":50,"buffer":130}],124:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -14096,16 +13024,16 @@ var objectKeys = Object.keys || function (obj) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"util/":164}],162:[function(require,module,exports){
+},{"util/":127}],125:[function(require,module,exports){
 arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],163:[function(require,module,exports){
+},{"dup":64}],126:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],164:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -14695,7 +13623,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":163,"_process":175,"inherits":162}],165:[function(require,module,exports){
+},{"./support/isBuffer":126,"_process":138,"inherits":125}],128:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -14848,9 +13776,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],166:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 
-},{}],167:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -16629,7 +15557,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":165,"ieee754":170}],168:[function(require,module,exports){
+},{"base64-js":128,"ieee754":133}],131:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -16740,7 +15668,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":172}],169:[function(require,module,exports){
+},{"../../is-buffer/index.js":135}],132:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17265,7 +16193,7 @@ function functionBindPolyfill(context) {
   };
 }
 
-},{}],170:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -17351,9 +16279,9 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],171:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],172:[function(require,module,exports){
+},{"dup":64}],135:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -17376,14 +16304,14 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],173:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],174:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -17431,7 +16359,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 
 
 }).call(this,require('_process'))
-},{"_process":175}],175:[function(require,module,exports){
+},{"_process":138}],138:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -17617,10 +16545,10 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],176:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":177}],177:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":140}],140:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17752,7 +16680,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
   pna.nextTick(cb, err);
 };
-},{"./_stream_readable":179,"./_stream_writable":181,"core-util-is":168,"inherits":171,"process-nextick-args":174}],178:[function(require,module,exports){
+},{"./_stream_readable":142,"./_stream_writable":144,"core-util-is":131,"inherits":134,"process-nextick-args":137}],141:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17800,7 +16728,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":180,"core-util-is":168,"inherits":171}],179:[function(require,module,exports){
+},{"./_stream_transform":143,"core-util-is":131,"inherits":134}],142:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -18822,7 +17750,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":177,"./internal/streams/BufferList":182,"./internal/streams/destroy":183,"./internal/streams/stream":184,"_process":175,"core-util-is":168,"events":169,"inherits":171,"isarray":173,"process-nextick-args":174,"safe-buffer":189,"string_decoder/":191,"util":166}],180:[function(require,module,exports){
+},{"./_stream_duplex":140,"./internal/streams/BufferList":145,"./internal/streams/destroy":146,"./internal/streams/stream":147,"_process":138,"core-util-is":131,"events":132,"inherits":134,"isarray":136,"process-nextick-args":137,"safe-buffer":152,"string_decoder/":154,"util":129}],143:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19037,7 +17965,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":177,"core-util-is":168,"inherits":171}],181:[function(require,module,exports){
+},{"./_stream_duplex":140,"core-util-is":131,"inherits":134}],144:[function(require,module,exports){
 (function (process,global,setImmediate){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -19727,7 +18655,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
-},{"./_stream_duplex":177,"./internal/streams/destroy":183,"./internal/streams/stream":184,"_process":175,"core-util-is":168,"inherits":171,"process-nextick-args":174,"safe-buffer":189,"timers":192,"util-deprecate":193}],182:[function(require,module,exports){
+},{"./_stream_duplex":140,"./internal/streams/destroy":146,"./internal/streams/stream":147,"_process":138,"core-util-is":131,"inherits":134,"process-nextick-args":137,"safe-buffer":152,"timers":155,"util-deprecate":156}],145:[function(require,module,exports){
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19807,7 +18735,7 @@ if (util && util.inspect && util.inspect.custom) {
     return this.constructor.name + ' ' + obj;
   };
 }
-},{"safe-buffer":189,"util":166}],183:[function(require,module,exports){
+},{"safe-buffer":152,"util":129}],146:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -19882,13 +18810,13 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":174}],184:[function(require,module,exports){
+},{"process-nextick-args":137}],147:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":169}],185:[function(require,module,exports){
+},{"events":132}],148:[function(require,module,exports){
 module.exports = require('./readable').PassThrough
 
-},{"./readable":186}],186:[function(require,module,exports){
+},{"./readable":149}],149:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -19897,15 +18825,15 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":177,"./lib/_stream_passthrough.js":178,"./lib/_stream_readable.js":179,"./lib/_stream_transform.js":180,"./lib/_stream_writable.js":181}],187:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":140,"./lib/_stream_passthrough.js":141,"./lib/_stream_readable.js":142,"./lib/_stream_transform.js":143,"./lib/_stream_writable.js":144}],150:[function(require,module,exports){
 module.exports = require('./readable').Transform
 
-},{"./readable":186}],188:[function(require,module,exports){
+},{"./readable":149}],151:[function(require,module,exports){
 module.exports = require('./lib/_stream_writable.js');
 
-},{"./lib/_stream_writable.js":181}],189:[function(require,module,exports){
-arguments[4][108][0].apply(exports,arguments)
-},{"buffer":167,"dup":108}],190:[function(require,module,exports){
+},{"./lib/_stream_writable.js":144}],152:[function(require,module,exports){
+arguments[4][71][0].apply(exports,arguments)
+},{"buffer":130,"dup":71}],153:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -20034,7 +18962,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":169,"inherits":171,"readable-stream/duplex.js":176,"readable-stream/passthrough.js":185,"readable-stream/readable.js":186,"readable-stream/transform.js":187,"readable-stream/writable.js":188}],191:[function(require,module,exports){
+},{"events":132,"inherits":134,"readable-stream/duplex.js":139,"readable-stream/passthrough.js":148,"readable-stream/readable.js":149,"readable-stream/transform.js":150,"readable-stream/writable.js":151}],154:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -20331,7 +19259,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":189}],192:[function(require,module,exports){
+},{"safe-buffer":152}],155:[function(require,module,exports){
 (function (setImmediate,clearImmediate){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -20410,7 +19338,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":175,"timers":192}],193:[function(require,module,exports){
+},{"process/browser.js":138,"timers":155}],156:[function(require,module,exports){
 (function (global){
 
 /**

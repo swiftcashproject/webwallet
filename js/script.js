@@ -1,8 +1,9 @@
 var CURRENT_COIN = 'SWIFT';
 var PARAMS = {
 	'SWIFT': {
+		coingecko: 'swiftcash',
 		coinjs: cc.swiftcash,
-		qrColor: '3875CE',
+		qrColor: '0071B1',
 		minFee: 0.002,
 		maxFee: 0.2,
 		txFee: 0.002,
@@ -16,6 +17,7 @@ var PARAMS = {
 	},
 
         'BTC': {
+		coingecko: 'bitcoin',
                 coinjs: cc.bitcoin,
                 qrColor: 'FC8F43',
                 minFee: 0.0001,
@@ -34,7 +36,9 @@ var PARAMS = {
         },
 
 	'LTC': {
-		coinjs: cc.litecoin,
+		coingecko: 'litecoin',
+		coinjs: cc.bitcoin,
+		network: cc.bitcoin.networks.litecoin,
 		qrColor: '5C5C5C',
                 minFee: 0.001,
                 maxFee: 0.1,
@@ -49,7 +53,27 @@ var PARAMS = {
 		unspentTxid: 'txid',
 		unspentOutput: 'output_no',
 		unspentValue: 'value'
-	}
+	},
+
+        'DOGE': {
+		coingecko: 'dogecoin',
+                coinjs: cc.bitcoin,
+                network: cc.bitcoin.networks.dogecoin,
+                qrColor: 'C19347',
+                minFee: 1,
+                maxFee: 100,
+                txFee: 1,
+                explorer: 'https://live.blockcypher.com/doge/',
+                unspentApi: 'https://chain.so/api/v2/get_tx_unspent/DOGE/',
+                sendApi: 'https://chain.so/api/v2/send_tx/DOGE/',
+                sendTxid1: 'data',
+                sendTxid2: 'txid',
+                unspentArray1: 'data',
+                unspentArray2: 'txs',
+                unspentTxid: 'txid',
+                unspentOutput: 'output_no',
+                unspentValue: 'value'
+        }
 };
 
 window.Clipboard = (function(window, document, navigator) {
@@ -159,15 +183,15 @@ function switchCoinNow(whichCoin) {
      if(title != whichCoin) {
         cLogos[i].style.filter = "none";
      } else {
-	cLogos[i].style.filter = "drop-shadow(1px 2px 4px #4b4b4c)";
+	cLogos[i].style.filter = "drop-shadow(1px 1px 2px #4b4b4c)";
      }
   }
 
   if(whichCoin != loginPrivkey) {
      var d = new cc.bigi.fromBuffer(hashedPass);
-     keyPair = new PARAMS[CURRENT_COIN].coinjs.ECPair(d);
+     keyPair = new PARAMS[CURRENT_COIN].coinjs.ECPair(d, null, { network: PARAMS[CURRENT_COIN].network });
   } else {
-     keyPair = PARAMS[CURRENT_COIN].coinjs.ECPair.fromWIF(hashedPass);
+     keyPair = PARAMS[CURRENT_COIN].coinjs.ECPair.fromWIF(hashedPass, PARAMS[CURRENT_COIN].network);
   }
 
   loadAddress();
@@ -181,28 +205,19 @@ function login() {
   // TODO: Add the ability to login with BTC or LTC private keys
   if( $('#privlogintoggle').attr('aria-pressed') == "true" ) {
     var privateKey = $('#password').val();
-    try {
-      // Try with swiftcash
-      keyPair = cc.swiftcash.ECPair.fromWIF(privateKey);
-      hashedPass = privateKey;
-      loginPrivkey = "SWIFT";
-      CURRENT_COIN = "SWIFT";
-    } catch(e) { try {
-      // Try with bitcoin
-      keyPair = cc.bitcoin.ECPair.fromWIF(privateKey);
-      hashedPass = privateKey;
-      loginPrivkey = "BTC";
-      CURRENT_COIN = "BTC";
-    } catch(e) { try {
-      // Try with litecoin
-      keyPair = cc.litecoin.ECPair.fromWIF(privateKey);
-      hashedPass = privateKey;
-      loginPrivkey = "LTC";
-      CURRENT_COIN = "LTC";
-    } catch(e) { alert("Invalid Private Key!"); return; } } }
+    var success = false;
+    $.each( PARAMS, function( key, value ) {
+	if (!success) try {
+	   hashedPass = privateKey;
+	   loginPrivkey = key;
+	   CURRENT_COIN = key;
+	   keyPair = PARAMS[CURRENT_COIN].coinjs.ECPair.fromWIF(privateKey, PARAMS[CURRENT_COIN].network);
+	   success = true;
+	} catch(e) {}
+    });
 
-    switchCoin(CURRENT_COIN);
-    return;
+    if(!success) {  alert("Invalid Private Key!"); return; }
+    else { switchCoin(CURRENT_COIN); return; }
   }
 
   // Login with email + password
@@ -216,7 +231,7 @@ function login() {
   $("form[role='login']").click();
   setTimeout(hashit, 1000, hash.toString("hex"), function(hashed) {
     var d = new cc.bigi.fromBuffer(hashed);
-    keyPair = new PARAMS[CURRENT_COIN].coinjs.ECPair(d);
+    keyPair = new PARAMS[CURRENT_COIN].coinjs.ECPair(d, null, { network: PARAMS[CURRENT_COIN].network });
     loadAddress();
   });
 }
@@ -224,14 +239,14 @@ function login() {
 function loadAddress() {
   $("#addr-balance-refresh").prop("disabled", true);
   $('#addr-balance').html('Balance: 0.00000000 ' + CURRENT_COIN);
-  $("#addr-balance").css("color", "gray");
+  $("#addr-balance").css("color", "#74bed8");
   $("#pwd-container").hide();
   $("#addr-container").show();
   $("#addr-qr").attr("src", "https://qr-generator.qrcode.studio/qr/custom?download=false&file=png&data=" + keyPair.getAddress() + "&size=400&config=%7B%22body%22%3A%22rounded-pointed%22%2C%22eye%22%3A%22frame6%22%2C%22eyeBall%22%3A%22ball6%22%2C%22erf1%22%3A%5B%22fv%22%5D%2C%22gradientColor1%22%3A%22%23" + PARAMS[CURRENT_COIN].qrColor + "%22%2C%22gradientColor2%22%3A%22%23" + PARAMS[CURRENT_COIN].qrColor + "%22%2C%22gradientType%22%3A%22radial%22%2C%22gradientOnEyes%22%3A%22true%22%2C%22logo%22%3A%22%22%7D");
   $("#addr-qr").attr("alt", keyPair.getAddress());
   $("#addr-id-clipboard").attr("data-clipboard-text", keyPair.getAddress());
   $("#addr-id").attr("href", PARAMS[CURRENT_COIN].explorer + "address/" + keyPair.getAddress());
-  $("#addr-balance").attr("href", PARAMS[CURRENT_COIN].explorer + "address/" + keyPair.getAddress());
+  //$("#addr-balance").attr("href", PARAMS[CURRENT_COIN].explorer + "address/" + keyPair.getAddress());
   $("#addr-id").html(keyPair.getAddress());
   refresh();
 }
@@ -255,6 +270,8 @@ function refresh() {
   });
 }
 
+var USD = false;
+var usdBalance = false;
 var balance=0;
 var utxos=[];
 function loadAddressTxes(result) {
@@ -272,6 +289,8 @@ function loadAddressTxes(result) {
     sum += Number(utxos[i].value);
   } balance = sum;
 
+  USD = false;
+  usdBalance = false;
   $('#addr-balance').html('Balance: ' + balance.toFixed(8) + ' ' + CURRENT_COIN);
 }
 
@@ -298,6 +317,37 @@ function changeTheFee() {
       if(Number(result) < minFee) alert("Minimum transaction fee allowed is " + minFee + " " + CURRENT_COIN + "!");
       else if(Number(result) > maxFee) alert("Maximum transaction fee allowed is " + maxFee + " " + CURRENT_COIN + "!");
       else alert(result + " is not a valid fee!");
+  }
+}
+
+function togglePrice() {
+  if(balance > 0 && !USD && !usdBalance) {
+    $.ajax({
+        url: 'https://api.coingecko.com/api/v3/simple/price?ids=' + PARAMS[CURRENT_COIN].coingecko + '&vs_currencies=usd',
+        type: "GET",
+        dataType: "json",
+        data: {
+      },
+      success: function (result) {
+        USD = true;
+	var usdPrice = Number(result[PARAMS[CURRENT_COIN].coingecko].usd);
+        usdBalance = balance * usdPrice;
+        $("#addr-balance").html("Balance: $" + usdBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " US");
+      },
+      error: function () {
+        console.log("error");
+        $("#addr-balance-refresh").prop("disabled", false);
+      }
+    });
+  } else if(!USD && usdBalance) {
+     USD = true;
+     $("#addr-balance").html("Balance: $" + usdBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " US");
+  } else if(!USD && !usdBalance) {
+     USD = true;
+     $("#addr-balance").html("Balance: $0.00 US");
+  } else if(USD) {
+     USD = false;
+     $("#addr-balance").html("Balance: " + balance.toFixed(8) + " " + CURRENT_COIN);
   }
 }
 
@@ -346,7 +396,7 @@ function spendf() {
   $('#sendprogress').show();
 
   // Create the transaction
-  tx = new PARAMS[CURRENT_COIN].coinjs.TransactionBuilder();
+  tx = new PARAMS[CURRENT_COIN].coinjs.TransactionBuilder(PARAMS[CURRENT_COIN].network);
 
   // Add all the available input(s)
   for(i in utxos) {
@@ -383,6 +433,8 @@ function spendf() {
 	if(txid) {
 	   balance = change;
 	   $('#addr-balance').html("Balance: " + balance.toFixed(8) + " " + CURRENT_COIN);
+	   USD = false;
+	   usdBalance = false;
 	   if(change > 0) {
 		utxos = [{"txid": txid, "output": 1, value: change}];
 	   } else { utxos = []; }

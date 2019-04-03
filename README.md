@@ -12,26 +12,27 @@ This web wallet is hosted on github, and can be accessed via:
 
 To avoid becoming a victim of phishing attacks, make sure you always double check the domain in your browser's address bar. You can also download the wallet and run it locally. But you're still going to need Internet in order to transact with the blockchain.
 
-# BTC and LTC Support
-Bitcoin and Litecoin transactions are created and signed locally and then sent to their own networks using api(s) provided by https://chain.so/ - https://www.blockcypher.com is also used for following up on transaction details.
+# BTC, LTC and DOGE Support
+Bitcoin, Litecoin and Dogecoin transactions are created and signed locally and then sent to their own networks using api(s) provided by https://chain.so/ - https://www.blockcypher.com is also used for following up on transaction details.
 
 # Login With Your Private Key(s)
-You can login with a SwiftCash, Bitcoin, or Litecoin private key. If you login with a SwiftCash private key, the wallet will generate a Bitcoin and Litecoin address using your SwiftCash private key. If you login with a Bitcoin private key, the wallet will generate a SwiftCash and Litecoin address using your Bitcoin private key. And if you login with a Litecoin private key, the wallet will generate a SwiftCash and Bitcoin address using your Litecoin private key. It is however highly recommended to use email and password to login if you intend to stash all your cryptos in the same wallet and only use the private key login feature with your paper wallets.
+You can login with a SwiftCash, Bitcoin, Litecoin or Dogecoin private key. If you login with a SwiftCash private key, the wallet will generate a Bitcoin, Litecoin and Dogecoin address using your SwiftCash private key. If you login with a Bitcoin private key, the wallet will generate a SwiftCash, Litecoin and Dogecoin address using your Bitcoin private key. And so will be the case if you login with a Litecoin or Dogecoin private key. It is however highly recommended to use email and password to login if you intend to stash all your cryptos in the same wallet per se, and only use the login with private key feature to spend your paper or brain wallets.
 
 # Transaction Fees
-The wallet enforces a minimum of `0.002 SWIFT`, `0.0001 BTC`, and `0.001 LTC` transaction fees and allows users to increase this fee. To help avoid situations in which ridiculously high fees are paid by accident, the wallet enforces a maximum of `0.2 SWIFT`, `0.01 BTC`, and `0.1 LTC` transaction fees respectively.
+The wallet enforces a minimum of `0.002 SWIFT`, `0.0001 BTC`, `0.001 LTC` and `1 DOGE` transaction fees and allows users to increase this fee. To help avoid situations in which ridiculously high fees are paid by accident, the wallet enforces a maximum of `0.2 SWIFT`, `0.01 BTC`, `0.1 LTC` and `100 DOGE` transaction fees.
 
 # Change Addresses
 N/A. Changes are sent back to the sender's address.
 
 # License
 Copyright (C) 2018-2019 SwiftCash Developers <br />
-This software is provided as is and with no guarantee under the MIT license.
+This software is provided as is and with no warranty under the MIT license.
 
 # Donation Addresses
 SWIFT: `SXucSXaV5HURNyJUWnPrVFHTdRzoU2u19F`<br />
 BTC: `13atMuQvjApUEuV5voxRVFMV6HHA5FjMFT`<br />
 LTC: `LMoqd7ikoq4XViBF6wwimGRFJVeSB6JmDh`<br />
+DOGE: `D7iyuAMa2aikmufgfPwz31X5yR1TMt698E` <br />
 
 # Support
 For support, join http://discord.swiftcash.cc

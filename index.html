@@ -61,19 +61,20 @@
 	<div id="addr-container" style="display: none;">
         <form method="post" action="javascript:spendf();" role="spend" style="padding-bottom: 2px;">
 	<div class="row" style="display: flex; justify-content: center; align-items: center;">
-          <div title="SWIFT" class="col-md-3 currency-logo" style="filter: drop-shadow(1px 2px 4px #4b4b4c); padding: 2px; width: 52px;"><a href="javascript:switchCoin('SWIFT');"><img src="./images/swiftcash.png" class="img-responsive" alt="" /></a></div>
+          <div title="SWIFT" class="col-md-3 currency-logo" style="filter: drop-shadow(1px 1px 2px #4b4b4c); padding: 2px; width: 52px;"><a href="javascript:switchCoin('SWIFT');"><img src="./images/swiftcash.png" class="img-responsive" alt="" /></a></div>
 	  <div title="BTC" class="col-md-3 currency-logo" style="padding: 2px; width: 52px;"><a href="javascript:switchCoin('BTC');"><img src="./images/bitcoin.png" class="img-responsive" alt="" /></a></div>
 	  <div title="LTC" class="col-md-3 currency-logo" style="padding: 2px; width: 52px;"><a href="javascript:switchCoin('LTC');"><img src="./images/litecoin.png" class="img-responsive" alt="" /></a></div>
+	  <div title="DOGE" class="col-md-3 currency-logo" style="padding: 2px; width: 53px;"><a href="javascript:switchCoin('DOGE');"><img src="./images/dogecoin.png" class="img-responsive" alt="" /></a></div>
 	</div>
 
             <div class="row">
 	      <div class="alert alert-info fade in" style="margin-bottom: 0px; padding-left: 5px; padding-right: 5px; font-weight: bold; font-size: 12px;">
-                <a href="" target="_blank" id="addr-id">SWIFTADDRESS</a>
+                <a href="" target="_blank" style="font-size: 1.05em;" id="addr-id">SWIFTADDRESS</a>
 	        <button id="addr-id-clipboard" type="button" class="btn btn-primary clipboard" data-clipboard-text="SWIFTADDRESS">
 			<i class="fa fa-copy"></i>
 		</button>
                 <div>
-		  <a href="" target="_blank" id="addr-balance" style="vertical-align: middle;">Balance: 0.00000000 SWIFT</a>
+		  <a href="javascript:togglePrice();" class="label hvr-buzz-out label-primary" id="addr-balance" style="vertical-align: middle; font-size: 11.8px; padding: 4.3px;">Balance: 0.00000000 SWIFT</a>
                 <button id="addr-balance-refresh" type="button" class="btn btn-primary refresh" onclick="javascript:loadAddress();">
 			<i class="fa fa-flash" style="width: 14px;"></i>
 		</button>
@@ -108,8 +109,8 @@
 
               <div class="row" id="spend-receive" style="margin-bottom: 13px">
                  <div class="btn-group text-center" data-toggle="buttons" style="padding-top: 10px">
-                    <label class="btn btn-primary active center-block"><input value="R" onchange="rsvs(this);" type="radio">Receive</label>
-                    <label class="btn btn-primary center-block"><input value="S" onchange="rsvs(this);" type="radio">Spend</label>
+                    <label style="font-weight: bold;" class="btn btn-primary active center-block"><input value="R" onchange="rsvs(this);" type="radio">Receive</label>
+                    <label style="font-weight: bold;" class="btn btn-primary center-block"><input value="S" onchange="rsvs(this);" type="radio">Spend</label>
                  </div>
               </div>
 
