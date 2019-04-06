@@ -5,7 +5,7 @@ To secure the account of users who login with an email and password rather than 
 The wallet also enforces very strong passwords using a password strength meter to further secure the accounts against brute-force attacks.
 
 # Hosting
-This web wallet is hosted on github, and can be accessed via:
+This web wallet is hosted on github, and can be verified and accessed via the following links:
 
 * https://swiftcashproject.github.io/webwallet/
 * https://wallet.swiftcash.cc/
@@ -24,6 +24,13 @@ The wallet enforces a minimum of `0.002 SWIFT`, `0.0001 BTC`, `0.001 LTC` and `1
 # Change Addresses
 N/A. Changes are sent back to the sender's address.
 
+# Notes
+To copy your address, click on the copy icon next to your address.
+To refresh your balance, click on the lightning icon next to your balance.
+To view your balance in US dollars, click on your balance.
+To change/adjust the transaction fee, click on the wrench icon.
+To copy your private key, click on the key icon.
+
 # License
 Copyright (C) 2018-2019 SwiftCash Developers <br />
 This software is provided as is and with no warranty under the MIT license.
@@ -36,3 +43,7 @@ DOGE: `D7iyuAMa2aikmufgfPwz31X5yR1TMt698E` <br />
 
 # Support
 For support, join http://discord.swiftcash.cc
+
+# Whitepaper
+To find out more about SwiftCash, consider reading our whitepaper!
+https://swiftcash.cc/assets/whitepaper.pdf
