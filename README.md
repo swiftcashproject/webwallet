@@ -25,21 +25,21 @@ The wallet enforces a minimum of `0.002 SWIFT`, `0.0001 BTC`, `0.001 LTC` and `1
 N/A. Changes are sent back to the sender's address.
 
 # Notes
-To copy your address, click on the copy icon next to your address.
-To refresh your balance, click on the lightning icon next to your balance.
-To view your balance in US dollars, click on your balance.
-To change/adjust the transaction fee, click on the wrench icon.
-To copy your private key, click on the key icon.
+* To copy your address, click on the copy icon next to your address.
+* To refresh your balance, click on the lightning icon next to your balance.
+* To view your balance in US dollars, click on your balance.
+* To change/adjust the transaction fee, click on the wrench icon.
+* To copy your private key, click on the key icon.
 
 # License
 Copyright (C) 2018-2019 SwiftCash Developers <br />
 This software is provided as is and with no warranty under the MIT license.
 
 # Donation Addresses
-SWIFT: `SXucSXaV5HURNyJUWnPrVFHTdRzoU2u19F`<br />
-BTC: `13atMuQvjApUEuV5voxRVFMV6HHA5FjMFT`<br />
-LTC: `LMoqd7ikoq4XViBF6wwimGRFJVeSB6JmDh`<br />
-DOGE: `D7iyuAMa2aikmufgfPwz31X5yR1TMt698E` <br />
+* SWIFT: `SXucSXaV5HURNyJUWnPrVFHTdRzoU2u19F`
+* BTC: `13atMuQvjApUEuV5voxRVFMV6HHA5FjMFT`
+* LTC: `LMoqd7ikoq4XViBF6wwimGRFJVeSB6JmDh`
+* DOGE: `D7iyuAMa2aikmufgfPwz31X5yR1TMt698E`
 
 # Support
 For support, join http://discord.swiftcash.cc
