@@ -386,8 +386,8 @@ function spendf() {
 
   // Validate the address
   try {
-    PARAMS[CURRENT_COIN].coinjs.address.toOutputScript($("#address").val());
-  } catch(e) { alert("Please enter a valid SwiftCash address!"); return; }
+    PARAMS[CURRENT_COIN].coinjs.address.toOutputScript($("#address").val(), PARAMS[CURRENT_COIN].network);
+  } catch(e) { alert("Please enter a valid address!"); return; }
 
   // Disable the elements in the form
   $('#address').prop("disabled", true);
