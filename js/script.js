@@ -430,7 +430,7 @@ function spendf() {
 	if(T1 && T2 && result && result[T1]) txid = result[T1][T2];
 	else if(T1 && result) txid = result[T1];
 
-	if(txid) {
+	if (txid && (typeof txid === 'string' || txid instanceof String)) {
 	   balance = change;
 	   $('#addr-balance').html("Balance: " + balance.toFixed(8) + " " + CURRENT_COIN);
 	   USD = false;
@@ -442,7 +442,7 @@ function spendf() {
 	   window.open(PARAMS[CURRENT_COIN].explorer + "tx/" + txid);
 	} else {
 	   console.log(result);
-	   alert("Broadcast may have failed?! Or not! Double check on the explorer and refresh your balance!");
+	   alert("Broadcast failed! Check console for the details!");
 	}
 
 	$('#address').prop("disabled", false).val("");
@@ -455,7 +455,7 @@ function spendf() {
         $('#amount').prop("disabled", false).val("");
         $('#send').prop("disabled", false).html("Send");
         $('#sendprogress').hide();
-	alert("Broadcast failed. Please try again later!");
+	alert("Broadcast failed! Check console for the details!");
         console.log(error);
     }
   });
