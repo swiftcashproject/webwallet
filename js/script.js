@@ -247,8 +247,8 @@ function loadAddress() {
   $("#addr-qr").attr("alt", keyPair.getAddress());
   $("#addr-id-clipboard").attr("data-clipboard-text", keyPair.getAddress());
   $("#addr-id").attr("href", PARAMS[CURRENT_COIN].explorer + "address/" + keyPair.getAddress());
-  //$("#addr-balance").attr("href", PARAMS[CURRENT_COIN].explorer + "address/" + keyPair.getAddress());
   $("#addr-id").html(keyPair.getAddress());
+  changeAddress = keyPair.getAddress();
   refresh();
 }
 
@@ -274,6 +274,7 @@ function refresh() {
 var USD = false;
 var usdBalance = false;
 var balance=0;
+var changeAddress="";
 var utxos=[];
 function loadAddressTxes(result) {
   var sum = 0;
@@ -305,6 +306,16 @@ function _hideTooltip(classId) {
   setTimeout(function() {
     $(classId).attr('data-original-title', '').tooltip('hide');
   }, 1000);
+}
+
+function modifyTheChangeAddress() {
+  var result = prompt('Enter a custom change address:', changeAddress);
+  if(result) {
+    try {
+      PARAMS[CURRENT_COIN].coinjs.address.toOutputScript(result, PARAMS[CURRENT_COIN].network);
+      changeAddress = result;
+    } catch(e) { alert("Please enter a valid address!"); return; }
+  }
 }
 
 function changeTheFee() {
@@ -410,7 +421,7 @@ function spendf() {
   // Add the change (if any)
   var change = SWIFT(balance - amount - FEE);
   if(change > 0) {
-    tx.addOutput(keyPair.getAddress(), Math.ceil(change*100000000));
+    tx.addOutput(changeAddress, Math.ceil(change*100000000));
   }
 
   // Sign all the inputs
@@ -436,8 +447,8 @@ function spendf() {
 	   $('#addr-balance').html("Balance: " + balance.toFixed(8) + " " + CURRENT_COIN);
 	   USD = false;
 	   usdBalance = false;
-	   if(change > 0) {
-		utxos = [{"txid": txid, "output": 1, value: change}];
+	   if(change > 0 && (changeAddress == keyPair.getAddress())) {
+		utxos = [{PARAMS[CURRENT_COIN].unspentTxid: txid, PARAMS[CURRENT_COIN].unspentOutput: 1, PARAMS[CURRENT_COIN].unspentValue: change}];
 	   } else { utxos = []; }
 
 	   window.open(PARAMS[CURRENT_COIN].explorer + "tx/" + txid);

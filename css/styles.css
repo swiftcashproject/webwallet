@@ -81,7 +81,7 @@ form {
 	text-align: left;
 }
 
-.clipboard, .refresh, .privkey, .customfee {
+.clipboard, .refresh, .privkey, .customfee, .changeaddress {
 	padding: 2px;
 	margin: 0px;
 }

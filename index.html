@@ -73,13 +73,16 @@
 	        <button id="addr-id-clipboard" type="button" class="btn btn-primary clipboard" data-clipboard-text="SWIFTADDRESS">
 			<i class="fa fa-copy"></i>
 		</button>
-                <div>
+                <div style="margin-top: 2px;">
 		  <a href="javascript:togglePrice();" class="label hvr-buzz-out label-primary" id="addr-balance" style="vertical-align: middle; font-size: 11.8px; padding: 4.3px;">Balance: 0.00000000 SWIFT</a>
                 <button id="addr-balance-refresh" type="button" class="btn btn-primary refresh" onclick="javascript:loadAddress();">
 			<i class="fa fa-flash" style="width: 14px;"></i>
 		</button>
 		<button id="privatekey-copy" type="button" class="btn btn-primary privkey" data-placement="bottom" onclick="javascript:copyPrivateKey();">
                         <i class="fa fa-key" style="width: 14px;"></i>
+                </button>
+                <button id="changeaddress-modify" type="button" class="btn btn-primary changeaddress" data-placement="bottom" onclick="javascript:modifyTheChangeAddress();">
+                        <i class="fa fa-filter" style="width: 14px;"></i>
                 </button>
                 <button id="trx-fee" type="button" class="btn btn-primary customfee" onclick="changeTheFee();">
                         <i class="fa fa-wrench" style="width: 14px;"></i>
