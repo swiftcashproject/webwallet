@@ -130,7 +130,8 @@ function openQrModal(param) {
 
   scanner.addListener('scan', function (content) {
     scanner.stop();
-    $('#'+ qrIdToFill).val(content);
+    $('#' + qrIdToFill).val(content);
+    $('#' + qrIdToFill).change();
     $('#modalQrCode').modal('toggle');
   });
 
