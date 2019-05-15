@@ -447,8 +447,11 @@ function spendf() {
 	   $('#addr-balance').html("Balance: " + balance.toFixed(8) + " " + CURRENT_COIN);
 	   USD = false;
 	   usdBalance = false;
-	   if(change > 0 && (changeAddress == keyPair.getAddress())) {
-		utxos = [{PARAMS[CURRENT_COIN].unspentTxid: txid, PARAMS[CURRENT_COIN].unspentOutput: 1, PARAMS[CURRENT_COIN].unspentValue: change}];
+	   if(change > 0 && ( changeAddress == keyPair.getAddress() )) {
+		var p1 = PARAMS[CURRENT_COIN].unspentTxid;
+		var p2 = PARAMS[CURRENT_COIN].unspentOutput;
+		var p3 = PARAMS[CURRENT_COIN].unspentValue;
+		utxos = [{p1: txid, p2: 1, p3: change}];
 	   } else { utxos = []; }
 
 	   window.open(PARAMS[CURRENT_COIN].explorer + "tx/" + txid);
