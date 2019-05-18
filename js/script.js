@@ -451,7 +451,7 @@ function spendf() {
 		var p1 = PARAMS[CURRENT_COIN].unspentTxid;
 		var p2 = PARAMS[CURRENT_COIN].unspentOutput;
 		var p3 = PARAMS[CURRENT_COIN].unspentValue;
-		utxos = [{p1: txid, p2: 1, p3: change}];
+		utxos = [{[p1]: txid, [p2]: 1, [p3]: change}];
 	   } else { utxos = []; }
 
 	   window.open(PARAMS[CURRENT_COIN].explorer + "tx/" + txid);
