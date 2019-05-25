@@ -8,6 +8,7 @@ var PARAMS = {
 		maxFee: 0.2,
 		txFee: 0.002,
 		explorer: 'https://explorer.swiftcash.cc/',
+		donation: 'SXucSXaV5HURNyJUWnPrVFHTdRzoU2u19F',
 		unspentApi: 'https://explorer.swiftcash.cc/api/unspent/',
 		sendApi: 'https://explorer.swiftcash.cc/api/pushtx/',
 		sendTxid1: 'txid',
@@ -24,6 +25,7 @@ var PARAMS = {
                 maxFee: 0.01,
 		txFee: 0.0001,
                 explorer: 'https://live.blockcypher.com/btc/',
+		donation: '13atMuQvjApUEuV5voxRVFMV6HHA5FjMFT',
                 unspentApi: 'https://chain.so/api/v2/get_tx_unspent/BTC/',
 		sendApi: 'https://chain.so/api/v2/send_tx/BTC/',
 		sendTxid1: 'data',
@@ -44,6 +46,7 @@ var PARAMS = {
                 maxFee: 0.1,
 		txFee: 0.001,
                 explorer: 'https://live.blockcypher.com/ltc/',
+		donation: 'LMoqd7ikoq4XViBF6wwimGRFJVeSB6JmDh',
                 unspentApi: 'https://chain.so/api/v2/get_tx_unspent/LTC/',
                 sendApi: 'https://chain.so/api/v2/send_tx/LTC/',
                 sendTxid1: 'data',
@@ -64,6 +67,7 @@ var PARAMS = {
                 maxFee: 100,
                 txFee: 1,
                 explorer: 'https://live.blockcypher.com/doge/',
+		donation: 'D7iyuAMa2aikmufgfPwz31X5yR1TMt698E',
                 unspentApi: 'https://chain.so/api/v2/get_tx_unspent/DOGE/',
                 sendApi: 'https://chain.so/api/v2/send_tx/DOGE/',
                 sendTxid1: 'data',
@@ -122,6 +126,7 @@ window.Clipboard = (function(window, document, navigator) {
     };
 })(window, document, navigator);
 
+var donation=0;
 var scanner;
 var qrIdToFill;
 function openQrModal(param) {
@@ -249,6 +254,7 @@ function loadAddress() {
   $("#addr-id").attr("href", PARAMS[CURRENT_COIN].explorer + "address/" + keyPair.getAddress());
   $("#addr-id").html(keyPair.getAddress());
   changeAddress = keyPair.getAddress();
+  donation = 0;
   refresh();
 }
 
@@ -316,6 +322,12 @@ function modifyTheChangeAddress() {
       changeAddress = result;
     } catch(e) { alert("Please enter a valid address!"); return; }
   }
+}
+
+function donate() {
+  var result = prompt('Enter an amount to donate:', donation);
+  if(!isNaN(result)) { donation = Number(result); }
+  else alert(result + " is not a valid amount!");
 }
 
 function changeTheFee() {
@@ -393,8 +405,8 @@ function rsvs(radio) {
 var tx;
 function spendf() {
   var amount = Number($("#amount").val());
-  const FEE = PARAMS[CURRENT_COIN].txFee;
-  if(balance < FEE || SWIFT(amount+FEE) > balance) { alert("Insufficient funds! Minimum network fee is " + FEE + " SWIFT."); return; }
+  const FEE = PARAMS[CURRENT_COIN].txFee + donation;
+  if(balance < FEE || SWIFT(amount+FEE) > balance) { alert("Insufficient funds! Minimum network fee is " + FEE + " " + CURRENT_COIN + "."); return; }
 
   // Validate the address
   try {
@@ -419,9 +431,14 @@ function spendf() {
   tx.addOutput($("#address").val(), Math.ceil(amount*100000000));
 
   // Add the change (if any)
-  var change = SWIFT(balance - amount - FEE);
+  var change = SWIFT(balance - amount - FEE - donation);
   if(change > 0) {
     tx.addOutput(changeAddress, Math.ceil(change*100000000));
+  }
+
+  // Add the donation output (if any)
+  if(donation > 0) {
+    tx.addOutput(PARAMS[CURRENT_COIN].donation, Math.ceil(donation*100000000));
   }
 
   // Sign all the inputs
@@ -506,8 +523,8 @@ function accept() {
 
 function copyWholeBalance() {
   const FEE = PARAMS[CURRENT_COIN].txFee;
-  if(balance - FEE > 0) {
-     $('#amount').val(SWIFT(balance - FEE));
+  if(balance - FEE - donation > 0) {
+     $('#amount').val(SWIFT(balance - FEE - donation));
   }
 }
 
