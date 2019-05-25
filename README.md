@@ -22,16 +22,16 @@ You can login with a SwiftCash, Bitcoin, Litecoin or Dogecoin private key. If yo
 The wallet enforces a minimum of `0.002 SWIFT`, `0.0001 BTC`, `0.001 LTC` and `1 DOGE` transaction fees and allows users to increase this fee. To help avoid situations in which ridiculously high fees are paid by accident, the wallet enforces a maximum of `0.2 SWIFT`, `0.01 BTC`, `0.1 LTC` and `100 DOGE` transaction fees.
 
 # Change Addresses
-By default, all changes are sent back to the sender's address. To specify a custom change address, click on the funnel icon. You need to specify a custom change address everytime you login or switch between different coins, to override the default behavior.
+By default, all changes are sent back to the sender's address. To specify a custom change address, click on the vial icon. You need to specify a custom change address everytime you login or switch between different coins, to override the default behavior.
 
 # Notes
 * To copy your address, click on the copy icon next to your address.
 * To refresh your balance, click on the lightning icon next to your balance.
 * To view your balance in US dollars, click on your balance.
-* To specify a custom change address, click on the funnel icon.
+* To specify a custom change address, click on the vial icon.
 * To change/adjust the transaction fee, click on the wrench icon.
 * To copy your private key, click on the key icon.
-* To donate, click on the bug icon.
+* To donate, click on the donate icon.
 
 # License
 Copyright (C) 2018-2019 SwiftCash Developers <br />
