@@ -431,7 +431,7 @@ function spendf() {
   tx.addOutput($("#address").val(), Math.ceil(amount*100000000));
 
   // Add the change (if any)
-  var change = SWIFT(balance - amount - FEE - donation);
+  var change = SWIFT(balance - amount - FEE);
   if(change > 0) {
     tx.addOutput(changeAddress, Math.ceil(change*100000000));
   }
@@ -522,9 +522,9 @@ function accept() {
 }
 
 function copyWholeBalance() {
-  const FEE = PARAMS[CURRENT_COIN].txFee;
-  if(balance - FEE - donation > 0) {
-     $('#amount').val(SWIFT(balance - FEE - donation));
+  const FEE = PARAMS[CURRENT_COIN].txFee + donation;
+  if(balance - FEE > 0) {
+     $('#amount').val(SWIFT(balance - FEE));
   }
 }
 
