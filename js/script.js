@@ -3,7 +3,7 @@ var PARAMS = {
 	'SWIFT': {
 		coingecko: 'swiftcash',
 		coinjs: cc.swiftcash,
-		qrColor: '0071B1',
+		qrColor: '3875CE',
 		minFee: 0.002,
 		maxFee: 0.2,
 		txFee: 0.002,
