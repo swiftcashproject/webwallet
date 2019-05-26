@@ -11,17 +11,24 @@
 	outline: none;
 }
 
-    .form-control {
-	  position: relative;
-	  font-size: 16px;
-	  height: auto;
-	  padding: 10px;
-		@include box-sizing(border-box);
+.form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  @include box-sizing(border-box);
 
-		&:focus {
-		  z-index: 2;
-		}
-	}
+  &:focus {
+    z-index: 2;
+  }
+}
+
+.input-spend {
+    font-size: 12.6px;
+    font-family: monospace;
+    font-weight: bold;
+    height: 43px;
+}
 
 body {
     background: url(../images/background.png) no-repeat center center fixed;

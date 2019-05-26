@@ -99,13 +99,13 @@
 
 	      <div id="addr-spend" style="display: none; margin-bottom: 2px;">
 		  <div class="input-group">
-		    <input id="address" autocomplete="off" type="text" required name="address" placeholder="Address" class="form-control input-lg" value="" />
+		    <input id="address" autocomplete="off" type="text" required name="address" placeholder="Address" class="form-control input-lg input-spend" value="" />
 		    <span class="input-group-btn">
     		      <button class="btn" type="button" onclick="javascript:openQrModal('address');"><i class="fa fa-qrcode" style="height: 29; width: 29; font-size: 30px;"></i></button>
   		    </span>
 		  </div>
 		  <div class="input-group">
-                    <input type="number" required autocomplete="off" class="form-control input-lg" min="0.001" step="0.00000001" name="amount" id="amount" placeholder="Amount" />
+                    <input type="number" required autocomplete="off" class="form-control input-lg input-spend" min="0.001" step="0.00000001" name="amount" id="amount" placeholder="Amount" />
                     <span class="input-group-btn">
                       <button class="btn" type="button" onclick="javascript:copyWholeBalance();"><i class="fa fa-bars" style="height: 29; width: 29; font-size: 30px;"></i></button>
                     </span>
