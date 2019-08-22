@@ -13,7 +13,7 @@ This web wallet is hosted on github, and can be verified and accessed via the fo
 To avoid becoming a victim of phishing attacks, make sure you always double check the domain in your browser's address bar. You can also download the wallet and run it locally. But you're still going to need Internet in order to transact with the blockchain.
 
 # BTC, LTC and DOGE Support
-Bitcoin, Litecoin and Dogecoin transactions are created and signed locally and then sent to their own networks using api(s) provided by https://chain.so/ - https://www.blockcypher.com is also used for following up on transaction details.
+Bitcoin, Litecoin and Dogecoin transactions are created and signed locally and then sent to their own networks using api(s) provided by https://https://blockchair.com/ - https://www.blockcypher.com is also used for following up on transaction details.
 
 # Login With Your Private Key(s)
 You can login with a SwiftCash, Bitcoin, Litecoin or Dogecoin private key. If you login with a SwiftCash private key, the wallet will generate a Bitcoin, Litecoin and Dogecoin address using your SwiftCash private key. If you login with a Bitcoin private key, the wallet will generate a SwiftCash, Litecoin and Dogecoin address using your Bitcoin private key. And so will be the case if you login with a Litecoin or Dogecoin private key. It is however highly recommended to use email and password to login if you intend to stash all your cryptos in the same wallet per se, and only use the login with private key feature to spend your paper or brain wallets.

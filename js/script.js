@@ -11,10 +11,12 @@ var PARAMS = {
 		donation: 'SXucSXaV5HURNyJUWnPrVFHTdRzoU2u19F',
 		unspentApi: 'https://explorer.swiftcash.cc/api/unspent/',
 		sendApi: 'https://explorer.swiftcash.cc/api/pushtx/',
+		sendTxHex: 'tx_hex',
 		sendTxid1: 'txid',
 		unspentTxid: 'txid',
 		unspentOutput: 'output',
-		unspentValue: 'value'
+		unspentValue: 'value',
+		unspentDivision: 1
 	},
 
         'BTC': {
@@ -26,15 +28,16 @@ var PARAMS = {
 		txFee: 0.0001,
                 explorer: 'https://live.blockcypher.com/btc/',
 		donation: '1BccQgoLLvHDrfX1yMQmwM8tyemNe84ZjJ',
-                unspentApi: 'https://chain.so/api/v2/get_tx_unspent/BTC/',
-		sendApi: 'https://chain.so/api/v2/send_tx/BTC/',
+                unspentApi: 'https://api.blockcypher.com/v1/btc/main/addrs/',
+		sendApi: 'https://api.blockchair.com/bitcoin/push/transaction',
+		sendTxHex: 'data',
 		sendTxid1: 'data',
-                sendTxid2: 'txid',
-                unspentArray1: 'data',
-                unspentArray2: 'txs',
-                unspentTxid: 'txid',
-                unspentOutput: 'output_no',
-                unspentValue: 'value'
+		sendTxid2: 'transaction_hash',
+                unspentArray1: 'txrefs',
+                unspentTxid: 'tx_hash',
+                unspentOutput: 'tx_output_n',
+                unspentValue: 'value',
+		unspentDivision: 100000000
         },
 
 	'LTC': {
@@ -47,15 +50,16 @@ var PARAMS = {
 		txFee: 0.001,
                 explorer: 'https://live.blockcypher.com/ltc/',
 		donation: 'LVqZfu7ARaXH7UDB9VQ5DNCfBs8eqfRRNx',
-                unspentApi: 'https://chain.so/api/v2/get_tx_unspent/LTC/',
-                sendApi: 'https://chain.so/api/v2/send_tx/LTC/',
+                unspentApi: 'https://api.blockcypher.com/v1/ltc/main/addrs/',
+                sendApi: 'https://api.blockchair.com/litecoin/push/transaction',
+		sendTxHex: 'data',
                 sendTxid1: 'data',
-                sendTxid2: 'txid',
-		unspentArray1: 'data',
-		unspentArray2: 'txs',
-		unspentTxid: 'txid',
-		unspentOutput: 'output_no',
-		unspentValue: 'value'
+		sendTxid2: 'transaction_hash',
+		unspentArray1: 'txrefs',
+		unspentTxid: 'tx_hash',
+		unspentOutput: 'tx_output_n',
+		unspentValue: 'value',
+		unspentDivision: 100000000
 	},
 
         'DOGE': {
@@ -68,15 +72,16 @@ var PARAMS = {
                 txFee: 1,
                 explorer: 'https://live.blockcypher.com/doge/',
 		donation: 'DFkhwwjyeLBWPfhchwQLV7JVrnVg45zgh6',
-                unspentApi: 'https://chain.so/api/v2/get_tx_unspent/DOGE/',
-                sendApi: 'https://chain.so/api/v2/send_tx/DOGE/',
+                unspentApi: 'https://api.blockcypher.com/v1/doge/main/addrs/',
+                sendApi: 'https://api.blockchair.com/dogecoin/push/transaction',
+		sendTxHex: 'data',
                 sendTxid1: 'data',
-                sendTxid2: 'txid',
-                unspentArray1: 'data',
-                unspentArray2: 'txs',
-                unspentTxid: 'txid',
-                unspentOutput: 'output_no',
-                unspentValue: 'value'
+		sendTxid2: 'transaction_hash',
+                unspentArray1: 'txrefs',
+                unspentTxid: 'tx_hash',
+                unspentOutput: 'tx_output_n',
+                unspentValue: 'value',
+		unspentDivision: 100000000
         }
 };
 
@@ -294,7 +299,7 @@ function loadAddressTxes(result) {
   } else { utxos=result; }
 
   for(i in utxos) {
-    sum += Number(utxos[i].value);
+    sum += Number(utxos[i][PARAMS[CURRENT_COIN].unspentValue]/PARAMS[CURRENT_COIN].unspentDivision);
   } balance = sum;
 
   USD = false;
@@ -424,7 +429,7 @@ function spendf() {
 
   // Add all the available input(s)
   for(i in utxos) {
-     tx.addInput(utxos[i].txid, utxos[i][PARAMS[CURRENT_COIN].unspentOutput]);
+     tx.addInput(utxos[i][PARAMS[CURRENT_COIN].unspentTxid], utxos[i][PARAMS[CURRENT_COIN].unspentOutput]);
   }
 
   // Add the output
@@ -450,7 +455,7 @@ function spendf() {
     url: PARAMS[CURRENT_COIN].sendApi,
     type: "POST",
     dataType: "json",
-    data: "tx_hex=" + tx.build().toHex(),
+    data: PARAMS[CURRENT_COIN].sendTxHex+"=" + tx.build().toHex(),
     success: function (result) {
 	var T1 = PARAMS[CURRENT_COIN].sendTxid1;
 	var T2 = PARAMS[CURRENT_COIN].sendTxid2;
@@ -468,7 +473,7 @@ function spendf() {
 		var p1 = PARAMS[CURRENT_COIN].unspentTxid;
 		var p2 = PARAMS[CURRENT_COIN].unspentOutput;
 		var p3 = PARAMS[CURRENT_COIN].unspentValue;
-		utxos = [{[p1]: txid, [p2]: 1, [p3]: change}];
+		utxos = [{[p1]: txid, [p2]: 1, [p3]: change*PARAMS[CURRENT_COIN].unspentDivision}];
 	   } else { utxos = []; }
 
 	   window.open(PARAMS[CURRENT_COIN].explorer + "tx/" + txid);
