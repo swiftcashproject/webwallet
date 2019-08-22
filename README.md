@@ -26,7 +26,7 @@ By default, all changes are sent back to the sender's address. To specify a cust
 
 # Notes
 * To copy your address, click on the copy icon next to your address.
-* To refresh your balance, click on the lightning icon next to your balance.
+* To refresh your balance, click on the bolt icon next to your balance.
 * To view your balance in US dollars, click on your balance.
 * To specify a custom change address, click on the vial icon.
 * To change/adjust the transaction fee, click on the wrench icon.
