@@ -265,7 +265,7 @@ function loadAddress() {
 
 function refresh() {
   $.ajax({
-    url: PARAMS[CURRENT_COIN].unspentApi + keyPair.getAddress(),
+    url: PARAMS[CURRENT_COIN].unspentApi + keyPair.getAddress() + '?unspentOnly=true',
     type: "GET",
     dataType: "json",
     data: {
