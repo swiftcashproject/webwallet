@@ -34,14 +34,14 @@ By default, all changes are sent back to the sender's address. To specify a cust
 * To donate, click on the donate icon.
 
 # License
-Copyright (C) 2018-2019 SwiftCash Developers <br />
+Copyright (C) 2018-2020 SwiftCash Developers <br />
 This software is provided as is and with no warranty under the MIT license.
 
 # Donation Addresses
-* SWIFT: `SXucSXaV5HURNyJUWnPrVFHTdRzoU2u19F`
-* BTC: `1BccQgoLLvHDrfX1yMQmwM8tyemNe84ZjJ`
-* LTC: `LVqZfu7ARaXH7UDB9VQ5DNCfBs8eqfRRNx`
-* DOGE: `DFkhwwjyeLBWPfhchwQLV7JVrnVg45zgh6`
+* SWIFT: `SXucSXaV5HURNyJUWnPrVFHTdRzoVff6gU`
+* BTC: `1E9xPAPifPFHmVTX1pDdPLcsgub71zdpDY`
+* LTC: `LYNueNhYk3VM2J9gBxCvfMgdu7xP9WdLVL`
+* DOGE: `DJJ3vRLMxo9aJVe7kQDBw6nUa3KQL8zzfv`
 
 # Support
 For support, join http://discord.swiftcash.cc

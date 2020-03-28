@@ -2,7 +2,8 @@ var CURRENT_COIN = 'SWIFT';
 var PARAMS = {
 	'SWIFT': {
 		coingecko: 'swiftcash',
-		coinjs: cc.swiftcash,
+		coinjs: cc.bitcoin,
+		network: cc.bitcoin.networks.swiftcash,
 		qrColor: '3875CE',
 		minFee: 0.002,
 		maxFee: 0.2,
@@ -84,6 +85,21 @@ var PARAMS = {
 		unspentDivision: 100000000
         }
 };
+
+function intToByteArray(int) {
+    var byteArray = [0];
+    if (int > 8388607) byteArray = [0, 0, 0, 0];
+    else if (int > 32767) byteArray = [0, 0, 0];
+    else if (int > 127) byteArray = [0, 0];
+
+    for ( var index = 0; index < byteArray.length; index++ ) {
+        var byte = int & 0xff;
+        byteArray [ index ] = byte;
+        int = (int - byte) / 256 ;
+    }
+
+    return byteArray;
+}
 
 window.Clipboard = (function(window, document, navigator) {
     var textArea,
@@ -171,7 +187,7 @@ var loginPrivkey="";
 var keyPair="";
 function hashit(hash, callback) {
   for(i=0; i<100*1440; i++) {
-    hash = cc.swiftcash.crypto.keccak256(hash+passphrase);
+    hash = cc.bitcoin.crypto.keccak256(hash+passphrase);
     hash = hash.toString("hex");
   }
 
@@ -205,6 +221,14 @@ function switchCoinNow(whichCoin) {
      keyPair = PARAMS[CURRENT_COIN].coinjs.ECPair.fromWIF(hashedPass, PARAMS[CURRENT_COIN].network);
   }
 
+  if(whichCoin == "SWIFT") {
+     $("#address").attr("placeholder", "SWIFT address, Lottery or HODLx");
+  } else {
+     $("#address").attr("placeholder", whichCoin + " address");
+  }
+
+  $("#amount").attr("placeholder", "Amount of " + whichCoin + " to send");
+
   loadAddress();
 }
 
@@ -233,7 +257,7 @@ function login() {
 
   // Login with email + password
   passphrase = $("#email").val() + ";" + $("#password").val();
-  var hash = cc.swiftcash.crypto.keccak256(passphrase);
+  var hash = cc.bitcoin.crypto.keccak256(passphrase);
   $('#email').prop("disabled", true);
   $('#password').prop("disabled", true);
   $('#signin').prop("disabled", true);
@@ -407,16 +431,22 @@ function rsvs(radio) {
   }
 }
 
-var tx;
+var tx; // global variable for the transaction
+
 function spendf() {
   var amount = Number($("#amount").val());
   const FEE = PARAMS[CURRENT_COIN].txFee + donation;
   if(balance < FEE || SWIFT(amount+FEE) > balance) { alert("Insufficient funds! Minimum network fee is " + FEE + " " + CURRENT_COIN + "."); return; }
 
   // Validate the address
-  try {
-    PARAMS[CURRENT_COIN].coinjs.address.toOutputScript($("#address").val(), PARAMS[CURRENT_COIN].network);
-  } catch(e) { alert("Please enter a valid address!"); return; }
+  var address = $("#address").val();
+  if (address != "Lottery" && !address.startsWith("HODL")) {
+      try {
+        PARAMS[CURRENT_COIN].coinjs.address.toOutputScript($("#address").val(), PARAMS[CURRENT_COIN].network);
+      } catch(e) { alert("Please enter a valid address!"); return; }
+  } else if (CURRENT_COIN != "SWIFT") {
+      alert("Lottery and/or HODL transactions only work for SWIFT!"); return;
+  }
 
   // Disable the elements in the form
   $('#address').prop("disabled", true);
@@ -433,23 +463,53 @@ function spendf() {
   }
 
   // Add the output
-  tx.addOutput($("#address").val(), Math.ceil(amount*100000000));
+  if (address == "Lottery") {
+    var data = cc.Buffer("Lottery");
 
+    var opRet = PARAMS[CURRENT_COIN].coinjs.script.compile(
+    [
+      PARAMS[CURRENT_COIN].coinjs.opcodes.OP_RETURN,
+      data
+    ]);
+
+    tx.addOutput(opRet, Math.ceil(amount*100000000));
+  } else if (address.startsWith("HODL")) {
+    $.ajax({
+        url: 'https://explorer.swiftcash.cc/api/info',
+        type: "GET",
+        dataType: "json",
+        data: {
+      },
+      success: function (result) {
+        if (!createHODLRewardsTx(address, amount, result)) return;
+      },
+      error: function () {
+        alert("Failed to connect to the server!");
+      }
+    });
+  } else {
+    tx.addOutput($("#address").val(), Math.ceil(amount*100000000));
+  }
+
+  $(document).ajaxStop(function () {
   // Add the change (if any)
   var change = SWIFT(balance - amount - FEE);
-  if(change > 0) {
+  if (change > 0) {
     tx.addOutput(changeAddress, Math.ceil(change*100000000));
   }
 
   // Add the donation output (if any)
-  if(donation > 0) {
+  if (donation > 0) {
     tx.addOutput(PARAMS[CURRENT_COIN].donation, Math.ceil(donation*100000000));
   }
 
   // Sign all the inputs
-  for(i=0; i<utxos.length; i++) {
+  for (i=0; i<utxos.length; i++) {
     tx.sign(i, keyPair);
   }
+
+  // DEBUG::
+  console.log(tx.build().toHex());
 
   $.ajax({
     url: PARAMS[CURRENT_COIN].sendApi,
@@ -496,6 +556,46 @@ function spendf() {
         console.log(error);
     }
   });
+  });
+}
+
+function createHODLRewardsTx(address, amount, result) {
+    result.blocks = 3000;
+    result.hodlbestrate = 0.55;
+  var months = parseInt(address.substr(4));
+  if (isNaN(months)) {
+      alert("Invalid x in HODLx: x must be 1-12. Try HODL1, HODL2, ... or HOLD12!");
+      return;
+  }
+
+  var redeemScript = cc.bitcoin.script.compile(
+  [
+    cc.Buffer.from(intToByteArray(result.blocks + months*30*144 + 12)),
+    cc.bitcoin.opcodes.OP_CHECKLOCKTIMEVERIFY,
+    cc.bitcoin.opcodes.OP_DROP,
+    keyPair.getPublicKeyBuffer(),
+    cc.bitcoin.opcodes.OP_CHECKSIG
+  ]);
+
+	console.log(redeemScript.toString("hex"));
+
+  var opRet = cc.bitcoin.script.compile(
+  [
+    cc.bitcoin.opcodes.OP_RETURN,
+    redeemScript
+  ]);
+
+  var rate = result.hodlbestrate*months/12;
+  rate -= rate * (12 - months) * 0.07;
+	console.log(rate);
+  var HODLRewards = (amount * rate)*0.999;
+	console.log(HODLRewards);
+  var scriptPubKey = cc.bitcoin.script.scriptHash.output.encode(cc.bitcoin.crypto.hash160(redeemScript));
+  var p2sh = cc.bitcoin.address.fromOutputScript(scriptPubKey, cc.bitcoin.networks.swiftcash);
+	console.log((Math.ceil(amount*100000000) + Math.ceil(HODLRewards*100000000) - 10000000));
+	console.log(p2sh);
+  tx.addOutput(p2sh, (Math.ceil(amount*100000000) + Math.ceil(HODLRewards*100000000) - 10000000));
+  tx.addOutput(opRet, 10000000);
 }
 
 function sendProgress(status) {
