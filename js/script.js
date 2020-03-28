@@ -461,7 +461,13 @@ function spendf() {
   for(i in utxos) {
      tx.addInput(utxos[i][PARAMS[CURRENT_COIN].unspentTxid], utxos[i][PARAMS[CURRENT_COIN].unspentOutput]);
   }
-
+ $.ajax({
+  url: 'https://explorer.swiftcash.cc/api/info',
+  type: "GET",
+  dataType: "json",
+  data: {
+ },
+  success: function (inforesult) {
   // Add the output
   if (address == "Lottery") {
     var data = cc.Buffer("Lottery");
@@ -474,24 +480,11 @@ function spendf() {
 
     tx.addOutput(opRet, Math.ceil(amount*100000000));
   } else if (address.startsWith("HODL")) {
-    $.ajax({
-        url: 'https://explorer.swiftcash.cc/api/info',
-        type: "GET",
-        dataType: "json",
-        data: {
-      },
-      success: function (result) {
-        if (!createHODLRewardsTx(address, amount, result)) return;
-      },
-      error: function () {
-        alert("Failed to connect to the server!");
-      }
-    });
+        createHODLRewardsTx(address, amount, inforesult);
   } else {
     tx.addOutput($("#address").val(), Math.ceil(amount*100000000));
   }
 
-  $(document).ajaxStop(function () {
   // Add the change (if any)
   var change = SWIFT(balance - amount - FEE);
   if (change > 0) {
@@ -553,7 +546,11 @@ function spendf() {
         console.log(error);
     }
   });
-  });
+  },
+   error: function () {
+    alert("Failed to connect to the server!");
+  }
+ });
 }
 
 function createHODLRewardsTx(address, amount, result) {
