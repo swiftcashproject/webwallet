@@ -508,9 +508,6 @@ function spendf() {
     tx.sign(i, keyPair);
   }
 
-  // DEBUG::
-  console.log(tx.build().toHex());
-
   $.ajax({
     url: PARAMS[CURRENT_COIN].sendApi,
     type: "POST",
@@ -560,8 +557,6 @@ function spendf() {
 }
 
 function createHODLRewardsTx(address, amount, result) {
-    result.blocks = 3000;
-    result.hodlbestrate = 0.55;
   var months = parseInt(address.substr(4));
   if (isNaN(months)) {
       alert("Invalid x in HODLx: x must be 1-12. Try HODL1, HODL2, ... or HOLD12!");
@@ -577,8 +572,6 @@ function createHODLRewardsTx(address, amount, result) {
     cc.bitcoin.opcodes.OP_CHECKSIG
   ]);
 
-	console.log(redeemScript.toString("hex"));
-
   var opRet = cc.bitcoin.script.compile(
   [
     cc.bitcoin.opcodes.OP_RETURN,
@@ -587,13 +580,9 @@ function createHODLRewardsTx(address, amount, result) {
 
   var rate = result.hodlbestrate*months/12;
   rate -= rate * (12 - months) * 0.07;
-	console.log(rate);
   var HODLRewards = (amount * rate)*0.999;
-	console.log(HODLRewards);
   var scriptPubKey = cc.bitcoin.script.scriptHash.output.encode(cc.bitcoin.crypto.hash160(redeemScript));
   var p2sh = cc.bitcoin.address.fromOutputScript(scriptPubKey, cc.bitcoin.networks.swiftcash);
-	console.log((Math.ceil(amount*100000000) + Math.ceil(HODLRewards*100000000) - 10000000));
-	console.log(p2sh);
   tx.addOutput(p2sh, (Math.ceil(amount*100000000) + Math.ceil(HODLRewards*100000000) - 10000000));
   tx.addOutput(opRet, 10000000);
 }
