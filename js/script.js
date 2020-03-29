@@ -470,6 +470,12 @@ function spendf() {
   success: function (inforesult) {
   // Add the output
   if (address == "Lottery") {
+    var nDrawWithin = inforesult.blocks % 5000;
+    if (nDrawWithin >= 4960 || nDrawWithin <= 40) {
+        alert("You can't buy lottery tickets within 40 blocks of each draw, sorry!");
+        return;
+    }
+
     var data = cc.Buffer("Lottery");
 
     var opRet = PARAMS[CURRENT_COIN].coinjs.script.compile(
