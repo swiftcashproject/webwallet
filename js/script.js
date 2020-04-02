@@ -86,6 +86,16 @@ var PARAMS = {
         }
 };
 
+$(function() {
+    $.ajax({
+          url: 'https://explorer.swiftcash.cc/api/info',
+          cache: false
+    }).done(function(result) {
+          $("#jackpot").text(result.lotteryjackpot.toFixed(2));
+          $("#hodl12").text((Number(result.hodlbestrate)*100).toFixed(2) + '%');
+    });
+});
+
 function intToByteArray(int) {
     var byteArray = [0];
     if (int > 8388607) byteArray = [0, 0, 0, 0];

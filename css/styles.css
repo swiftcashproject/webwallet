@@ -79,9 +79,21 @@ form {
 	margin-bottom: 50px;
 	background-color: #00263d;
 }
-	.form-links a {
-		color: #fff;
-	}
+
+.jackpot {
+        color: white;
+        font-weight: bold;
+        text-align: center;
+	font-family: monospace;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 2px;
+        background-color: #00263d;
+}
+
+.form-links a {
+	color: #fff;
+}
 
 .error-list {
 	padding-left: 20px;
