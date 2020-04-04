@@ -24,6 +24,9 @@ The wallet enforces a minimum of `0.002 SWIFT`, `0.0001 BTC`, `0.001 LTC` and `1
 # Change Addresses
 By default, all changes are sent back to the sender's address. To specify a custom change address, click on the vial icon. You need to specify a custom change address everytime you login or switch between different coins, to override the default behavior.
 
+# Lottery and HODLx
+To enter into SwiftCash DeLotts(Decentralized Lotteries), you can burn your coins using the web wallet by sending them to Lottery. To lock your coins for in the SwiftCash blockchain for HODL deposits and rewards, you can send your coins to HODLx where x can be an integer between 1 and 12 representing x-month. Best rate is given to HODL12 deposits and is shown above the wallet next to the current jackpot.
+
 # Notes
 * To copy your address, click on the copy icon next to your address.
 * To refresh your balance, click on the bolt icon next to your balance.

@@ -484,6 +484,9 @@ function spendf() {
     if (nDrawWithin >= 4960 || nDrawWithin <= 40) {
         alert("You can't buy lottery tickets within 40 blocks of each draw, sorry!");
         return;
+    } else if (amount < 0.01) {
+        alert("Minimum lottery ticket is 0.01 SWIFT!");
+        return;
     }
 
     var data = cc.Buffer("Lottery");
