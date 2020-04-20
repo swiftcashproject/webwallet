@@ -442,19 +442,26 @@ function rsvs(radio) {
         $("#addr-spend").show();
         $("#addr-receive").hide();
         $("#address").val("");
+        $("#address").removeAttr("disabled");
         break;
     case 'L':
         $("#addr-spend").show();
         $("#addr-receive").hide();
         $("#address").val("Lottery");
+        $("#address").attr("disabled", "disabled");
         break;
     case 'H':
         $("#addr-spend").show();
         $("#addr-receive").hide();
-        var nMonths = prompt("Enter the number of months to lock(1-12): ");
-        if(nMonths && nMonths >=1 && nMonths <= 12) {
-           $("#address").val("HODL"+nMonths);
-        } else $("#address").val("");
+        $("#address").attr("disabled", "disabled");
+
+        var nMonths = 0;
+        while(nMonths < 1 || nMonths > 12) {
+          nMonths = prompt("Enter the number of months to lock(1-12): ");
+          if(nMonths && nMonths >=1 && nMonths <= 12) {
+             $("#address").val("HODL"+nMonths);
+          } else { alert("Enter a number between 1-12."); }
+        }
         break;
   }
 }
