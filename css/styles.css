@@ -11,6 +11,12 @@
 	outline: none;
 }
 
+.main-button {
+  width: 28px;
+  height: 28px;
+  font-size: 25px;
+}
+
 .form-control {
   position: relative;
   font-size: 16px;

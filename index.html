@@ -116,8 +116,18 @@
 
               <div class="row" id="spend-receive" style="margin-bottom: 13px">
                  <div class="btn-group text-center" data-toggle="buttons" style="padding-top: 10px">
-                    <label style="font-weight: bold;" class="btn btn-primary active center-block"><input value="R" onchange="rsvs(this);" type="radio">Receive</label>
-                    <label style="font-weight: bold;" class="btn btn-primary center-block"><input value="S" onchange="rsvs(this);" type="radio">Spend</label>
+                    <label id="mainR" title="Receive" style="font-weight: bold;" class="btn btn-primary active center-block"><input value="R" onchange="rsvs(this);" type="radio">
+                       <i class="main-button fa fa-arrow-circle-up"></i>
+                    </label>
+                    <label id="mainS" title="Send" style="font-weight: bold;" class="btn btn-primary center-block"><input value="S" onchange="rsvs(this);" type="radio">
+                       <i class="main-button fa fa-arrow-circle-down"></i>
+                    </label>
+                    <label id="mainL" title="Lottery" style="font-weight: bold;" class="btn btn-primary center-block"><input value="L" onchange="rsvs(this);" type="radio">
+                       <i class="main-button fa fa-dice"></i>
+                    </label>
+                    <label id="mainH" title="HODL Deposit" style="font-weight: bold;" class="btn btn-primary center-block"><input value="H" onchange="rsvs(this);" type="radio">
+                       <i class="main-button fa fa-piggy-bank"></i>
+                    </label>
                  </div>
               </div>
 

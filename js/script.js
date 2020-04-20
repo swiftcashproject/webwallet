@@ -233,8 +233,12 @@ function switchCoinNow(whichCoin) {
 
   if(whichCoin == "SWIFT") {
      $("#address").attr("placeholder", "SWIFT address, Lottery or HODLx");
+     $("#mainL").removeAttr("disabled");
+     $("#mainH").removeAttr("disabled");
   } else {
      $("#address").attr("placeholder", whichCoin + " address");
+     $("#mainL").attr("disabled", "disabled");
+     $("#mainH").attr("disabled", "disabled");
   }
 
   $("#amount").attr("placeholder", "Amount of " + whichCoin + " to send");
@@ -437,6 +441,20 @@ function rsvs(radio) {
     case 'S':
         $("#addr-spend").show();
         $("#addr-receive").hide();
+        $("#address").val("");
+        break;
+    case 'L':
+        $("#addr-spend").show();
+        $("#addr-receive").hide();
+        $("#address").val("Lottery");
+        break;
+    case 'H':
+        $("#addr-spend").show();
+        $("#addr-receive").hide();
+        var nMonths = prompt("Enter the number of months to lock(1-12): ");
+        if(nMonths && nMonths >=1 && nMonths <= 12) {
+           $("#address").val("HODL"+nMonths);
+        } else $("#address").val("");
         break;
   }
 }
