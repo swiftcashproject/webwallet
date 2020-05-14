@@ -106,7 +106,7 @@
   		    </span>
 		  </div>
 		  <div class="input-group">
-                    <input type="number" required autocomplete="off" class="form-control input-lg input-spend" min="0.001" step="0.00000001" name="amount" id="amount" placeholder="Amount of SWIFT to send" />
+                    <input type="number" required autocomplete="off" class="form-control input-lg input-spend" min="0.001" step="0.00000001" name="amount" id="amount" placeholder="Amount of SWIFT to send" oninput="javascript:amountChanged(this.value);" />
                     <span class="input-group-btn">
                       <button class="btn" type="button" onclick="javascript:copyWholeBalance();"><i class="fa fa-bars" style="height: 29; width: 29; font-size: 30px;"></i></button>
                     </span>

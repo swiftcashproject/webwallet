@@ -91,6 +91,7 @@ $(function() {
           url: 'https://explorer.swiftcash.cc/api/info',
           cache: false
     }).done(function(result) {
+          hodlBestRate = result.hodlbestrate;
           $("#jackpot").text(result.lotteryjackpot.toFixed(2));
           $("#hodl12").text((Number(result.hodlbestrate)*100).toFixed(2) + '%');
     });
@@ -243,6 +244,10 @@ function switchCoinNow(whichCoin) {
 
   $("#amount").attr("placeholder", "Amount of " + whichCoin + " to send");
 
+  $("#address").val("");
+  $("#amount").val("");
+  $("#mainR").click();
+
   loadAddress();
 }
 
@@ -323,6 +328,9 @@ function refresh() {
 var USD = false;
 var usdBalance = false;
 var balance=0;
+var hodlBestRate=0;
+var hodlRate=0;
+var isHODLing=0;
 var changeAddress="";
 var utxos=[];
 function loadAddressTxes(result) {
@@ -433,6 +441,7 @@ function copyPrivateKey() {
 }
 
 function rsvs(radio) {
+  isHODLing = false;
   switch(radio.value) {
     case 'R':
 	$("#addr-spend").hide();
@@ -451,6 +460,7 @@ function rsvs(radio) {
         $("#address").attr("disabled", "disabled");
         break;
     case 'H':
+        isHODLing = true;
         $("#addr-spend").show();
         $("#addr-receive").hide();
         $("#address").attr("disabled", "disabled");
@@ -459,11 +469,23 @@ function rsvs(radio) {
         while(nMonths < 1 || nMonths > 12) {
           nMonths = prompt("Enter the number of months to lock(1-12): ");
           if(nMonths && nMonths >=1 && nMonths <= 12) {
-             $("#address").val("HODL"+nMonths);
+             const APR = 100 * hodlBestRate * (1 - ((12-nMonths)*0.07));
+             const FINAL = nMonths * APR / 12;
+             hodlRate = FINAL;
+             $("#address").val("HODL"+nMonths + " {APR: " + APR.toFixed(2) + "%, F: +" + FINAL.toFixed(2) + "%}");
           } else { alert("Enter a number between 1-12."); }
         }
         break;
   }
+}
+
+function amountChanged(amount) {
+  const a = Number(amount);
+  var fAmount = a + (a*hodlRate)/100; fAmount *= 0.999;
+  var FINAL = fAmount.toFixed(2);
+  if (amount == "") { FINAL = hodlRate.toFixed(2) + "%" }
+  var newVal = $("#address").val().split(",")[0] + ", F: " + FINAL + "}";
+  $("#address").val(newVal);
 }
 
 var tx; // global variable for the transaction
@@ -524,7 +546,7 @@ function spendf() {
 
     tx.addOutput(opRet, Math.ceil(amount*100000000));
   } else if (address.startsWith("HODL")) {
-        createHODLRewardsTx(address, amount, inforesult);
+        createHODLRewardsTx(address.split(" ")[0], amount, inforesult);
   } else {
     tx.addOutput($("#address").val(), Math.ceil(amount*100000000));
   }
@@ -660,6 +682,7 @@ function copyWholeBalance() {
   const FEE = PARAMS[CURRENT_COIN].txFee + donation;
   if(balance - FEE > 0) {
      $('#amount').val(SWIFT(balance - FEE));
+     amountChanged(balance - FEE);
   }
 }
 
