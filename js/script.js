@@ -444,16 +444,18 @@ function rsvs(radio) {
   isHODLing = false;
   switch(radio.value) {
     case 'R':
-	$("#addr-spend").hide();
-	$("#addr-receive").show();
-	break;
+        $("#addr-spend").hide();
+        $("#addr-receive").show();
+        break;
     case 'S':
+        $("#submit").html("SEND");
         $("#addr-spend").show();
         $("#addr-receive").hide();
         $("#address").val("");
         $("#address").removeAttr("disabled");
         break;
     case 'L':
+        $("#submit").html("PLAY");
         $("#addr-spend").show();
         $("#addr-receive").hide();
         $("#address").val("Lottery");
@@ -461,6 +463,7 @@ function rsvs(radio) {
         break;
     case 'H':
         isHODLing = true;
+        $("#submit").html("HODL");
         $("#addr-spend").show();
         $("#addr-receive").hide();
         $("#address").attr("disabled", "disabled");
@@ -480,6 +483,7 @@ function rsvs(radio) {
 }
 
 function amountChanged(amount) {
+  if(!isHODLing) return;
   const a = Number(amount);
   var fAmount = a + (a*hodlRate)/100; fAmount *= 0.999;
   var FINAL = fAmount.toFixed(2);
@@ -508,7 +512,7 @@ function spendf() {
   // Disable the elements in the form
   $('#address').prop("disabled", true);
   $('#amount').prop("disabled", true);
-  $('#send').prop("disabled", true);
+  $('#submit').prop("disabled", true);
   $('#sendprogress').show();
 
   // Create the transaction
@@ -600,13 +604,13 @@ function spendf() {
 
 	$('#address').prop("disabled", false).val("");
 	$('#amount').prop("disabled", false).val("");
-	$('#send').prop("disabled", false).html("Send");
+	$('#submit').prop("disabled", false).html("SEND");
 	$('#sendprogress').hide();
     },
     error: function (error) {
         $('#address').prop("disabled", false).val("");
         $('#amount').prop("disabled", false).val("");
-        $('#send').prop("disabled", false).html("Send");
+        $('#submit').prop("disabled", false).html("SEND");
         $('#sendprogress').hide();
 	alert("Broadcast failed! Check console for the details!");
         console.log(error);
@@ -651,15 +655,15 @@ function createHODLRewardsTx(address, amount, result) {
 }
 
 function sendProgress(status) {
-  var btnText = $("#send").html();
+  var btnText = $("#submit").html();
 
   if(status=="sending") {
     if(!btnText.endsWith("!")) btnText += ".";
-    if(btnText.endsWith("......")) btnText = "Send";
-    $("#send").html(btnText);
+    if(btnText.endsWith("......")) btnText = "SEND";
+    $("#submit").html(btnText);
     setTimeout(sendProgress, 1000, status);
   } else {
-    $("#send").html(status);
+    $("#submit").html(status);
     setTimeout(enableSendForm, 1000);
   }
 }
@@ -667,7 +671,7 @@ function sendProgress(status) {
 function enableSendForm() {
   $('#address').prop("disabled", false).val("");
   $('#amount').prop("disabled", false).val("");
-  $('#send').prop("disabled", false).html("Send");
+  $('#submit').prop("disabled", false).html("SEND");
 }
 
 function SWIFT(a) {

@@ -11,6 +11,12 @@
 	outline: none;
 }
 
+.btnMain {
+  font-family: Ubuntu;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
 .main-button {
   width: 28px;
   height: 28px;
