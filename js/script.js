@@ -559,7 +559,7 @@ function spendf() {
   var change = SWIFT(balance - amount - FEE);
   if (change > 0) {
     // Try to avoid dusting in the SwiftCash blockchain
-    if (whichCoin == "SWIFT" && change < 1 && confirm("Change is less than 1 SWIFT. Press OK to donate it, or Cancel to keep it."))
+    if (CURRENT_COIN == "SWIFT" && change < 1 && confirm("Change is less than 1 SWIFT. Press OK to donate it, or Cancel to keep it."))
       donation = change;
     else
       tx.addOutput(changeAddress, Math.ceil(change*100000000));
