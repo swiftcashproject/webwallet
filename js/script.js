@@ -92,7 +92,7 @@ $(function() {
           cache: false
     }).done(function(result) {
           hodlBestRate = result.hodlbestrate;
-          $("#jackpot").text(result.lotteryjackpot.toFixed(2));
+          $("#jackpot").text(result.lotteryjackpot.toLocaleString());
           $("#hodl12").text((Number(result.hodlbestrate)*100).toFixed(2) + '%');
     });
 });
@@ -479,7 +479,16 @@ function rsvs(radio) {
 
         var nMonths = 0;
         while(nMonths < 1 || nMonths > 12) {
-          nMonths = prompt("Enter the number of months to lock(1-12): ");
+          nMonths = prompt("Enter the number of months to HODL(1-12): ");
+          if(nMonths == null) {
+             iHODLing = false;
+             $("#mainR").click();
+             setTimeout( function() {
+                $('#mainH').removeClass("active");
+             }, 10);
+             break;
+          }
+
           if(nMonths && nMonths >=1 && nMonths <= 12) {
              const APR = 100 * hodlBestRate * (1 - ((12-nMonths)*0.07));
              const FINAL = nMonths * APR / 12;
@@ -611,10 +620,13 @@ function spendf() {
 	   } else { utxos = []; balance = 0; }
 
 	   $('#addr-balance').html("Balance: " + balance.toFixed(8) + " " + CURRENT_COIN);
-	   window.open(PARAMS[CURRENT_COIN].explorer + "tx/" + txid);
+           setTimeout( function() {
+	      window.open(PARAMS[CURRENT_COIN].explorer + "tx/" + txid);
+           }, 1000);
+           alert("Transaction was broadcasted successfully!");
 	} else {
 	   console.log(result);
-	   alert("Broadcast failed! Check console for the details!");
+	   alert("Broadcast failed! Check debug console for details!");
 	}
 
 	$('#address').prop("disabled", false).val("");
