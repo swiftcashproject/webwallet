@@ -44,7 +44,8 @@
 		<div class="input-group">
 	          <input style="margin: 0px;" type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
 		  <span class="input-group-btn">
-    		    <button class="btn" style="margin: 0px;" type="button" onclick="javascript:openQrModal('password');"><i class="fa fa-qrcode" style="height: 29; width: 29; font-size: 30px;"></i></button>
+    		    <button id="btnPasswordQR" class="btn" style="margin: 0px; display: none;" type="button" onclick="javascript:openQrModal('password');"><i class="fa fa-qrcode" style="height: 29; width: 29; font-size: 30px;"></i></button>
+    		    <button id="btnPasswordEye" class="btn" style="margin: 0px;" type="button" onclick="javascript:eyeFunction('password');"><i class="fa fa-eye" style="height: 29; width: 29; font-size: 30px;"></i></button>
   		  </span>
 		</div>
 	      <div class="pwstrength_viewport_errors"></div>
