@@ -92,7 +92,7 @@ $(function() {
           cache: false
     }).done(function(result) {
           hodlBestRate = result.hodlbestrate;
-          $("#jackpot").text(result.lotteryjackpot.toLocaleString());
+          $("#jackpot").text(result.lotteryjackpot.toLocaleString("en", { minimumFractionDigits: 0, maximumFractionDigits: 0, }));
           $("#hodl12").text((Number(result.hodlbestrate)*100).toFixed(2) + '%');
     });
 });
