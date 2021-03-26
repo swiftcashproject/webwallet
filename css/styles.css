@@ -112,7 +112,7 @@ form {
 	text-align: left;
 }
 
-.clipboard, .refresh, .privkey, .customfee, .changeaddress, .donation {
+.clipboard, .refresh, .privkey, .customfee, .changeaddress, .donation, .hodl {
 	padding: 2px;
 	margin: 0px;
 }

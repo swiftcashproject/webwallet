@@ -8,6 +8,7 @@ var PARAMS = {
 		minFee: 0.002,
 		maxFee: 0.2,
 		txFee: 0.002,
+		precision: 4,
 		explorer: 'https://explorer.swiftcash.cc/',
 		donation: 'SXucSXaV5HURNyJUWnPrVFHTdRzoVff6gU',
 		unspentApi: 'https://explorer.swiftcash.cc/api/unspent/',
@@ -20,24 +21,25 @@ var PARAMS = {
 		unspentDivision: 1
 	},
 
-        'BTC': {
+	'BTC': {
 		coingecko: 'bitcoin',
-                coinjs: cc.bitcoin,
-                qrColor: 'FC8F43',
-                minFee: 0.0001,
-                maxFee: 0.01,
+		coinjs: cc.bitcoin,
+		qrColor: 'FC8F43',
+		minFee: 0.0001,
+		maxFee: 0.01,
 		txFee: 0.0001,
-                explorer: 'https://live.blockcypher.com/btc/',
+		precision: 8,
+		explorer: 'https://live.blockcypher.com/btc/',
 		donation: '1E9xPAPifPFHmVTX1pDdPLcsgub71zdpDY',
-                unspentApi: 'https://api.blockcypher.com/v1/btc/main/addrs/',
+		unspentApi: 'https://api.blockcypher.com/v1/btc/main/addrs/',
 		sendApi: 'https://api.blockchair.com/bitcoin/push/transaction',
 		sendTxHex: 'data',
 		sendTxid1: 'data',
 		sendTxid2: 'transaction_hash',
-                unspentArray1: 'txrefs',
-                unspentTxid: 'tx_hash',
-                unspentOutput: 'tx_output_n',
-                unspentValue: 'value',
+		unspentArray1: 'txrefs',
+		unspentTxid: 'tx_hash',
+		unspentOutput: 'tx_output_n',
+		unspentValue: 'value',
 		unspentDivision: 100000000
         },
 
@@ -46,15 +48,16 @@ var PARAMS = {
 		coinjs: cc.bitcoin,
 		network: cc.bitcoin.networks.litecoin,
 		qrColor: '5C5C5C',
-                minFee: 0.001,
-                maxFee: 0.1,
+		minFee: 0.001,
+		maxFee: 0.1,
 		txFee: 0.001,
-                explorer: 'https://live.blockcypher.com/ltc/',
+		precision: 8,
+		explorer: 'https://live.blockcypher.com/ltc/',
 		donation: 'LYNueNhYk3VM2J9gBxCvfMgdu7xP9WdLVL',
-                unspentApi: 'https://api.blockcypher.com/v1/ltc/main/addrs/',
-                sendApi: 'https://api.blockchair.com/litecoin/push/transaction',
+		unspentApi: 'https://api.blockcypher.com/v1/ltc/main/addrs/',
+		sendApi: 'https://api.blockchair.com/litecoin/push/transaction',
 		sendTxHex: 'data',
-                sendTxid1: 'data',
+		sendTxid1: 'data',
 		sendTxid2: 'transaction_hash',
 		unspentArray1: 'txrefs',
 		unspentTxid: 'tx_hash',
@@ -63,27 +66,28 @@ var PARAMS = {
 		unspentDivision: 100000000
 	},
 
-        'DOGE': {
+	'DOGE': {
 		coingecko: 'dogecoin',
-                coinjs: cc.bitcoin,
-                network: cc.bitcoin.networks.dogecoin,
-                qrColor: 'C19347',
-                minFee: 1,
-                maxFee: 100,
-                txFee: 1,
-                explorer: 'https://live.blockcypher.com/doge/',
+		coinjs: cc.bitcoin,
+		network: cc.bitcoin.networks.dogecoin,
+		qrColor: 'C19347',
+		minFee: 1,
+		maxFee: 100,
+		txFee: 1,
+		precision: 0,
+		explorer: 'https://live.blockcypher.com/doge/',
 		donation: 'DJJ3vRLMxo9aJVe7kQDBw6nUa3KQL8zzfv',
-                unspentApi: 'https://api.blockcypher.com/v1/doge/main/addrs/',
-                sendApi: 'https://api.blockchair.com/dogecoin/push/transaction',
+		unspentApi: 'https://api.blockcypher.com/v1/doge/main/addrs/',
+		sendApi: 'https://api.blockchair.com/dogecoin/push/transaction',
 		sendTxHex: 'data',
-                sendTxid1: 'data',
+		sendTxid1: 'data',
 		sendTxid2: 'transaction_hash',
-                unspentArray1: 'txrefs',
-                unspentTxid: 'tx_hash',
-                unspentOutput: 'tx_output_n',
-                unspentValue: 'value',
+		unspentArray1: 'txrefs',
+		unspentTxid: 'tx_hash',
+		unspentOutput: 'tx_output_n',
+		unspentValue: 'value',
 		unspentDivision: 100000000
-        }
+	}
 };
 
 $(function() {
@@ -245,10 +249,12 @@ function switchCoinNow(whichCoin) {
      $("#address").attr("placeholder", "SWIFT address, Lottery or HODLx");
      $("#mainL").removeAttr("disabled");
      $("#mainH").removeAttr("disabled");
+	 $("#hodl-scontracts").removeAttr("disabled");
   } else {
      $("#address").attr("placeholder", whichCoin + " address");
      $("#mainL").attr("disabled", "disabled");
      $("#mainH").attr("disabled", "disabled");
+	 $("#hodl-scontracts").attr("disabled", "disabled");
   }
 
   $("#amount").attr("placeholder", "Amount of " + whichCoin + " to send");
@@ -300,8 +306,9 @@ function login() {
 }
 
 function loadAddress() {
+  var ZERO = 0;
   $("#addr-balance-refresh").prop("disabled", true);
-  $('#addr-balance').html('Balance: 0.00000000 ' + CURRENT_COIN);
+  $('#addr-balance').html('Balance: ' + ZERO.toFixed(PARAMS[CURRENT_COIN].precision) + ' ' + CURRENT_COIN);
   $("#addr-balance").css("color", "#74bed8");
   $("#pwd-container").hide();
   $("#addr-container").show();
@@ -359,7 +366,7 @@ function loadAddressTxes(result) {
 
   USD = false;
   usdBalance = false;
-  $('#addr-balance').html('Balance: ' + balance.toFixed(8) + ' ' + CURRENT_COIN);
+  $('#addr-balance').html('Balance: ' + balance.toFixed(PARAMS[CURRENT_COIN].precision) + ' ' + CURRENT_COIN);
 }
 
 function _setTooltip(message, classId) {
@@ -416,7 +423,7 @@ function togglePrice() {
         USD = true;
 	var usdPrice = Number(result[PARAMS[CURRENT_COIN].coingecko].usd);
         usdBalance = balance * usdPrice;
-        $("#addr-balance").html("Balance: $" + usdBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " US");
+        $("#addr-balance").html("Balance: $" + usdBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " USD");
       },
       error: function () {
         console.log("error");
@@ -425,13 +432,13 @@ function togglePrice() {
     });
   } else if(!USD && usdBalance) {
      USD = true;
-     $("#addr-balance").html("Balance: $" + usdBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " US");
+     $("#addr-balance").html("Balance: $" + usdBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " USD");
   } else if(!USD && !usdBalance) {
      USD = true;
-     $("#addr-balance").html("Balance: $0.00 US");
+     $("#addr-balance").html("Balance: $0.00 USD");
   } else if(USD) {
      USD = false;
-     $("#addr-balance").html("Balance: " + balance.toFixed(8) + " " + CURRENT_COIN);
+     $("#addr-balance").html("Balance: " + balance.toFixed(PARAMS[CURRENT_COIN].precision) + " " + CURRENT_COIN);
   }
 }
 
@@ -619,7 +626,7 @@ function spendf() {
 		balance = change;
 	   } else { utxos = []; balance = 0; }
 
-	   $('#addr-balance').html("Balance: " + balance.toFixed(8) + " " + CURRENT_COIN);
+	   $('#addr-balance').html("Balance: " + balance.toFixed(PARAMS[CURRENT_COIN].precision) + " " + CURRENT_COIN);
            setTimeout( function() {
 	      window.open(PARAMS[CURRENT_COIN].explorer + "tx/" + txid);
            }, 1000);
