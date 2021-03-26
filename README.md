@@ -35,6 +35,7 @@ To enter into SwiftCash DeLotts(Decentralized Lotteries), you can burn your coin
 * To change/adjust the transaction fee, click on the wrench icon.
 * To copy your private key, click on the key icon.
 * To donate, click on the donate icon.
+* To view your HODL deposits/balances, click on the lock icon.
 
 # License
 Copyright (C) 2018-2020 SwiftCash Developers <br />
