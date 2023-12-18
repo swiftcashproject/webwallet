@@ -312,7 +312,7 @@ function loadAddress() {
   $("#addr-balance").css("color", "#74bed8");
   $("#pwd-container").hide();
   $("#addr-container").show();
-  $("#addr-qr").attr("src", "https://qr-generator.qrcode.studio/qr/custom?download=false&file=png&data=" + keyPair.getAddress() + "&size=400&config=%7B%22body%22%3A%22rounded-pointed%22%2C%22eye%22%3A%22frame6%22%2C%22eyeBall%22%3A%22ball6%22%2C%22erf1%22%3A%5B%22fv%22%5D%2C%22gradientColor1%22%3A%22%23" + PARAMS[CURRENT_COIN].qrColor + "%22%2C%22gradientColor2%22%3A%22%23" + PARAMS[CURRENT_COIN].qrColor + "%22%2C%22gradientType%22%3A%22radial%22%2C%22gradientOnEyes%22%3A%22true%22%2C%22logo%22%3A%22%22%7D");
+  $("#addr-qr").attr("src", "https://api.qrserver.com/v1/create-qr-code/?data" + keyPair.getAddress() + "&color=" + PARAMS[CURRENT_COIN].qrColor);
   $("#addr-qr").attr("alt", keyPair.getAddress());
   $("#addr-id-clipboard").attr("data-clipboard-text", keyPair.getAddress());
   $("#addr-id").attr("href", PARAMS[CURRENT_COIN].explorer + "address/" + keyPair.getAddress());
