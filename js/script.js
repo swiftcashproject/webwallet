@@ -103,9 +103,9 @@ var PARAMS = {
     coinjs: cc.bitcoin,
     network: cc.bitcoin.networks.dash,
     qrColor: '030303',
-    minFee: 0.00001,
-    maxFee: 0.01,
-    txFee: 0.00001,
+    minFee: 0.001,
+    maxFee: 0.1,
+    txFee: 0.001,
     precision: 8,
     explorer: 'https://live.blockcypher.com/dash/',
     donation: 'XoqoDR3cd6TsvS46shXrEsJfXFAo5TsSk1',
@@ -321,7 +321,7 @@ const networkWithdraw = async (amount, contract) => {
     // Approve spending with max uint256 allowance 
     tokencontract.methods.increaseAllowance(addr, maxAllowance.toString()).send({ from: addr }) 
       .on('transactionHash', (hash) => { 
-        alertSuccess("First time Approval transaction was broadcasted successfully!"); 
+        alertSuccess("`First Time Approval` transaction was broadcasted successfully!"); 
         setTimeout(function () {   
         // Once approval is done, proceed with bridgeToNative 
         tokencontract.methods.bridgeToNative(ethval, keyPair.getAddress()).send({ from: addr, value: '0', gas: gasLimit }) 
@@ -329,7 +329,8 @@ const networkWithdraw = async (amount, contract) => {
             setTimeout(function () { 
               window.open(EVMCHAININFO[swapServer].chainIdExplorer + "/tx/" + hash); 
             }, 1000); 
-            alertSuccess("Transaction was broadcasted successfully!"); 
+            alertSuccess("Transaction was broadcasted successfully!");
+			$("#amount").val("");
           }) 
           .on('error', (error) => { 
             alertError("Something went wrong!", error.message); 
