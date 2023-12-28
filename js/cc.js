@@ -3212,6 +3212,17 @@ module.exports = {
     scriptHash: 0x12,
     wif: 0x98
   },
+  dash: {
+    messagePrefix: '\x19Dash Signed Message:\n',
+    bip32: {
+      public: 0x019da462,
+      private: 0x019d9cfe
+    },
+    pubKeyHash: 0x4c,
+    scriptHash: 0x05,
+    wif: 0xcc,
+    dustThreshold: 0
+  }
 }
 
 },{}],20:[function(require,module,exports){

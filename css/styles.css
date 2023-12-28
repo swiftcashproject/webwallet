@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+.swal2-radio {
+    display: grid !important;
+}
+
 .progress-bar {
     color: #333;
 } 
@@ -18,7 +22,7 @@
 }
 
 .main-button {
-  width: 28px;
+  width: 25px;
   height: 28px;
   font-size: 25px;
 }
@@ -36,13 +40,14 @@
 }
 
 .input-spend {
-    font-size: 12px;
+    font-size: 1.3rem;
     font-family: monospace;
     font-weight: bold;
     height: 43px;
 }
 
 body {
+	padding-right: 0px !important;
     background: url(../images/background.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -82,29 +87,16 @@ form {
 	form > div {
 		text-align: center;
 	}
-	
-.form-links {
+
+.jackpot {
 	color: white;
 	font-weight: bold;
 	text-align: center;
-	margin-top: 1em;
-	margin-bottom: 50px;
-	background-color: #00263d;
-}
-
-.jackpot {
-        color: white;
-        font-weight: bold;
-        text-align: center;
-	font-family: monospace;
 	font-size: 12px;
 	font-weight: bold;
 	letter-spacing: 2px;
-        background-color: #00263d;
-}
-
-.form-links a {
-	color: #fff;
+	background-color: #120d0e;
+	margin-bottom: 5px;
 }
 
 .error-list {
@@ -112,13 +104,19 @@ form {
 	text-align: left;
 }
 
-.clipboard, .refresh, .privkey, .customfee, .changeaddress, .donation, .hodl {
+.clipboard, .refresh, .privkey, .customfee, .changeaddress, .donation, .unlock {
 	padding: 2px;
 	margin: 0px;
 }
 
+.hodl {
+	padding: 2px;
+	margin: 0px;
+	background-color: #575d62;
+}
+
 .currency-logo:hover {
-	filter: drop-shadow(1px 1px 2px #4b4b4c) !important;
+	filter: drop-shadow(5px 5px 5px #4b4b4c) !important;
 }
 
 /* Buzz Out */
@@ -224,3 +222,40 @@ form {
   animation-iteration-count: 1;
 }
 
+.form-links {
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 1em;
+	background-color: #120d0e;
+}
+
+.form-links a {
+	color: #fff;
+}
+
+ul.social_icon {
+	padding: 0px;
+    text-align: center;
+}
+
+ul.social_icon li {
+    display: inline-block;
+    margin: 0 3px;
+}
+
+ul.social_icon li a {
+     background: #fff;
+     box-shadow: #ddd 0px 0px 10px 0px;
+     font-size: 30px;
+     padding-top: 10px;
+     border-radius: 50px;
+     width: 50px;
+     height: 50px;
+     display: inline-block;
+     color: #008df3;
+}
+
+ul.social_icon li a:hover {
+     background: #23262d;
+}
