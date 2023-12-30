@@ -123,7 +123,7 @@ var PARAMS = {
 };
 
 /* WEB3 PART W.PINHEIRO */
-let web3 = new web3js.myweb3(window.ethereum);
+let web3 = new Web3(window.ethereum);
 let addr;
 
 var EVMCHAININFO = {
@@ -284,7 +284,7 @@ const tokenabi = [{ "inputs": [{ "internalType": "address", "name": "_multisign"
 
 const loadweb3 = async () => {
   try {
-    web3 = new web3js.myweb3(window.ethereum);
+    web3 = new Web3(window.ethereum);
     console.log('Injected web3 detected.')
 
     let a = await ethereum.enable();
@@ -303,7 +303,13 @@ const loadweb3 = async () => {
 
 };
 
-const networkWithdraw = async (amount, contract) => { 
+const networkWithdraw = async (amount, contract) => {
+  // Enforce minimum withdrawal amount
+  if(amount < PARAMS[CURRENT_COIN].swapMinWithdrawal) {
+	  alertError("Minimum amount to withdraw is " + toCustomFixed(PARAMS[CURRENT_COIN].swapMinWithdrawal) + " " + CURRENT_COIN + "!");
+	  return;
+  }
+  
   // Initialize token contract 
   let tokencontract = new web3.eth.Contract(tokenabi, contract); 
  
