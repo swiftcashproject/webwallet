@@ -1058,10 +1058,11 @@ function swapTokensProcess() {
 	swal.fire({
 		icon: "info",
 		title: "Bridging Rules and Fees",
-		html: "<b>Minimum Deposit: </b>" + toCustomFixed(PARAMS[CURRENT_COIN].swapMinDeposit) + " " + CURRENT_COIN + "<br/>" +
+		html: "<span style='line-height: 20px'>" +
+			  "<b>Minimum Deposit: </b>" + toCustomFixed(PARAMS[CURRENT_COIN].swapMinDeposit) + " " + CURRENT_COIN + "<br/>" +
 			  "<b>Minimum Withdrawal: </b>" + toCustomFixed(PARAMS[CURRENT_COIN].swapMinWithdrawal) + " " + CURRENT_COIN + "<br/>" +
 			  "<b>Deposit Fee(Network): </b>" + toCustomFixed(PARAMS[CURRENT_COIN].swapDepositFee) + " " + CURRENT_COIN + "<br/>" +
-			  "<b>Bridging Fee(Deposit/Withdraw): </b>" + PARAMS[CURRENT_COIN].swapFee + "%<br/><br/>" +
+			  "<b>Bridging Fee(Deposit/Withdraw): </b>" + PARAMS[CURRENT_COIN].swapFee + "%<br/><br/></span>" +
 			  "Bridging transactions will take 1-3 days to complete. Do you want to continue?",
 		showCancelButton: true
 	}).then((result) => {
