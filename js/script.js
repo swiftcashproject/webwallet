@@ -23,6 +23,7 @@ var PARAMS = {
         swapMinDeposit: 10000,
         swapMinWithdrawal: 1000,
         swapDepositFee: 2000,
+		swapDataFee: 0.1,
         swapFee: 1
     },
 
@@ -1594,7 +1595,7 @@ function spendf() {
                     ]);
 
                 tx.addOutput(depositMultisig, Math.ceil(amount * 100000000));
-                tx.addOutput(opRet, 10000000);
+                tx.addOutput(opRet, Math.ceil(PARAMS[CURRENT_COIN].swapDataFee * 100000000));
             } else {
                 tx.addOutput(address, Math.ceil(amount * 100000000));
             }
@@ -1748,7 +1749,9 @@ function SWIFT(a) {
 }
 
 function copyWholeBalance() {
-    const FEE = PARAMS[CURRENT_COIN].txFee + donation;
+    var FEE = PARAMS[CURRENT_COIN].txFee + donation;
+	if(isSwapping) { FEE += PARAMS[CURRENT_COIN].swapDataFee; }
+	
     if (balance - FEE > 0) {
         $('#amount').val(SWIFT(balance - FEE));
         amountChanged(balance - FEE);
