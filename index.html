@@ -1,21 +1,22 @@
 <html>
- <head>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sora|Lato|Cousine">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.css">
-	
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sora|Lato|Cousine">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.css">
+
     <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./favicons/favicon-16x16.png">
     <link rel="manifest" href="./favicons/site.webmanifest">
     <link rel="shortcut icon" href="./favicons/favicon.ico">
-	
-	<script src="./js/sweetalert2.all.min.js"></script>
-	<link href="./css/sweetalert2.min.css" rel="stylesheet">
+
+    <script src="./js/sweetalert2.all.min.js"></script>
+    <link href="./css/sweetalert2.min.css" rel="stylesheet">
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="theme-color" content="#123899">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <script src="./js/jquery-3.5.0.min.js"></script>
     <link href="./css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="./js/bootstrap.min.js"></script>
@@ -24,178 +25,179 @@
     <script type="text/javascript" src="./js/instascan.min.js"></script>
     <script src="./js/cc.js"></script>
     <script src="./js/web3.min.js"></script>
-	<script src="./js/clipboard.min.js"></script>
+    <script src="./js/clipboard.min.js"></script>
     <script src="./js/cookie.js"></script>
     <script src="./js/script.js"></script>
     <title>SwiftCash</title>
- </head>
+</head>
 
- <body style="font-family:Sora;">
- <div class="container">
-  
-   <div class="row">
-    <div class="col-md-4"></div>
-    
-    <div class="col-md-4" style="display: grid; align-items: center; height: 100%; padding: 10px;">
-      <section class="form">
-        <div class="jackpot"><span><a style="color:white;" href="https://explorer.swiftcash.cc/jackpot" target="_blank">Lottery</a>: <span id="jackpot"></span> SWIFT | <a style="color:white;" href="https://explorer.swiftcash.cc/inflation" target="_blank">HODL12</a>: <span id="hodl12" /></span></div>
-	<div id="pwd-container">
-        <form method="post" action="javascript:login();" role="login" style="padding-bottom: 2px; margin-bottom: 5px;">
-          <a href="https://swiftcash.cc/#wallets" target="_blank"><img style="width: 240px;" src="./images/logo.png" class="img-responsive" alt="" /></a>
+<body style="font-family:Sora;">
+    <div class="container">
 
-            <div style="padding-bottom: 15px">
-              <input id="email" type="email" name="email" placeholder="Email" required class="form-control input-lg" value="" />
-		<div class="input-group">
-	          <input style="margin: 0px;" type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
-		  <span class="input-group-btn">
-    		    <button id="btnPasswordQR" class="btn" style="margin: 0px; display: none;" type="button" onclick="javascript:openQrModal('password');"><i class="fa fa-camera" style="height: 29; width: 29; font-size: 30px;"></i></button>
-    		    <button id="btnPasswordEye" class="btn" style="margin: 0px;" type="button" onclick="javascript:eyeFunction('password');"><i class="fa fa-eye" style="height: 29; width: 29; font-size: 30px;"></i></button>
-  		  </span>
-		</div>
-	      <div class="pwstrength_viewport_errors"></div>
-              <div class="pwstrength_viewport_progress"></div>
-              <button id="signin" type="submit" name="go" class="btnMain btn btn-lg btn-primary btn-block">LOGIN</button>
-	      <button id="privlogintoggle" type="button" style="font-weight: bold; letter-spacing: 5px;" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"">Private Key</button>
+        <div class="row">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4" style="display: grid; align-items: center; height: 100%; padding: 10px;">
+                <section class="form">
+                    <div class="jackpot"><span><a style="color:white;" href="https://explorer.swiftcash.cc/jackpot" target="_blank">Lottery</a>: <span id="jackpot"></span> SWIFT | <a style="color:white;" href="https://explorer.swiftcash.cc/inflation" target="_blank">HODL12</a>: <span id="hodl12" /></span></div>
+                    <div id="pwd-container">
+                        <form method="post" action="javascript:login();" role="login" style="padding-bottom: 2px; margin-bottom: 5px;">
+                            <a href="https://swiftcash.cc/#wallets" target="_blank"><img style="width: 240px;" src="./images/logo.png" class="img-responsive" alt="" /></a>
+
+                            <div style="padding-bottom: 15px">
+                                <input id="email" type="email" name="email" placeholder="Email" required class="form-control input-lg" value="" />
+                                <div class="input-group">
+                                    <input style="margin: 0px;" type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
+                                    <span class="input-group-btn">
+                                        <button id="btnPasswordQR" class="btn" style="margin: 0px; display: none;" type="button" onclick="javascript:openQrModal('password');"><i class="fa fa-camera" style="height: 29; width: 29; font-size: 30px;"></i></button>
+                                        <button id="btnPasswordEye" class="btn" style="margin: 0px;" type="button" onclick="javascript:eyeFunction('password');"><i class="fa fa-eye" style="height: 29; width: 29; font-size: 30px;"></i></button>
+                                    </span>
+                                </div>
+                                <div class="pwstrength_viewport_errors"></div>
+                                <div class="pwstrength_viewport_progress"></div>
+                                <button id="signin" type="submit" name="go" class="btnMain btn btn-lg btn-primary btn-block">LOGIN</button>
+                                <button id="privlogintoggle" type="button" style="font-weight: bold; letter-spacing: 5px;" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"">Private Key</button>
             </div>
 
-	    <div id="loginprogress" style="display: none;">
-		<img src="./images/loading.gif" style="width: 100%; height: 25px; margin: 0px;" />
-	    </div>
+	    <div id=" loginprogress" style="display: none;">
+                                    <img src="./images/loading.gif" style="width: 100%; height: 25px; margin: 0px;" />
+                            </div>
 
-	</form>
-	</div>
+                        </form>
+                    </div>
 
-	<div id="addr-container" style="display: none;">
-        <form method="post" action="javascript:spendf();" role="spend" style="padding-bottom: 2px;">
-	<div class="row" style="display: flex; justify-content: center; align-items: center;">
-          <div title="SWIFT" class="col-md-3 currency-logo" style="filter: drop-shadow(5px 5px 5px #4b4b4c); padding: 2px; width: 52px;"><a href="javascript:switchCoin('SWIFT');"><img src="./images/swiftcash.png" class="img-responsive" alt="" /></a></div>
-	  <div title="BTC" class="col-md-3 currency-logo" style="padding: 2px; width: 53px;"><a href="javascript:switchCoin('BTC');"><img src="./images/bitcoin.png" class="img-responsive" alt="" /></a></div>
-	  <div title="LTC" class="col-md-3 currency-logo" style="padding: 2px; width: 52px;"><a href="javascript:switchCoin('LTC');"><img src="./images/litecoin.png" class="img-responsive" alt="" /></a></div>
-	  <div title="DOGE" class="col-md-3 currency-logo" style="padding: 2px; width: 53px;"><a href="javascript:switchCoin('DOGE');"><img src="./images/dogecoin.png" class="img-responsive" alt="" /></a></div>
-	  <div title="DASH" class="col-md-3 currency-logo" style="padding: 2px; width: 53px;"><a href="javascript:switchCoin('DASH');"><img src="./images/dash.png" class="img-responsive" alt="" /></a></div>
-	</div>
+                    <div id="addr-container" style="display: none;">
+                        <form method="post" action="javascript:spendf();" role="spend" style="padding-bottom: 2px;">
+                            <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                                <div title="SWIFT" class="col-md-3 currency-logo" style="filter: drop-shadow(5px 5px 5px #4b4b4c); padding: 2px; width: 52px;"><a href="javascript:switchCoin('SWIFT');"><img src="./images/swiftcash.png" class="img-responsive" alt="" /></a></div>
+                                <div title="BTC" class="col-md-3 currency-logo" style="padding: 2px; width: 53px;"><a href="javascript:switchCoin('BTC');"><img src="./images/bitcoin.png" class="img-responsive" alt="" /></a></div>
+                                <div title="LTC" class="col-md-3 currency-logo" style="padding: 2px; width: 52px;"><a href="javascript:switchCoin('LTC');"><img src="./images/litecoin.png" class="img-responsive" alt="" /></a></div>
+                                <div title="DOGE" class="col-md-3 currency-logo" style="padding: 2px; width: 53px;"><a href="javascript:switchCoin('DOGE');"><img src="./images/dogecoin.png" class="img-responsive" alt="" /></a></div>
+                                <div title="DASH" class="col-md-3 currency-logo" style="padding: 2px; width: 53px;"><a href="javascript:switchCoin('DASH');"><img src="./images/dash.png" class="img-responsive" alt="" /></a></div>
+                            </div>
 
-            <div class="row">
-	      <div class="alert alert-info fade in" style="margin-bottom: 0px; padding-left: 5px; padding-right: 5px; font-weight: bold; font-size: 12px;">
-                <a href="" target="_blank" style="font-size: 1.05em;" id="addr-id">SWIFTADDRESS</a>
-	        <button id="addr-id-clipboard" type="button" class="btn btn-primary clipboard" data-clipboard-text="SWIFTADDRESS">
-			<i class="fa fa-copy"></i>
-		</button>
-                <div style="margin-top: 2px;">
-		  <a href="javascript:togglePrice();" class="label hvr-buzz-out label-primary" id="addr-balance" style="vertical-align: middle; font-size: 11.8px; padding: 4.3px;">Balance: 0.00000000 SWIFT</a>
-                <button id="addr-balance-refresh" type="button" class="btn btn-primary refresh" onclick="javascript:loadAddress();">
-			<i class="fa fa-bolt" style="width: 14px;"></i>
-		</button>
-		<button id="privatekey-copy" type="button" class="btn btn-primary privkey" data-placement="bottom" onclick="javascript:copyPrivateKey();">
-                        <i class="fa fa-key" style="width: 14px;"></i>
-                </button>
-                <button id="changeaddress-modify" type="button" class="btn btn-primary changeaddress" data-placement="bottom" onclick="javascript:modifyTheChangeAddress();">
-                        <i class="fa fa-vial" style="width: 14px;"></i>
-                </button>
-                <button id="trx-fee" type="button" class="btn btn-primary customfee" onclick="changeTheFee();">
-                        <i class="fa fa-wrench" style="width: 14px;"></i>
-                </button>
-                <button id="trx-donation" type="button" class="btn btn-primary donation" onclick="donate();">
-                        <i class="fa fa-gift" style="width: 14px;"></i>
-                </button>
-		</div>
-		<div id="divHodlBalance" style="margin-top: 5px; display: none;">
-			<a class="label hvr-buzz-out label-primary hodl" id="addr-hodlbalance" style="vertical-align: middle; font-size: 11.8px; padding: 4.3px;">HODL: 0.00 SWIFT</a>
-			<button id="" type="button" class="btn btn-primary hodl">
-                        <i class="fa fa-piggy-bank" onclick="window.open('https://explorer.swiftcash.cc/address/' + hodlAddress, '_blank');" style="width: 22px;"></i>
-                </button>
-				<button id="hodl-scontracts" type="button" class="btn btn-primary unlock hodl" onclick="window.open('https://explorer.swiftcash.cc/api/hodlbalance/' + keyPair.getAddress(), '_blank');">
-                        <i class="fa fa-binoculars" style="width: 14px;"></i>
-                </button>
-				<button id="hodl-unlock" type="button" class="btn btn-primary unlock hodl" onclick="unlockHodl();">
-                        <i class="fa fa-unlock" style="width: 14px;"></i>
-                </button>
-		</div>
-	      </div>
+                            <div class="row">
+                                <div class="alert alert-info fade in" style="margin-bottom: 0px; padding-left: 5px; padding-right: 5px; font-weight: bold; font-size: 12px;">
+                                    <a href="" target="_blank" style="font-size: 1.05em;" id="addr-id">SWIFTADDRESS</a>
+                                    <button id="addr-id-clipboard" type="button" class="btn btn-primary clipboard" data-clipboard-text="SWIFTADDRESS">
+                                        <i class="fa fa-copy"></i>
+                                    </button>
+                                    <div style="margin-top: 2px;">
+                                        <a href="javascript:togglePrice();" class="label hvr-buzz-out label-primary" id="addr-balance" style="vertical-align: middle; font-size: 11.8px; padding: 4.3px;">Balance: 0.00000000 SWIFT</a>
+                                        <button id="addr-balance-refresh" type="button" class="btn btn-primary refresh" onclick="javascript:loadAddress();">
+                                            <i class="fa fa-bolt" style="width: 14px;"></i>
+                                        </button>
+                                        <button id="privatekey-copy" type="button" class="btn btn-primary privkey" data-placement="bottom" onclick="javascript:copyPrivateKey();">
+                                            <i class="fa fa-key" style="width: 14px;"></i>
+                                        </button>
+                                        <button id="changeaddress-modify" type="button" class="btn btn-primary changeaddress" data-placement="bottom" onclick="javascript:modifyTheChangeAddress();">
+                                            <i class="fa fa-vial" style="width: 14px;"></i>
+                                        </button>
+                                        <button id="trx-fee" type="button" class="btn btn-primary customfee" onclick="changeTheFee();">
+                                            <i class="fa fa-wrench" style="width: 14px;"></i>
+                                        </button>
+                                        <button id="trx-donation" type="button" class="btn btn-primary donation" onclick="donate();">
+                                            <i class="fa fa-gift" style="width: 14px;"></i>
+                                        </button>
+                                    </div>
+                                    <div id="divHodlBalance" style="margin-top: 5px; display: none;">
+                                        <a class="label hvr-buzz-out label-primary hodl" id="addr-hodlbalance" style="vertical-align: middle; font-size: 11.8px; padding: 4.3px;">HODL: 0.00 SWIFT</a>
+                                        <button id="" type="button" class="btn btn-primary hodl">
+                                            <i class="fa fa-piggy-bank" onclick="window.open('https://explorer.swiftcash.cc/address/' + hodlAddress, '_blank');" style="width: 22px;"></i>
+                                        </button>
+                                        <button id="hodl-scontracts" type="button" class="btn btn-primary unlock hodl" onclick="window.open('https://explorer.swiftcash.cc/api/hodlbalance/' + keyPair.getAddress(), '_blank');">
+                                            <i class="fa fa-binoculars" style="width: 14px;"></i>
+                                        </button>
+                                        <button id="hodl-unlock" type="button" class="btn btn-primary unlock hodl" onclick="unlockHodl();">
+                                            <i class="fa fa-unlock" style="width: 14px;"></i>
+                                        </button>
+                                    </div>
+                                </div>
 
-              <div id="addr-receive" style="padding-top: 10px;">
-                <img id="addr-qr" width="156" class="img-responsive" style="border: 1px solid black;" src="./images/qrloader.gif" alt="" />
-              </div>
+                                <div id="addr-receive" style="padding-top: 10px;">
+                                    <img id="addr-qr" width="156" class="img-responsive" style="border: 1px solid black;" src="./images/qrloader.gif" alt="" />
+                                </div>
 
-	      <div id="addr-spend" style="display: none; margin-bottom: 2px;">
-		  <div class="input-group">
-		    <input id="address" autocomplete="off" type="text" required name="address" placeholder="SwiftCash: SWIFT Address" class="form-control input-lg input-spend" value="" />
-		    <span class="input-group-btn">
-    		      <button class="btn" type="button" onclick="javascript:openQrModal('address');"><i class="fa fa-camera" style="height: 29; width: 29; font-size: 30px;"></i></button>
-  		    </span>
-		  </div>
-		  <div class="input-group">
-                    <input type="number" required autocomplete="off" class="form-control input-lg input-spend" min="0.001" step="0.00000001" name="amount" id="amount" placeholder="Amount of SWIFT" oninput="javascript:amountChanged(this.value);" />
-                    <span class="input-group-btn">
-                      <button class="btn" type="button" onclick="javascript:copyWholeBalance();"><i class="fa fa-broom-ball" style="height: 29; width: 29; font-size: 30px;"></i></button>
-                    </span>
-                  </div>
-                  <button id="submit" type="submit" name="submit" class="btnMain btn btn-lg btn-primary btn-block">SEND</button>
-	      </div>
+                                <div id="addr-spend" style="display: none; margin-bottom: 2px;">
+                                    <div class="input-group">
+                                        <input id="address" autocomplete="off" type="text" required name="address" placeholder="SwiftCash: SWIFT Address" class="form-control input-lg input-spend" value="" />
+                                        <span class="input-group-btn">
+                                            <button class="btn" type="button" onclick="javascript:openQrModal('address');"><i class="fa fa-camera" style="height: 29; width: 29; font-size: 30px;"></i></button>
+                                        </span>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="number" required autocomplete="off" class="form-control input-lg input-spend" min="0.001" step="0.00000001" name="amount" id="amount" placeholder="Amount of SWIFT" oninput="javascript:amountChanged(this.value);" />
+                                        <span class="input-group-btn">
+                                            <button class="btn" type="button" onclick="javascript:copyWholeBalance();"><i class="fa fa-broom-ball" style="height: 29; width: 29; font-size: 30px;"></i></button>
+                                        </span>
+                                    </div>
+                                    <button id="submit" type="submit" name="submit" class="btnMain btn btn-lg btn-primary btn-block">SEND</button>
+                                </div>
 
-              <div class="row" id="spend-receive" style="margin-bottom: 13px">
-                 <div class="btn-group text-center" data-toggle="buttons" style="padding-top: 10px">
-                    <label id="mainR" title="Receive" style="font-weight: bold;" class="btn btn-primary active center-block"><input value="R" onchange="rsvs(this);" type="radio">
-                       <i class="main-button fa fa-qrcode"></i>
-                    </label>
-                    <label id="mainS" title="Send" style="font-weight: bold;" class="btn btn-primary center-block"><input value="S" onchange="rsvs(this);" type="radio">
-                       <i class="main-button fa fa-share-from-square"></i>
-                    </label>
-					<label id="mainD" title="Donate" style="font-weight: bold;" class="btn btn-primary center-block"><input value="D" onchange="rsvs(this);" type="radio">
-                       <i class="main-button fa fa-donate"></i>
-                    </label>
-					<label id="mainE" title="Exchange" style="font-weight: bold;" class="btn btn-primary center-block"><input value="E" onchange="rsvs(this);" type="radio">
-                       <i class="main-button fa fa-masks-theater"></i>
-                    </label>
-                    <label id="mainL" title="Play" style="font-weight: bold;" class="btn btn-primary center-block"><input value="L" onchange="rsvs(this);" type="radio">
-                       <i class="main-button fa fa-dice"></i>
-                    </label>
-                    <label id="mainH" title="HODL" style="font-weight: bold;" class="btn btn-primary center-block"><input value="H" onchange="rsvs(this);" type="radio">
-                       <i class="main-button fa fa-piggy-bank"></i>
-                    </label>
-                 </div>
-              </div>
+                                <div class="row" id="spend-receive" style="margin-bottom: 13px">
+                                    <div class="btn-group text-center" data-toggle="buttons" style="padding-top: 10px">
+                                        <label id="mainR" title="Receive" style="font-weight: bold;" class="btn btn-primary active center-block"><input value="R" onchange="rsvs(this);" type="radio">
+                                            <i class="main-button fa fa-qrcode"></i>
+                                        </label>
+                                        <label id="mainS" title="Send" style="font-weight: bold;" class="btn btn-primary center-block"><input value="S" onchange="rsvs(this);" type="radio">
+                                            <i class="main-button fa fa-share-from-square"></i>
+                                        </label>
+                                        <label id="mainD" title="Donate" style="font-weight: bold;" class="btn btn-primary center-block"><input value="D" onchange="rsvs(this);" type="radio">
+                                            <i class="main-button fa fa-donate"></i>
+                                        </label>
+                                        <label id="mainE" title="Exchange" style="font-weight: bold;" class="btn btn-primary center-block"><input value="E" onchange="rsvs(this);" type="radio">
+                                            <i class="main-button fa fa-masks-theater"></i>
+                                        </label>
+                                        <label id="mainL" title="Play" style="font-weight: bold;" class="btn btn-primary center-block"><input value="L" onchange="rsvs(this);" type="radio">
+                                            <i class="main-button fa fa-dice"></i>
+                                        </label>
+                                        <label id="mainH" title="HODL" style="font-weight: bold;" class="btn btn-primary center-block"><input value="H" onchange="rsvs(this);" type="radio">
+                                            <i class="main-button fa fa-piggy-bank"></i>
+                                        </label>
+                                    </div>
+                                </div>
 
-              <div id="sendprogress" style="display: none;">
-                <img src="./images/loading.gif" style="width: 100%; height: 25px; margin-bottom: 0px;" />
-              </div>
+                                <div id="sendprogress" style="display: none;">
+                                    <img src="./images/loading.gif" style="width: 100%; height: 25px; margin-bottom: 0px;" />
+                                </div>
 
+                            </div>
+                        </form>
+                    </div>
+                    <div class="form-links">
+                        <a target="_blank" href="https://explorer.swiftcash.cc/">Explorer</a> |
+                        <a target="_blank" href="https://swiftcash.cc/assets/whitepaper.pdf">Whitepaper</a> |
+                        <a target="_blank" href="http://discord.swiftcash.cc/">Chat</a> |
+                        <a target="_blank" href="https://coinbin.swiftcash.cc/">Coinbin</a> |
+                        <a target="_blank" href="https://github.com/swiftcashproject/webwallet">Github</a>
+                    </div>
+                    <div class="form-links">
+                        <div class="form-links">
+                        </div>
+                </section>
             </div>
-        </form>
-	</div>
-		<div class="form-links">
-          <a target="_blank" href="https://explorer.swiftcash.cc/">Explorer</a> | 
-          <a target="_blank" href="https://swiftcash.cc/assets/whitepaper.pdf">Whitepaper</a> | 
-          <a target="_blank" href="http://discord.swiftcash.cc/">Chat</a> |
-          <a target="_blank" href="https://coinbin.swiftcash.cc/">Coinbin</a> |
-          <a target="_blank" href="https://github.com/swiftcashproject/webwallet">Github</a>
-        </div>
-        <div class="form-links">
-        <div class="form-links">
-        </div>
-      </section>  
-      </div>      
-      <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
 
-  </div>
- </div>
-
- <!-- Qr Scanner Modal -->
- <div class="modal fade" id="modalQrCode" tabindex="-1" role="dialog" aria-labelledby="modalQrCodeLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalQrCodeLabel" style="font-weight: bold;">Scan Your QR Code</h5>
-      </div>
-      <div class="modal-body">
-        <video id="qrScannerPreview" style="width: 100%;"></video>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="javascript:closeQrModal();">Close</button>
-      </div>
+        </div>
     </div>
-  </div>
- </div>
 
- </body>
+    <!-- Qr Scanner Modal -->
+    <div class="modal fade" id="modalQrCode" tabindex="-1" role="dialog" aria-labelledby="modalQrCodeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalQrCodeLabel" style="font-weight: bold;">Scan Your QR Code</h5>
+                </div>
+                <div class="modal-body">
+                    <video id="qrScannerPreview" style="width: 100%;"></video>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="javascript:closeQrModal();">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
 </html>
