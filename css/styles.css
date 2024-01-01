@@ -6,37 +6,37 @@
 
 .progress-bar {
     color: #333;
-} 
+}
 
 * {
     -webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
-	outline: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
 }
 
 .btnMain {
-  font-family: Ubuntu;
-  font-weight: bold;
-  letter-spacing: 5px;
+    font-family: Ubuntu;
+    font-weight: bold;
+    letter-spacing: 5px;
 }
 
 .main-button {
-  width: 25px;
-  height: 28px;
-  font-size: 25px;
+    width: 25px;
+    height: 28px;
+    font-size: 25px;
 }
 
 .form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-  @include box-sizing(border-box);
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    @include box-sizing(border-box);
 
-  &:focus {
-    z-index: 2;
-  }
+    &:focus {
+        z-index: 2;
+    }
 }
 
 .input-spend {
@@ -47,7 +47,7 @@
 }
 
 body {
-	padding-right: 0px !important;
+    padding-right: 0px !important;
     background: url(../images/background.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -56,186 +56,218 @@ body {
 }
 
 .form {
-	margin-top: 10%;
+    margin-top: 10%;
 }
 
 .monospace {
-	font-family: ubuntu;
-	font-size: 12px;
-	font-weight: bold;
-	color: #0052a0;
+    font-family: ubuntu;
+    font-size: 12px;
+    font-weight: bold;
+    color: #0052a0;
 }
 
 form {
-	color: #5d5d5d;
-	background: #f2f2f2;
-	padding: 26px;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+    color: #5d5d5d;
+    background: #f2f2f2;
+    padding: 26px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 }
-	form img {
-		display: block;
-		margin: 0 auto;
-		margin-bottom: 15px;
-	}
-	form input,
-	form button {
-		font-size: 18px;
-		margin: 16px 0;
-	}
-	form > div {
-		text-align: center;
-	}
+
+form img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+form input,
+form button {
+    font-size: 18px;
+    margin: 16px 0;
+}
+
+form>div {
+    text-align: center;
+}
 
 .jackpot {
-	color: white;
-	font-weight: bold;
-	text-align: center;
-	font-size: 12px;
-	font-weight: bold;
-	letter-spacing: 2px;
-	background-color: #120d0e;
-	margin-bottom: 5px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background-color: #120d0e;
+    margin-bottom: 5px;
 }
 
 .error-list {
-	padding-left: 20px;
-	text-align: left;
+    padding-left: 20px;
+    text-align: left;
 }
 
-.clipboard, .refresh, .privkey, .customfee, .changeaddress, .donation, .unlock {
-	padding: 2px;
-	margin: 0px;
+.clipboard,
+.refresh,
+.privkey,
+.customfee,
+.changeaddress,
+.donation,
+.unlock {
+    padding: 2px;
+    margin: 0px;
 }
 
 .hodl {
-	padding: 2px;
-	margin: 0px;
-	background-color: #575d62;
+    padding: 2px;
+    margin: 0px;
+    background-color: #575d62;
 }
 
 .currency-logo:hover {
-	filter: drop-shadow(5px 5px 5px #4b4b4c) !important;
+    filter: drop-shadow(5px 5px 5px #4b4b4c) !important;
 }
 
 /* Buzz Out */
 @-webkit-keyframes hvr-buzz-out {
-  10% {
-    -webkit-transform: translateX(3px) rotate(2deg);
-    transform: translateX(3px) rotate(2deg);
-  }
-  20% {
-    -webkit-transform: translateX(-3px) rotate(-2deg);
-    transform: translateX(-3px) rotate(-2deg);
-  }
-  30% {
-    -webkit-transform: translateX(3px) rotate(2deg);
-    transform: translateX(3px) rotate(2deg);
-  }
-  40% {
-    -webkit-transform: translateX(-3px) rotate(-2deg);
-    transform: translateX(-3px) rotate(-2deg);
-  }
-  50% {
-    -webkit-transform: translateX(2px) rotate(1deg);
-    transform: translateX(2px) rotate(1deg);
-  }
-  60% {
-    -webkit-transform: translateX(-2px) rotate(-1deg);
-    transform: translateX(-2px) rotate(-1deg);
-  }
-  70% {
-    -webkit-transform: translateX(2px) rotate(1deg);
-    transform: translateX(2px) rotate(1deg);
-  }
-  80% {
-    -webkit-transform: translateX(-2px) rotate(-1deg);
-    transform: translateX(-2px) rotate(-1deg);
-  }
-  90% {
-    -webkit-transform: translateX(1px) rotate(0);
-    transform: translateX(1px) rotate(0);
-  }
-  100% {
-    -webkit-transform: translateX(-1px) rotate(0);
-    transform: translateX(-1px) rotate(0);
-  }
+    10% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+    }
+
+    20% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+    }
+
+    30% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+    }
+
+    40% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+    }
+
+    50% {
+        -webkit-transform: translateX(2px) rotate(1deg);
+        transform: translateX(2px) rotate(1deg);
+    }
+
+    60% {
+        -webkit-transform: translateX(-2px) rotate(-1deg);
+        transform: translateX(-2px) rotate(-1deg);
+    }
+
+    70% {
+        -webkit-transform: translateX(2px) rotate(1deg);
+        transform: translateX(2px) rotate(1deg);
+    }
+
+    80% {
+        -webkit-transform: translateX(-2px) rotate(-1deg);
+        transform: translateX(-2px) rotate(-1deg);
+    }
+
+    90% {
+        -webkit-transform: translateX(1px) rotate(0);
+        transform: translateX(1px) rotate(0);
+    }
+
+    100% {
+        -webkit-transform: translateX(-1px) rotate(0);
+        transform: translateX(-1px) rotate(0);
+    }
 }
+
 @keyframes hvr-buzz-out {
-  10% {
-    -webkit-transform: translateX(3px) rotate(2deg);
-    transform: translateX(3px) rotate(2deg);
-  }
-  20% {
-    -webkit-transform: translateX(-3px) rotate(-2deg);
-    transform: translateX(-3px) rotate(-2deg);
-  }
-  30% {
-    -webkit-transform: translateX(3px) rotate(2deg);
-    transform: translateX(3px) rotate(2deg);
-  }
-  40% {
-    -webkit-transform: translateX(-3px) rotate(-2deg);
-    transform: translateX(-3px) rotate(-2deg);
-  }
-  50% {
-    -webkit-transform: translateX(2px) rotate(1deg);
-    transform: translateX(2px) rotate(1deg);
-  }
-  60% {
-    -webkit-transform: translateX(-2px) rotate(-1deg);
-    transform: translateX(-2px) rotate(-1deg);
-  }
-  70% {
-    -webkit-transform: translateX(2px) rotate(1deg);
-    transform: translateX(2px) rotate(1deg);
-  }
-  80% {
-    -webkit-transform: translateX(-2px) rotate(-1deg);
-    transform: translateX(-2px) rotate(-1deg);
-  }
-  90% {
-    -webkit-transform: translateX(1px) rotate(0);
-    transform: translateX(1px) rotate(0);
-  }
-  100% {
-    -webkit-transform: translateX(-1px) rotate(0);
-    transform: translateX(-1px) rotate(0);
-  }
+    10% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+    }
+
+    20% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+    }
+
+    30% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+    }
+
+    40% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+    }
+
+    50% {
+        -webkit-transform: translateX(2px) rotate(1deg);
+        transform: translateX(2px) rotate(1deg);
+    }
+
+    60% {
+        -webkit-transform: translateX(-2px) rotate(-1deg);
+        transform: translateX(-2px) rotate(-1deg);
+    }
+
+    70% {
+        -webkit-transform: translateX(2px) rotate(1deg);
+        transform: translateX(2px) rotate(1deg);
+    }
+
+    80% {
+        -webkit-transform: translateX(-2px) rotate(-1deg);
+        transform: translateX(-2px) rotate(-1deg);
+    }
+
+    90% {
+        -webkit-transform: translateX(1px) rotate(0);
+        transform: translateX(1px) rotate(0);
+    }
+
+    100% {
+        -webkit-transform: translateX(-1px) rotate(0);
+        transform: translateX(-1px) rotate(0);
+    }
 }
+
 .hvr-buzz-out {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
-.hvr-buzz-out:hover, .hvr-buzz-out:focus, .hvr-buzz-out:active {
-  -webkit-animation-name: hvr-buzz-out;
-  animation-name: hvr-buzz-out;
-  -webkit-animation-duration: 0.75s;
-  animation-duration: 0.75s;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+
+.hvr-buzz-out:hover,
+.hvr-buzz-out:focus,
+.hvr-buzz-out:active {
+    -webkit-animation-name: hvr-buzz-out;
+    animation-name: hvr-buzz-out;
+    -webkit-animation-duration: 0.75s;
+    animation-duration: 0.75s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
 }
 
 .form-links {
-	color: white;
-	font-weight: bold;
-	text-align: center;
-	margin-top: 1em;
-	background-color: #120d0e;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1em;
+    background-color: #120d0e;
 }
 
 .form-links a {
-	color: #fff;
+    color: #fff;
 }
 
 ul.social_icon {
-	padding: 0px;
+    padding: 0px;
     text-align: center;
 }
 
@@ -245,17 +277,17 @@ ul.social_icon li {
 }
 
 ul.social_icon li a {
-     background: #fff;
-     box-shadow: #ddd 0px 0px 10px 0px;
-     font-size: 30px;
-     padding-top: 10px;
-     border-radius: 50px;
-     width: 50px;
-     height: 50px;
-     display: inline-block;
-     color: #008df3;
+    background: #fff;
+    box-shadow: #ddd 0px 0px 10px 0px;
+    font-size: 30px;
+    padding-top: 10px;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    color: #008df3;
 }
 
 ul.social_icon li a:hover {
-     background: #23262d;
+    background: #23262d;
 }
