@@ -23,7 +23,7 @@ var PARAMS = {
         swapMinDeposit: 10000,
         swapMinWithdrawal: 1000,
         swapDepositFee: 2000,
-		swapDataFee: 0.1,
+        swapDataFee: 0.1,
         swapFee: 1
     },
 
@@ -122,6 +122,39 @@ var PARAMS = {
         unspentDivision: 100000000
     }
 };
+
+const wrappedTokens = {
+    'SWIFT': {
+        tokenAddress: '0x99945f484EBc48F5307cC00cF8dCF8d6D3d4B017',
+        tokenSymbol: 'wSWIFT',
+        tokenDecimals: 18,
+        tokenImage: 'https://explorer.swiftcash.cc/img/logo/logo-64.png'
+    }
+}
+
+function addToMetamask() {
+    if (!window.ethereum) {
+        alertError("Couldn't find Metamask!", "You need to install Metamask in order to be able to add wrapped " + CURRENT_COIN + ".");
+        return;
+    }
+
+    if (wrappedTokens[CURRENT_COIN]) {
+        window.ethereum.request({
+            method: 'wallet_watchAsset',
+            params: {
+                type: 'ERC20',
+                options: {
+                    address: wrappedTokens[CURRENT_COIN].tokenAddress,
+                    symbol: wrappedTokens[CURRENT_COIN].tokenSymbol,
+                    decimals: wrappedTokens[CURRENT_COIN].tokenDecimals,
+                    image: wrappedTokens[CURRENT_COIN].tokenImage,
+                },
+            }
+        });
+    } else {
+        alertError("Couldn't find w" + CURRENT_COIN + "!", "At this time there is no wrapped token for " + CURRENT_COIN + ". Check back later!");
+    }
+}
 
 /* WEB3 PART W.PINHEIRO */
 let web3;
@@ -968,6 +1001,7 @@ function loadAddress() {
     $("#addr-qr").attr("src", "https://api.qrserver.com/v1/create-qr-code/?data=" + keyPair.getAddress() + "&color=" + PARAMS[CURRENT_COIN].qrColor);
     $("#addr-qr").attr("alt", keyPair.getAddress());
     $("#addr-id-clipboard").attr("data-clipboard-text", keyPair.getAddress());
+    $("#addr-id-clipboard").attr("title", "Copy address");
     $("#addr-id").attr("href", PARAMS[CURRENT_COIN].explorer + "address/" + keyPair.getAddress());
     $("#addr-id").html(keyPair.getAddress());
     changeAddress = keyPair.getAddress();
@@ -1494,8 +1528,7 @@ function amountChanged(amount) {
     $("#address").val(newVal);
 }
 
-var tx; // global variable for the transaction
-
+var tx;
 function spendf() {
     var amount = Number($("#amount").val());
     if (isSwapping && swapDirection == "W") {
@@ -1513,7 +1546,7 @@ function spendf() {
     var address = $("#address").val();
     if (address != "Lottery" && !address.startsWith("HODL") && !isSwapping) {
         try {
-            PARAMS[CURRENT_COIN].coinjs.address.toOutputScript($("#address").val(), PARAMS[CURRENT_COIN].network);
+            PARAMS[CURRENT_COIN].coinjs.address.toOutputScript(address, PARAMS[CURRENT_COIN].network);
         } catch (e) {
             alertError("Please enter a valid address!");
             return;
@@ -1713,20 +1746,6 @@ function createHODLRewardsTx(address, amount, result) {
     tx.addOutput(opRet, 10000000);
 }
 
-function sendProgress(status) {
-    var btnText = $("#submit").html();
-
-    if (status == "sending") {
-        if (!btnText.endsWith("!")) btnText += ".";
-        if (btnText.endsWith("......")) btnText = "SEND";
-        $("#submit").html(btnText);
-        setTimeout(sendProgress, 1000, status);
-    } else {
-        $("#submit").html(status);
-        setTimeout(enableSendForm, 1000);
-    }
-}
-
 function enableSendForm() {
     $('#address').prop("disabled", false).val("");
     $('#amount').prop("disabled", false).val("");
@@ -1760,7 +1779,7 @@ jQuery(document).ready(function() {
         swal.fire({
             icon: "info",
             title: "IMPORTANT TERMS OF USE",
-            html: "<div>No registration will be required. Initial login will serve as your registration.<br/><br/>Remember to securely backup your email and password. If forgotten or lost, recovery won't be possible!<br/><br/><span style='font-weight:bold; letter-spacing:2px; font-family:Lato;'>BE YOUR OWN BANK</span></div>",
+            html: "<div>No registration will be required. Initial login will serve as your registration.<br/><br/>Remember to securely backup your email and password. If forgotten or lost, recovery will not be possible!<br/><br/><span style='font-weight:bold; letter-spacing:2px; font-family:Lato;'>BE YOUR OWN BANK</span></div>",
             showCancelButton: true
         }).then((result) => {
             if (result.isConfirmed) {
@@ -1841,10 +1860,6 @@ jQuery(document).ready(function() {
 
 (function(jQuery) {
     // Source: src/rules.js
-
-
-
-
     var rulesEngine = {};
 
     try {
@@ -2003,10 +2018,6 @@ jQuery(document).ready(function() {
     } catch (ignore) {}
 
     // Source: src/options.js
-
-
-
-
     var defaultOptions = {};
 
     defaultOptions.common = {};
@@ -2102,10 +2113,6 @@ jQuery(document).ready(function() {
     defaultOptions.ui.scores = [14, 26, 38, 50];
 
     // Source: src/ui.js
-
-
-
-
     var ui = {};
 
     (function($, ui) {
@@ -2382,10 +2389,6 @@ jQuery(document).ready(function() {
     }(jQuery, ui));
 
     // Source: src/methods.js
-
-
-
-
     var methods = {};
 
     (function($, methods) {
