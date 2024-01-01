@@ -124,7 +124,7 @@ var PARAMS = {
 };
 
 /* WEB3 PART W.PINHEIRO */
-let web3 = new Web3(window.ethereum);
+let web3;
 let addr;
 
 var EVMCHAININFO = {
@@ -156,15 +156,6 @@ var EVMCHAININFO = {
         chainIdExplorer: "",
     }
 };
-
-
-const currentblock = async () => {
-    let a;
-    await web3.eth.getBlockNumber((err, res) => {
-        a = res;
-    });
-    return (a);
-}
 
 // DETECT NETWORK FOR DOCUMENT READY
 async function detectChainId() {
@@ -692,8 +683,6 @@ const networkWithdraw = async (amount, contract) => {
             });
     }
 };
-
-
 /* END WEB3 PART */
 
 function alertError(t, m) {
