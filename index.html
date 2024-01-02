@@ -82,9 +82,6 @@
                                     <button id="addr-id-clipboard" type="button" class="btn btn-primary clipboard" data-clipboard-text="SWIFTADDRESS">
                                         <i class="fa fa-copy"></i>
                                     </button>
-                                    <button title="Add to Metamask" id="addr-id-metamask" type="button" class="btn btn-primary metamask" onclick="addToMetamask();">
-                                        <i style="padding-right: 0.5px;" class="fa fa-brands fa-ethereum"></i>
-                                    </button>
                                     <div style="margin-top: 2px;">
                                         <a href="javascript:togglePrice();" class="label hvr-buzz-out label-primary" id="addr-balance" style="vertical-align: middle; font-size: 11.8px; padding: 4.3px;">Balance: 0.00000000 SWIFT</a>
                                         <button title="Refresh balance" id="addr-balance-refresh" type="button" class="btn btn-primary refresh" onclick="javascript:loadAddress();">
@@ -99,8 +96,8 @@
                                         <button title="Custom fee" id="trx-fee" type="button" class="btn btn-primary customfee" onclick="changeTheFee();">
                                             <i class="fa fa-wrench" style="width: 14px;"></i>
                                         </button>
-                                        <button title="Add donation" id="trx-donation" type="button" class="btn btn-primary donation" onclick="donate();">
-                                            <i class="fa fa-gift" style="width: 14px;"></i>
+                                        <button title="Add to Metamask" id="trx-donation" type="button" class="btn btn-primary metamask" onclick="addToMetamask();">
+                                            <i class="fa fa-brands fa-ethereum" style="width: 14px;"></i>
                                         </button>
                                     </div>
                                     <div id="divHodlBalance" style="margin-top: 5px; display: none;">

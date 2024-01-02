@@ -34,7 +34,7 @@ To enter into SwiftCash DeLotts(Decentralized Lotteries), you can burn your coin
 * To specify a custom change address, click on the vial icon.
 * To change/adjust the transaction fee, click on the wrench icon.
 * To copy your private key, click on the key icon.
-* To donate, click on the gift icon or the donate button.
+* To donate, click on the the donate/dollar button.
 * To play in the blockchain's lottery, click on the dice button.
 * To open a HODL deposit, click on the piggy bank button.
 * To release your HODL deposit, click on the unlock icon.
