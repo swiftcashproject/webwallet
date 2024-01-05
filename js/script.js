@@ -1479,8 +1479,9 @@ function swapTokensProcess() {
             "<b>Minimum Withdrawal: </b>" + toCustomFixed(PARAMS[CURRENT_COIN].swapMinWithdrawal) + " " + CURRENT_COIN + "<br/>" +
             "<b>Deposit Fee(Network): </b>" + toCustomFixed(PARAMS[CURRENT_COIN].swapDepositFee) + " " + CURRENT_COIN + "<br/>" +
             "<b>Bridging Fee(Deposit/Withdraw): </b>" + PARAMS[CURRENT_COIN].swapFee + "%<br/><br/></span>" +
-            "Bridging transactions will take 1-3 days to complete. Do you want to continue?",
-        showCancelButton: true
+            "SwiftCash Team will take 50% of the fees and burn the other 50% to support SWIFT. Due to multi signatures being required, bridging transactions will take 1-3 days to complete. Do you wish to proceed?",
+        showCancelButton: true,
+        confirmButtonText: "Yes"
     }).then((result) => {
         if (result.isConfirmed) {
             swapServers();
