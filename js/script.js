@@ -1556,7 +1556,7 @@ function spendf() {
         alertError("Swap, Lottery and/or HODL transactions only work with SWIFT!");
         return;
     } else if (isSwapping && swapDirection == "D") {
-        if (!web3.utils.isAddress(address)) {
+        if (!Web3.utils.isAddress(address)) {
             alertError("Please enter a valid address!");
             return;
         } else if (amount < PARAMS[CURRENT_COIN].swapMinDeposit) {
