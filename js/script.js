@@ -1142,7 +1142,7 @@ function redeemHODL(txHash, uValue, lockTime) {
                     [p2]: 0,
                     [p3]: valueMinusFee * PARAMS[CURRENT_COIN].unspentDivision
                 });
-                balance += valueMinusFee;
+                balance += Number(valueMinusFee.toFixed(8));
 
                 $('#addr-balance').html("Balance: " + toCustomFixed(balance) + " " + CURRENT_COIN);
 
