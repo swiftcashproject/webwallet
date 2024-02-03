@@ -1072,7 +1072,16 @@ function unlockHodl() {
 
                         if (lockTime > nHeight) {
                             const waitDays = Math.ceil(((lockTime - nHeight) * 10) / 60 / 24);
-                            alertError("Deposit has not matured yet.\nTry again after " + waitDays + " day(s)!");
+                            if(waitDays > 1) {
+                                alertError("Deposit has not matured yet.\nTry again after " + waitDays + " days!");
+                            } else {
+                                const waitHours = Math.ceil(((lockTime - nHeight) * 10) / 60);
+                                if(waitHours > 1) {
+                                    alertError("Deposit has not matured yet.\nTry again after ~" + waitHours + " hours!");
+                                } else {
+                                    alertError("Deposit has not matured yet.\nTry again after ~1 hour!");
+                                }
+                            }
                             $("#hodl-unlock").prop("disabled", false);
                         } else {
                             redeemHODL(txHash, uValue, lockTime);
