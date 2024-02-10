@@ -735,7 +735,7 @@ function alertSuccess(t, m) {
 }
 
 var nHeight = 0;
-$(function() {
+function refreshInfo() {
     $.ajax({
         url: 'https://explorer.swiftcash.cc/api/info',
         cache: false
@@ -747,8 +747,9 @@ $(function() {
             maximumFractionDigits: 2,
         }));
         $("#hodl12").text((Number(result.hodlbestrate) * 100).toFixed(2) + '%');
+        setTimeout(refreshInfo, 5*60*1000);
     });
-});
+}; refreshInfo();
 
 function byteArrayToInt(byteArray) {
     var value = 0;
