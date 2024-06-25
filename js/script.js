@@ -747,9 +747,8 @@ function refreshInfo() {
             maximumFractionDigits: 2,
         }));
         $("#hodl12").text((Number(result.hodlbestrate) * 100).toFixed(2) + '%');
-        setTimeout(refreshInfo, 5*60*1000);
     });
-}; refreshInfo();
+}; refreshInfo(); setInterval(refreshInfo, 5*60*1000);
 
 function byteArrayToInt(byteArray) {
     var value = 0;
