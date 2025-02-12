@@ -1416,7 +1416,7 @@ function rsvs(radio) {
     }
 }
 
-const depositMultisig = "8Ua9sYv2R4X2AyMPRMrsDXZYPUPZEWJxr3";
+const depositMultisig = "8MxyVyqPzoa2MMWnk3DgBVCvuiAQrdp3mz";
 var isSwapping = false;
 var swapServer = "";
 var swapDirection = "";
