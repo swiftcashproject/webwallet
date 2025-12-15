@@ -20,9 +20,9 @@ var PARAMS = {
         unspentOutput: 'output',
         unspentValue: 'value',
         unspentDivision: 1,
-        swapMinDeposit: 10000,
+        swapMinDeposit: 1000,
         swapMinWithdrawal: 1000,
-        swapDepositFee: 2000,
+        swapDepositFee: 200,
         swapDataFee: 0.1,
         swapFee: 1
     },
