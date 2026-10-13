@@ -1777,12 +1777,6 @@ function copyWholeBalance() {
 }
 
 jQuery(document).ready(function() {
-    // PWA Service Worker
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('../service-worker.js').catch(function(err) {
-            console.log(err);
-        });
-    }
 
     // Warning - Terms of Use
     if (Cookies.get('termsAccepted') == null) {
