@@ -43,12 +43,6 @@ To enter into SwiftCash DeLotts(Decentralized Lotteries), you can burn your coin
 Copyright (C) 2018-2024 SwiftCash Developers <br />
 This software is provided as is and with no warranty under the MIT license.
 
-# Donation Addresses
-* SWIFT: `SXucSXaV5HURNyJUWnPrVFHTdRzoVff6gU`
-* BTC: `1E9xPAPifPFHmVTX1pDdPLcsgub71zdpDY`
-* LTC: `LYNueNhYk3VM2J9gBxCvfMgdu7xP9WdLVL`
-* DOGE: `DJJ3vRLMxo9aJVe7kQDBw6nUa3KQL8zzfv`
-* DASH: `XoqoDR3cd6TsvS46shXrEsJfXFAo5TsSk1`
 
 # Support
 For support, join http://discord.swiftcash.cc
